@@ -1,0 +1,448 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<assembly name="Emik.Unions">
+  <member name="M:Emik.Unions.Disjoints.Either`3.get_Item(System.Int32)">
+    <parameter name="index">
+      <attribute ctor="M:JetBrains.Annotations.ValueRangeAttribute.#ctor(System.Int64,System.Int64)">
+        <argument>0</argument>
+        <argument>1</argument>
+      </attribute>
+    </parameter>
+  </member>
+  <member name="M:Emik.Unions.Disjoints.Either`4.get_Item(System.Int32)">
+    <parameter name="index">
+      <attribute ctor="M:JetBrains.Annotations.ValueRangeAttribute.#ctor(System.Int64,System.Int64)">
+        <argument>0</argument>
+        <argument>2</argument>
+      </attribute>
+    </parameter>
+  </member>
+  <member name="M:Emik.Unions.Disjoints.Either`5.get_Item(System.Int32)">
+    <parameter name="index">
+      <attribute ctor="M:JetBrains.Annotations.ValueRangeAttribute.#ctor(System.Int64,System.Int64)">
+        <argument>0</argument>
+        <argument>3</argument>
+      </attribute>
+    </parameter>
+  </member>
+  <member name="M:Emik.Unions.Disjoints.Either`6.get_Item(System.Int32)">
+    <parameter name="index">
+      <attribute ctor="M:JetBrains.Annotations.ValueRangeAttribute.#ctor(System.Int64,System.Int64)">
+        <argument>0</argument>
+        <argument>4</argument>
+      </attribute>
+    </parameter>
+  </member>
+  <member name="M:Emik.Unions.Disjoints.EitherExtensions.Index``2(Emik.Unions.Disjoints.IEither{``0,``1},System.Int32)">
+    <parameter name="index">
+      <attribute ctor="M:JetBrains.Annotations.ValueRangeAttribute.#ctor(System.Int64,System.Int64)">
+        <argument>0</argument>
+        <argument>1</argument>
+      </attribute>
+    </parameter>
+  </member>
+  <member name="M:Emik.Unions.Disjoints.EitherExtensions.Index``3(Emik.Unions.Disjoints.IEither{``0,``1,``2},System.Int32)">
+    <parameter name="index">
+      <attribute ctor="M:JetBrains.Annotations.ValueRangeAttribute.#ctor(System.Int64,System.Int64)">
+        <argument>0</argument>
+        <argument>2</argument>
+      </attribute>
+    </parameter>
+  </member>
+  <member name="M:Emik.Unions.Disjoints.EitherExtensions.Index``4(Emik.Unions.Disjoints.IEither{``0,``1,``2,``3},System.Int32)">
+    <parameter name="index">
+      <attribute ctor="M:JetBrains.Annotations.ValueRangeAttribute.#ctor(System.Int64,System.Int64)">
+        <argument>0</argument>
+        <argument>3</argument>
+      </attribute>
+    </parameter>
+  </member>
+  <member name="M:Emik.Unions.Disjoints.EitherExtensions.Index``5(Emik.Unions.Disjoints.IEither{``0,``1,``2,``3,``4},System.Int32)">
+    <parameter name="index">
+      <attribute ctor="M:JetBrains.Annotations.ValueRangeAttribute.#ctor(System.Int64,System.Int64)">
+        <argument>0</argument>
+        <argument>4</argument>
+      </attribute>
+    </parameter>
+  </member>
+  <member name="M:Emik.Unions.Disjoints.EitherExtensions.Is``2(Emik.Unions.Disjoints.IEither{``0,``1},System.Action{``0},System.Action{``1})">
+    <parameter name="on1">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+    <parameter name="on2">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:Emik.Unions.Disjoints.EitherExtensions.Is``3(Emik.Unions.Disjoints.IEither{``0,``1,``2},System.Action{``0},System.Action{``1},System.Action{``2})">
+    <parameter name="on1">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+    <parameter name="on2">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+    <parameter name="on3">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:Emik.Unions.Disjoints.EitherExtensions.Is``3(Emik.Unions.Disjoints.IEither{``0,``1},System.Converter{``0,``2},System.Converter{``1,``2})">
+    <attribute ctor="M:JetBrains.Annotations.MustUseReturnValueAttribute.#ctor" />
+    <parameter name="on1">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+    <parameter name="on2">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:Emik.Unions.Disjoints.EitherExtensions.Is``4(Emik.Unions.Disjoints.IEither{``0,``1,``2,``3},System.Action{``0},System.Action{``1},System.Action{``2},System.Action{``3})">
+    <parameter name="on1">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+    <parameter name="on2">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+    <parameter name="on3">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+    <parameter name="on4">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:Emik.Unions.Disjoints.EitherExtensions.Is``4(Emik.Unions.Disjoints.IEither{``0,``1,``2},System.Converter{``0,``3},System.Converter{``1,``3},System.Converter{``2,``3})">
+    <attribute ctor="M:JetBrains.Annotations.MustUseReturnValueAttribute.#ctor" />
+    <parameter name="on1">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+    <parameter name="on2">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+    <parameter name="on3">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:Emik.Unions.Disjoints.EitherExtensions.Is``5(Emik.Unions.Disjoints.IEither{``0,``1,``2,``3,``4},System.Action{``0},System.Action{``1},System.Action{``2},System.Action{``3},System.Action{``4})">
+    <parameter name="on1">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+    <parameter name="on2">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+    <parameter name="on3">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+    <parameter name="on4">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+    <parameter name="on5">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:Emik.Unions.Disjoints.EitherExtensions.Is``5(Emik.Unions.Disjoints.IEither{``0,``1,``2,``3},System.Converter{``0,``4},System.Converter{``1,``4},System.Converter{``2,``4},System.Converter{``3,``4})">
+    <attribute ctor="M:JetBrains.Annotations.MustUseReturnValueAttribute.#ctor" />
+    <parameter name="on1">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+    <parameter name="on2">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+    <parameter name="on3">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+    <parameter name="on4">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:Emik.Unions.Disjoints.EitherExtensions.Is``6(Emik.Unions.Disjoints.IEither{``0,``1,``2,``3,``4},System.Converter{``0,``5},System.Converter{``1,``5},System.Converter{``2,``5},System.Converter{``3,``5},System.Converter{``4,``5})">
+    <attribute ctor="M:JetBrains.Annotations.MustUseReturnValueAttribute.#ctor" />
+    <parameter name="on1">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+    <parameter name="on2">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+    <parameter name="on3">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+    <parameter name="on4">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+    <parameter name="on5">
+      <attribute ctor="M:JetBrains.Annotations.InstantHandleAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="P:Emik.Unions.Disjoints.IEither.Index">
+    <attribute ctor="M:JetBrains.Annotations.ValueRangeAttribute.#ctor(System.Int64,System.Int64)" />
+  </member>
+  <member name="M:Emik.Unions.Factories.From``2">
+    <attribute ctor="M:JetBrains.Annotations.MustUseReturnValueAttribute.#ctor" />
+  </member>
+  <member name="M:Emik.Unions.Factories.From``3">
+    <attribute ctor="M:JetBrains.Annotations.MustUseReturnValueAttribute.#ctor" />
+  </member>
+  <member name="M:Emik.Unions.Factories.From``4">
+    <attribute ctor="M:JetBrains.Annotations.MustUseReturnValueAttribute.#ctor" />
+  </member>
+  <member name="M:Emik.Unions.Factories.From``5">
+    <attribute ctor="M:JetBrains.Annotations.MustUseReturnValueAttribute.#ctor" />
+  </member>
+  <member name="M:Emik.Unions.Factories.From``6">
+    <attribute ctor="M:JetBrains.Annotations.MustUseReturnValueAttribute.#ctor" />
+  </member>
+  <member name="M:Emik.Unions.FaultException.#ctor(System.String,System.String,System.Object)">
+    <parameter name="paramName">
+      <attribute ctor="M:JetBrains.Annotations.InvokerParameterNameAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:Emik.Unions.IProperties.get_Item(System.Int32)">
+    <parameter name="index">
+      <attribute ctor="M:JetBrains.Annotations.NonNegativeValueAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:Emik.Unions.Tagged.IProduct.get_Item(System.String)">
+    <parameter name="name">
+      <attribute ctor="M:JetBrains.Annotations.LocalizationRequiredAttribute.#ctor(System.Boolean)">
+        <argument>False</argument>
+      </attribute>
+    </parameter>
+  </member>
+  <member name="M:Emik.Unions.Tagged.Product.New``1(``0,System.Predicate{Emik.Unions.Tagged.IProduct{``0}},System.String)">
+    <attribute ctor="M:JetBrains.Annotations.MustUseReturnValueAttribute.#ctor" />
+    <parameter name="firstPred">
+      <attribute ctor="M:JetBrains.Annotations.RequireStaticDelegateAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:Emik.Unions.Tagged.Product.New``2(``0,``1,System.Predicate{Emik.Unions.Tagged.IProduct{``0,``1}},System.Predicate{Emik.Unions.Tagged.IProduct{``0,``1}},System.String,System.String)">
+    <attribute ctor="M:JetBrains.Annotations.MustUseReturnValueAttribute.#ctor" />
+    <parameter name="firstPred">
+      <attribute ctor="M:JetBrains.Annotations.RequireStaticDelegateAttribute.#ctor" />
+    </parameter>
+    <parameter name="secondPred">
+      <attribute ctor="M:JetBrains.Annotations.RequireStaticDelegateAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:Emik.Unions.Tagged.Product.New``3(``0,``1,``2,System.Predicate{Emik.Unions.Tagged.IProduct{``0,``1,``2}},System.Predicate{Emik.Unions.Tagged.IProduct{``0,``1,``2}},System.Predicate{Emik.Unions.Tagged.IProduct{``0,``1,``2}},System.String,System.String,System.String)">
+    <attribute ctor="M:JetBrains.Annotations.MustUseReturnValueAttribute.#ctor" />
+    <parameter name="firstPred">
+      <attribute ctor="M:JetBrains.Annotations.RequireStaticDelegateAttribute.#ctor" />
+    </parameter>
+    <parameter name="secondPred">
+      <attribute ctor="M:JetBrains.Annotations.RequireStaticDelegateAttribute.#ctor" />
+    </parameter>
+    <parameter name="thirdPred">
+      <attribute ctor="M:JetBrains.Annotations.RequireStaticDelegateAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:Emik.Unions.Tagged.Product.New``4(``0,``1,``2,``3,System.Predicate{Emik.Unions.Tagged.IProduct{``0,``1,``2,``3}},System.Predicate{Emik.Unions.Tagged.IProduct{``0,``1,``2,``3}},System.Predicate{Emik.Unions.Tagged.IProduct{``0,``1,``2,``3}},System.Predicate{Emik.Unions.Tagged.IProduct{``0,``1,``2,``3}},System.String,System.String,System.String,System.String)">
+    <attribute ctor="M:JetBrains.Annotations.MustUseReturnValueAttribute.#ctor" />
+    <parameter name="firstPred">
+      <attribute ctor="M:JetBrains.Annotations.RequireStaticDelegateAttribute.#ctor" />
+    </parameter>
+    <parameter name="secondPred">
+      <attribute ctor="M:JetBrains.Annotations.RequireStaticDelegateAttribute.#ctor" />
+    </parameter>
+    <parameter name="thirdPred">
+      <attribute ctor="M:JetBrains.Annotations.RequireStaticDelegateAttribute.#ctor" />
+    </parameter>
+    <parameter name="fourthPred">
+      <attribute ctor="M:JetBrains.Annotations.RequireStaticDelegateAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:Emik.Unions.Tagged.Product`2.#ctor(System.Predicate{`1},System.Predicate{`1},System.Predicate{`1},System.Predicate{`1},System.String,System.String,System.String,System.String)">
+    <parameter name="first">
+      <attribute ctor="M:JetBrains.Annotations.RequireStaticDelegateAttribute.#ctor" />
+    </parameter>
+    <parameter name="second">
+      <attribute ctor="M:JetBrains.Annotations.RequireStaticDelegateAttribute.#ctor" />
+    </parameter>
+    <parameter name="third">
+      <attribute ctor="M:JetBrains.Annotations.RequireStaticDelegateAttribute.#ctor" />
+    </parameter>
+    <parameter name="fourth">
+      <attribute ctor="M:JetBrains.Annotations.RequireStaticDelegateAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:Emik.Unions.Tagged.Product`2.get_Item(System.Int32)">
+    <parameter name="index">
+      <attribute ctor="M:JetBrains.Annotations.ValueRangeAttribute.#ctor(System.Int64,System.Int64)">
+        <argument>0</argument>
+        <argument>0</argument>
+      </attribute>
+    </parameter>
+  </member>
+  <member name="M:Emik.Unions.Tagged.Product`2.get_Item(System.String)">
+    <parameter name="name">
+      <attribute ctor="M:JetBrains.Annotations.LocalizationRequiredAttribute.#ctor(System.Boolean)">
+        <argument>False</argument>
+      </attribute>
+    </parameter>
+  </member>
+  <member name="M:Emik.Unions.Tagged.Product`2.New(`0)">
+    <attribute ctor="M:JetBrains.Annotations.MustUseReturnValueAttribute.#ctor" />
+  </member>
+  <member name="M:Emik.Unions.Tagged.Product`3.#ctor(System.Predicate{`2},System.Predicate{`2},System.Predicate{`2},System.Predicate{`2},System.String,System.String,System.String,System.String)">
+    <parameter name="first">
+      <attribute ctor="M:JetBrains.Annotations.RequireStaticDelegateAttribute.#ctor" />
+    </parameter>
+    <parameter name="second">
+      <attribute ctor="M:JetBrains.Annotations.RequireStaticDelegateAttribute.#ctor" />
+    </parameter>
+    <parameter name="third">
+      <attribute ctor="M:JetBrains.Annotations.RequireStaticDelegateAttribute.#ctor" />
+    </parameter>
+    <parameter name="fourth">
+      <attribute ctor="M:JetBrains.Annotations.RequireStaticDelegateAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:Emik.Unions.Tagged.Product`3.get_Item(System.Int32)">
+    <parameter name="index">
+      <attribute ctor="M:JetBrains.Annotations.ValueRangeAttribute.#ctor(System.Int64,System.Int64)">
+        <argument>0</argument>
+        <argument>1</argument>
+      </attribute>
+    </parameter>
+  </member>
+  <member name="M:Emik.Unions.Tagged.Product`3.get_Item(System.String)">
+    <parameter name="name">
+      <attribute ctor="M:JetBrains.Annotations.LocalizationRequiredAttribute.#ctor(System.Boolean)">
+        <argument>False</argument>
+      </attribute>
+    </parameter>
+  </member>
+  <member name="M:Emik.Unions.Tagged.Product`3.New(`0,`1)">
+    <attribute ctor="M:JetBrains.Annotations.MustUseReturnValueAttribute.#ctor" />
+  </member>
+  <member name="M:Emik.Unions.Tagged.Product`4.#ctor(System.Predicate{`3},System.Predicate{`3},System.Predicate{`3},System.Predicate{`3},System.String,System.String,System.String,System.String)">
+    <parameter name="first">
+      <attribute ctor="M:JetBrains.Annotations.RequireStaticDelegateAttribute.#ctor" />
+    </parameter>
+    <parameter name="second">
+      <attribute ctor="M:JetBrains.Annotations.RequireStaticDelegateAttribute.#ctor" />
+    </parameter>
+    <parameter name="third">
+      <attribute ctor="M:JetBrains.Annotations.RequireStaticDelegateAttribute.#ctor" />
+    </parameter>
+    <parameter name="fourth">
+      <attribute ctor="M:JetBrains.Annotations.RequireStaticDelegateAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:Emik.Unions.Tagged.Product`4.get_Item(System.Int32)">
+    <parameter name="index">
+      <attribute ctor="M:JetBrains.Annotations.ValueRangeAttribute.#ctor(System.Int64,System.Int64)">
+        <argument>0</argument>
+        <argument>2</argument>
+      </attribute>
+    </parameter>
+  </member>
+  <member name="M:Emik.Unions.Tagged.Product`4.get_Item(System.String)">
+    <parameter name="name">
+      <attribute ctor="M:JetBrains.Annotations.LocalizationRequiredAttribute.#ctor(System.Boolean)">
+        <argument>False</argument>
+      </attribute>
+    </parameter>
+  </member>
+  <member name="M:Emik.Unions.Tagged.Product`4.New(`0,`1,`2)">
+    <attribute ctor="M:JetBrains.Annotations.MustUseReturnValueAttribute.#ctor" />
+  </member>
+  <member name="M:Emik.Unions.Tagged.Product`5.#ctor(System.Predicate{`4},System.Predicate{`4},System.Predicate{`4},System.Predicate{`4},System.String,System.String,System.String,System.String)">
+    <parameter name="first">
+      <attribute ctor="M:JetBrains.Annotations.RequireStaticDelegateAttribute.#ctor" />
+    </parameter>
+    <parameter name="second">
+      <attribute ctor="M:JetBrains.Annotations.RequireStaticDelegateAttribute.#ctor" />
+    </parameter>
+    <parameter name="third">
+      <attribute ctor="M:JetBrains.Annotations.RequireStaticDelegateAttribute.#ctor" />
+    </parameter>
+    <parameter name="fourth">
+      <attribute ctor="M:JetBrains.Annotations.RequireStaticDelegateAttribute.#ctor" />
+    </parameter>
+  </member>
+  <member name="M:Emik.Unions.Tagged.Product`5.get_Item(System.Int32)">
+    <parameter name="index">
+      <attribute ctor="M:JetBrains.Annotations.ValueRangeAttribute.#ctor(System.Int64,System.Int64)">
+        <argument>0</argument>
+        <argument>3</argument>
+      </attribute>
+    </parameter>
+  </member>
+  <member name="M:Emik.Unions.Tagged.Product`5.get_Item(System.String)">
+    <parameter name="name">
+      <attribute ctor="M:JetBrains.Annotations.LocalizationRequiredAttribute.#ctor(System.Boolean)">
+        <argument>False</argument>
+      </attribute>
+    </parameter>
+  </member>
+  <member name="M:Emik.Unions.Tagged.Product`5.New(`0,`1,`2,`3)">
+    <attribute ctor="M:JetBrains.Annotations.MustUseReturnValueAttribute.#ctor" />
+  </member>
+  <member name="M:Emik.Unions.Tagged.ProductExtensions.GetEnumerator``1(Emik.Unions.Tagged.IProduct{``0})">
+    <attribute ctor="M:JetBrains.Annotations.LinqTunnelAttribute.#ctor" />
+  </member>
+  <member name="M:Emik.Unions.Tagged.ProductExtensions.GetEnumerator``2(Emik.Unions.Tagged.IProduct{``0,``1})">
+    <attribute ctor="M:JetBrains.Annotations.LinqTunnelAttribute.#ctor" />
+  </member>
+  <member name="M:Emik.Unions.Tagged.ProductExtensions.GetEnumerator``3(Emik.Unions.Tagged.IProduct{``0,``1,``2})">
+    <attribute ctor="M:JetBrains.Annotations.LinqTunnelAttribute.#ctor" />
+  </member>
+  <member name="M:Emik.Unions.Tagged.ProductExtensions.GetEnumerator``4(Emik.Unions.Tagged.IProduct{``0,``1,``2,``3})">
+    <attribute ctor="M:JetBrains.Annotations.LinqTunnelAttribute.#ctor" />
+  </member>
+  <member name="M:Emik.Unions.Tagged.ProductExtensions.Index``1(Emik.Unions.Tagged.IProduct{``0},System.Int32)">
+    <parameter name="index">
+      <attribute ctor="M:JetBrains.Annotations.ValueRangeAttribute.#ctor(System.Int64,System.Int64)">
+        <argument>0</argument>
+        <argument>0</argument>
+      </attribute>
+    </parameter>
+  </member>
+  <member name="M:Emik.Unions.Tagged.ProductExtensions.Index``1(Emik.Unions.Tagged.IProduct{``0},System.String)">
+    <parameter name="name">
+      <attribute ctor="M:JetBrains.Annotations.LocalizationRequiredAttribute.#ctor(System.Boolean)">
+        <argument>False</argument>
+      </attribute>
+    </parameter>
+  </member>
+  <member name="M:Emik.Unions.Tagged.ProductExtensions.Index``2(Emik.Unions.Tagged.IProduct{``0,``1},System.Int32)">
+    <parameter name="index">
+      <attribute ctor="M:JetBrains.Annotations.ValueRangeAttribute.#ctor(System.Int64,System.Int64)">
+        <argument>0</argument>
+        <argument>1</argument>
+      </attribute>
+    </parameter>
+  </member>
+  <member name="M:Emik.Unions.Tagged.ProductExtensions.Index``2(Emik.Unions.Tagged.IProduct{``0,``1},System.String)">
+    <parameter name="name">
+      <attribute ctor="M:JetBrains.Annotations.LocalizationRequiredAttribute.#ctor(System.Boolean)">
+        <argument>False</argument>
+      </attribute>
+    </parameter>
+  </member>
+  <member name="M:Emik.Unions.Tagged.ProductExtensions.Index``3(Emik.Unions.Tagged.IProduct{``0,``1,``2},System.Int32)">
+    <parameter name="index">
+      <attribute ctor="M:JetBrains.Annotations.ValueRangeAttribute.#ctor(System.Int64,System.Int64)">
+        <argument>0</argument>
+        <argument>2</argument>
+      </attribute>
+    </parameter>
+  </member>
+  <member name="M:Emik.Unions.Tagged.ProductExtensions.Index``3(Emik.Unions.Tagged.IProduct{``0,``1,``2},System.String)">
+    <parameter name="name">
+      <attribute ctor="M:JetBrains.Annotations.LocalizationRequiredAttribute.#ctor(System.Boolean)">
+        <argument>False</argument>
+      </attribute>
+    </parameter>
+  </member>
+  <member name="M:Emik.Unions.Tagged.ProductExtensions.Index``4(Emik.Unions.Tagged.IProduct{``0,``1,``2,``3},System.Int32)">
+    <parameter name="index">
+      <attribute ctor="M:JetBrains.Annotations.ValueRangeAttribute.#ctor(System.Int64,System.Int64)">
+        <argument>0</argument>
+        <argument>3</argument>
+      </attribute>
+    </parameter>
+  </member>
+  <member name="M:Emik.Unions.Tagged.ProductExtensions.Index``4(Emik.Unions.Tagged.IProduct{``0,``1,``2,``3},System.String)">
+    <parameter name="name">
+      <attribute ctor="M:JetBrains.Annotations.LocalizationRequiredAttribute.#ctor(System.Boolean)">
+        <argument>False</argument>
+      </attribute>
+    </parameter>
+  </member>
+</assembly>

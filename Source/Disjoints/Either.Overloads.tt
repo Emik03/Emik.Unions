@@ -1,0 +1,156 @@
+﻿<#@ include file="../Include.ttinclude" #><#@ import namespace="System.Collections.Generic" #>// <copyright file="Either.Overloads.cs" company="Emik">
+// Copyright (c) Emik. This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+// </copyright>
+#pragma warning disable CA1000, CA1033
+namespace Emik.Unions.Disjoints;
+
+<#
+    for (var i = OrMin; i <= OrMax; i++)
+    {
+#>
+<#
+        if (i > Net35Limit)
+        {
+#>
+#if !NET35
+<#
+        }
+#>
+/// <summary>Defines an inheritable record that automates logic for a disjoint union.</summary>
+<#
+        for (var j = 1; j <= i; j++)
+        {
+#>
+/// <typeparam name="T<#= j #>">The <#= Word(j) #> type of the disjoint union.</typeparam>
+<#
+        }
+#>
+/// <typeparam name="TType">The type of the inheriting record.</typeparam>
+public abstract record Either<<#= Generic(i) #>, TType> : IEither<<#= Generic(i) #>>
+    where TType : Either<<#= Generic(i) #>, TType>
+<#
+        for (var j = 1; j <= i; j++)
+        {
+#>
+    where T<#= j #> : notnull
+<#
+        }
+#>
+{
+    int _index = -1;
+
+    static readonly PropertyInfo[] s_properties =
+        typeof(TType)
+           .GetProperties(BindingFlags.Instance | BindingFlags.Public)
+           .Where(a => a.GetGetMethod() is not null)
+           .ToArray();
+
+    static readonly Func<<#= GenericNullable(i) #>, TType> s_factory =
+        Factories.From<<#= GenericNullable(i) #>, TType>().Expect();
+<#
+        for (var j = 1; j <= i; j++)
+        {
+#>
+
+    static readonly Converter<TType, T<#= j #>?> s_<#= Word(j) #>Getter =
+        (Converter<TType, T<#= j #>?>)Delegate.CreateDelegate(
+            typeof(Converter<TType, T<#= j #>?>),
+            s_properties[<#= j - 1 #>].GetGetMethod() ?? throw Unreachable
+        );
+
+    /// <inheritdoc/>
+    [Pure]
+    T<#= j #>? IEither<<#= Generic(i) #>>.<#= WordPascal(j) #> => s_<#= Word(j) #>Getter((TType)this);
+
+    /// <summary>
+    /// Creates a new instance of <typeparamref name="TType"/> with
+    /// the <typeparamref name="T<#= i #>"/> value being set.
+    /// </summary>
+    /// <param name="<#= WordCamel(j) #>">The value of the disjoint union.</param>
+    /// <returns>
+    /// A new instance of <typeparamref name="TType"/> which contains <paramref name="<#= WordCamel(j) #>"/>.
+    /// </returns>
+    [Pure]
+#pragma warning disable MA0018 // Normally a code smell, though this class is abstract and meant to be inherited anyway.
+    public static TType New(T<#= j #> <#= WordCamel(j) #>)
+#pragma warning restore MA0018
+    {
+        var instance = s_factory(
+<#
+            for (var k = 1; k < j; k++)
+            {
+#>
+            default,
+<#
+            }
+#>
+            <#= WordCamel(j) #><#
+            if (j != i)
+            {
+#>,<#
+            }
+            else
+            {
+#>)<#
+            }
+#>
+<#
+            for (var k = j; k < i; k++)
+            {
+#>
+
+            default<#
+                if (k != i - 1)
+                {
+#>,<#
+                }
+                else
+                {
+#>)<#
+                }
+#>
+<#
+            }
+#>;
+
+        instance._index = <#= j - 1 #>;
+
+        return instance;
+    }
+<#
+        }
+#>
+
+    /// <inheritdoc/>
+    [Pure]
+    public KeyValuePair<PropertyInfo, object?> this[[ValueRange(0, <#= i - 1 #>)] int index] => this.Index(index);
+
+    /// <inheritdoc/>
+    [Pure, ValueRange(-1, <#= i - 1 #>)]
+    int IEither.Index => _index;
+
+    /// <inheritdoc/>
+    [Pure]
+    object? IEither.Value => this[_index].Value;
+
+    /// <inheritdoc/>
+    [Pure]
+    IReadOnlyList<PropertyInfo> IProperties.Properties => s_properties.AsRead();
+
+    /// <inheritdoc/>
+    [Pure]
+    public sealed override string ToString() =>
+        @$"{typeof(TType).Name}[{_index}] {{ {s_properties[_index].Name} = {this[_index]} }}";
+}
+
+<#
+        if (i > Net35Limit)
+        {
+#>
+#endif
+<#
+        }
+#>
+<#
+    }
+#>

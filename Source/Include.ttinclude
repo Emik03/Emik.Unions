@@ -1,0 +1,109 @@
+﻿// ReSharper disable ArrangeConstructorOrDestructorBody BadParensLineBreaks BadPreprocessorIndent IncorrectBlankLinesNearBraces MissingIndent RedundantCast RedundantLinebreak UnusedMemberInSuper.Global
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Linq" #>
+<#+
+#pragma warning restore SA1508
+    public const int AndMin = OrMin - 1;
+
+    public const int AndMax = OrMax - 1;
+
+    public const int Assertions = 4;
+
+    public const int Net35Limit = 9;
+
+    public const int OrMin = 2;
+
+    public const int OrMax = 5;
+
+    public static string Word(int i) => i switch
+    {
+        0 => "zeroth",
+        1 => "first",
+        2 => "second",
+        3 => "third",
+        4 => "fourth",
+        5 => "fifth",
+        6 => "sixth",
+        7 => "seventh",
+        8 => "eighth",
+        9 => "ninth",
+        10 => "tenth",
+        11 => "eleventh",
+        12 => "twelfth",
+        13 => "thirteenth",
+        14 => "fourteenth",
+        15 => "fifteenth",
+        16 => "sixteenth",
+        17 => "seventeenth",
+        18 => "eighteenth",
+        19 => "nineteenth",
+        20 => "twentieth",
+        _ => $"many{i}",
+        };
+
+    public static string WordCamel(int i) => string.Join(
+        "",
+        Word(i)
+            .Split()
+            .Select((s, j) => j is 0 ? s : string.Concat($"{s[0]}".ToUpper(), s.Substring(1, s.Length - 1)))
+            .ToArray());
+
+    public static string WordsCamel(IEnumerable<int> i)
+        => string.Join("", i.Select((j, k) => k is 0 ? WordCamel(j) : WordPascal(j)));
+
+    public static string WordPascal(int i) => string.Join(
+        "",
+        Word(i)
+            .Split()
+            .Select(s => string.Concat($"{s[0]}".ToUpper(), s.Substring(1, s.Length - 1)))
+            .ToArray());
+
+    public static string TypeOf(int i, string s = "")
+        => i is 0 ? s : TypeOf(i - 1, s is "" ? $"typeof(T{i})" : $"typeof(T{i}), " + s);
+
+    public static string Generic(int i, string s = "")
+        => i is 0 ? s : Generic(i - 1, s is "" ? $"T{i}" : $"T{i}, " + s);
+
+    public static string GenericCovariant(int i, string s = "")
+#if NET35
+        => i is 0 ? s : GenericCovariant(i - 1, s is "" ? $"T{i}" : $"T{i}, " + s); // Covariance not supported in .NET 3.5
+#else
+        => i is 0 ? s : GenericCovariant(i - 1, s is "" ? $"out T{i}" : $"out T{i}, " + s);
+#endif
+
+    public static string GenericNullable(int i, string s = "")
+        => i is 0 ? s : GenericNullable(i - 1, s == "" ? $"T{i}?" : $"T{i}?, " + s);
+
+    public static string GenericSame(int i, string s = "")
+        => i is 0 ? s : GenericSame(i - 1, s is "" ? "T" : "T, " + s);
+
+    public static string EitherParameter(IEnumerable<int> i)
+        => string.Join("", i.Select(x => $"n{x}"));
+
+    public static string EitherType(IEnumerable<int> i)
+        => i.ToArray() is var arr && arr.Length is 1 ? $"T{arr[0]}?" : $"IEither<{GenericList(arr)}>?";
+
+    public static string EitherNew(IEnumerable<int> i, int indent)
+        =>
+            i.ToArray() is var arr && arr.Length is 1
+                ? $"that.{WordPascal(arr[0])} ?? "
+                : GenericNew(arr, GenericList(arr), indent);
+
+    public static string GenericList(IEnumerable<int> i) => string.Join(", ", i.Select(j => $"T{j}"));
+
+    public static string GenericNew(IEnumerable<int> i, string generic, int indent)
+        =>
+            string.Join(
+                "",
+                i.Select(
+                    j =>
+                        $"that.{WordPascal(j)} is {{ }} {WordCamel(j)} ? Either.New<{generic}>({WordCamel(j)}) :\n{new string(' ', indent * 4)}"));
+
+    public static string IndexPatternMatch(IEnumerable<int> i)
+        => string.Join("and ", i.Select(j => $"not {j - 1} ")).TrimEnd();
+
+    public static IEnumerable<IEnumerable<T>> ToPowerSet<T>(ICollection<T> collection) => Enumerable
+        .Range(0, 1 << collection.Count)
+        .Select(mask => collection.Where((_, j) => (1 << j & mask) is not 0));
+#>

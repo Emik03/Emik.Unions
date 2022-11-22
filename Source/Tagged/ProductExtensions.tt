@@ -1,0 +1,140 @@
+﻿<#@ include file="../Include.ttinclude" #>// <copyright file="ProductExtensions.cs" company="Emik">
+// Copyright (c) Emik. This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+// </copyright>
+namespace Emik.Unions.Tagged;
+
+/// <summary>A static class that provides functionality for union types.</summary>
+public static class ProductExtensions
+{
+<#
+    for (var i = AndMin; i <= AndMax; i++)
+    {
+#>
+<#
+        if (i > Net35Limit)
+        {
+#>
+#if !NET35
+<#
+        }
+#>
+    /// <summary>Performs an index operation on the union.</summary>
+<#
+        for (var k = 1; k <= i; k++)
+        {
+#>
+    /// <typeparam name="T<#= k #>">
+    /// The <#= Word(k) #> generic parameter of <see cref="IProduct{<#= Generic(i) #>}"/>.
+    /// </typeparam>
+<#
+        }
+#>
+    /// <param name="that">The instance of the union.</param>
+    /// <param name="index">The index to apply.</param>
+    /// <returns>The <see cref="object"/> corresponding to the index of the union.</returns>
+    /// <exception cref="ArgumentOutOfRangeException">The value <paramref name="index"/> is out of range.</exception>
+    [Pure]
+    public static KeyValuePair<PropertyInfo, object?> Index<<#= Generic(i) #>>(
+        this IProduct<<#= Generic(i) #>> that,
+        [ValueRange(0, <#= i - 1 #>)] int index) =>
+        index switch
+        {
+<#
+        for (var k = 1; k <= i; k++)
+        {
+#>
+            <#= k - 1 #> => new(that.Properties[<#= k - 1 #>], that.<#= WordPascal(k) #>),
+<#
+        }
+#>
+            _ => throw new ArgumentOutOfRangeException(nameof(that), $"The index {index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-<#= i #>."),
+        };
+
+    /// <summary>Performs an index operation on the union.</summary>
+<#
+        for (var k = 1; k <= i; k++)
+        {
+#>
+    /// <typeparam name="T<#= k #>">
+    /// The <#= Word(k) #> generic parameter of <see cref="IProduct{<#= Generic(i) #>}"/>.
+    /// </typeparam>
+<#
+        }
+#>
+    /// <param name="that">The instance of the union.</param>
+    /// <param name="name">The name to apply.</param>
+    /// <returns>The <see cref="object"/> corresponding to the name of the union.</returns>
+    /// <exception cref="KeyNotFoundException">The value <paramref name="name"/> is not a valid member.</exception>
+    [Pure]
+    public static KeyValuePair<PropertyInfo, object?> Index<<#= Generic(i) #>>(
+        this IProduct<<#= Generic(i) #>> that,
+        [Localizable(false), LocalizationRequired(false)] string name) =>
+        name switch
+        {
+<#
+        for (var k = 1; k <= i; k++)
+        {
+#>
+            { } when name.Equals(that.Properties[<#= k - 1 #>].Name, StringComparison.Ordinal)
+                => new(that.Properties[<#= k - 1 #>], that.<#= WordPascal(k) #>),
+<#
+        }
+#>
+            _ => throw new KeyNotFoundException($"The key {name} is not a valid member."),
+        };
+
+    /// <summary>Enumerates through a <see cref="IProduct{<#= Generic(i) #>}"/>'s values.</summary>
+<#
+        for (var k = 1; k <= i; k++)
+        {
+#>
+    /// <typeparam name="T<#= k #>">
+    /// The <#= Word(k) #> generic parameter of <see cref="IProduct{<#= Generic(i) #>}"/>.
+    /// </typeparam>
+<#
+        }
+#>
+    /// <param name="that">The instance of the union.</param>
+    /// <returns>An enumerator of objects from the items in the argument provided.</returns>
+    [LinqTunnel, Pure]
+    public static IEnumerator<KeyValuePair<PropertyInfo, T1>> GetEnumerator<<#= Generic(i) #>>(
+        this IProduct<<#= Generic(i) #>> that
+    )
+<#
+        for (var k = 2; k <= i; k++)
+        {
+#>
+        where T<#= k #> : T1
+<#
+        }
+#>
+    {
+<#
+        for (var k = 1; k <= i; k++)
+        {
+#>
+        yield return new(that.Properties[<#= k - 1 #>], that.<#= WordPascal(k) #>);
+<#
+        }
+#>
+    }
+
+<#
+        if (i > Net35Limit)
+        {
+#>
+#endif
+<#
+        }
+#>
+<#
+    }
+#>
+    /// <summary>Enumerates through a <see cref="IPropertyEnumerable"/>'s values.</summary>
+    /// <param name="that">The instance of the union.</param>
+    /// <returns>An enumerator of objects from the items in the argument provided.</returns>
+    [Pure]
+    public static IEnumerator<KeyValuePair<PropertyInfo, object?>> GetEnumerator(this IPropertyEnumerable that)
+        =>
+            that.Enumeration();
+}

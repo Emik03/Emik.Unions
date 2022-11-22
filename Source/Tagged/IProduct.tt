@@ -1,0 +1,69 @@
+﻿<#@ include file="../Include.ttinclude" #>// <copyright file="IProduct.cs" company="Emik">
+// Copyright (c) Emik. This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+// </copyright>
+namespace Emik.Unions.Tagged;
+
+#pragma warning disable SA1508
+/// <summary>Provides an indexer.</summary>
+public interface IProduct : IPropertyEnumerable, IProperties
+{
+    /// <summary>Gets an <see cref="object"/> corresponding to the property.</summary>
+    /// <param name="name">The property name to get its value.</param>
+    /// <returns><see cref="object"/> corresponding to the property name <paramref name="name"/>.</returns>
+    [Pure]
+    object? this[PropertyInfo name] { get; }
+
+    /// <summary>Gets an <see cref="object"/> corresponding to the name.</summary>
+    /// <param name="name">The property name to get its value.</param>
+    /// <returns><see cref="object"/> corresponding to the property name <paramref name="name"/>.</returns>
+    [Pure]
+    KeyValuePair<PropertyInfo, object?> this[[Localizable(false), LocalizationRequired(false)] string name] { get; }
+}
+
+<#
+    for (var i = AndMin; i <= AndMax; i++)
+    {
+#>
+<#
+        if (i > Net35Limit)
+        {
+#>
+#if !NET35
+<#
+        }
+#>
+/// <summary>Defines an interface for union of size <#= i #>.</summary>
+<#
+        for (var j = 1; j <= i; j++)
+        {
+#>
+/// <typeparam name="T<#= j #>">The <#= Word(j) #> type of the union.</typeparam>
+<#
+        }
+#>
+public interface IProduct<<#= GenericCovariant(i) #>> : IProduct
+{
+<#
+        for (var j = 1; j <= i; j++)
+        {
+#>
+    /// <summary>Gets the <typeparamref name="T<#= j #>"/> <#= Word(j) #> value of the union.</summary>
+    [Pure]
+    T<#= j #> <#= WordPascal(j) #> { get; }
+
+<#
+        }
+#>
+}
+
+<#
+        if (i > Net35Limit)
+        {
+#>
+#endif
+<#
+        }
+#>
+<#
+    }
+#>

@@ -1,0 +1,142 @@
+﻿<#@ include file="../Include.ttinclude" #>// ReSharper disable MissingLinebreak
+// <copyright file="Product.cs" company="Emik">
+// Copyright (c) Emik. This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+// </copyright>
+namespace Emik.Unions.Tagged;
+
+#pragma warning disable SA1508
+
+/// <summary>A static class that provides methods for creating new instances of union types.</summary>
+public static class Product
+{
+<#
+    for (var i = AndMin; i <= AndMax; i++)
+    {
+#>
+<#
+        if (i > Net35Limit)
+        {
+#>
+#if !NET35
+<#
+        }
+#>
+    /// <summary>Creates a <see cref="IProduct{<#= Generic(i) #>}"/> with the provided values.</summary>
+<#
+        for (var j = 1; j <= i; j++)
+        {
+#>
+    /// <typeparam name="T<#= j #>">
+    /// The <#= Word(j) #> generic parameter of <see cref="IProduct{<#= Generic(i) #>}"/>.
+    /// </typeparam>
+<#
+        }
+#>
+<#
+        for (var k = 1; k <= i; k++)
+        {
+#>
+    /// <param name="<#= WordCamel(k) #>">
+    /// The <#= Word(k) #> parameter to pass in the type <see cref="IProduct{<#= Generic(i) #>}"/>.
+    /// </param>
+<#
+        }
+#>
+<#
+        for (var k = 1; k <= i; k++)
+        {
+#>
+    /// <param name="<#= WordCamel(k) #>Pred">The <#= Word(k) #> condition to assert. True is a valid state.</param>
+<#
+        }
+#>
+<#
+        for (var k = 1; k <= i; k++)
+        {
+#>
+    /// <param name="<#= WordCamel(k) #>Ex">
+    /// The expression of <paramref name="<#= WordCamel(k) #>"/> to pass as the failure value.
+    /// </param>
+<#
+        }
+#>
+    /// <returns><see cref="IProduct{<#= Generic(i) #>}"/> with the parameters passed in.</returns>
+    [MustUseReturnValue]
+    public static Result<IProduct<<#= Generic(i) #>>, Fault<IProduct<<#= Generic(i) #>>>> New<<#= Generic(i) #>>(
+<#
+        for (var j = 1; j <= i; j++)
+        {
+#>
+        T<#= j #> <#= WordCamel(j) #>,
+<#
+        }
+#>
+<#
+        for (var j = 1; j <= i; j++)
+        {
+#>
+        [RequireStaticDelegate] Predicate<IProduct<<#= Generic(i) #>>>? <#= WordCamel(j) #>Pred = null,
+<#
+        }
+#>
+<#
+        for (var j = 1; j <= i; j++)
+        {
+#>
+        [CallerArgumentExpression(nameof(<#= WordCamel(j) #>Pred))] string? <#= WordCamel(j) #>Ex = null<#
+            if (j != i)
+            {
+#>,<#
+            }
+            else
+            {
+#>)<#
+            }
+#>
+
+<#
+        }
+#>
+        =>
+            new InnerProduct<<#= Generic(i) #>>(
+<#
+        for (var j = 1; j <= i; j++)
+        {
+#>
+                <#= WordCamel(j) #><#
+            if (j != i)
+            {
+#>,
+<#
+            }
+            else
+            {
+#>)<#
+            }
+#>
+<#
+        }
+#> is var product &&
+            (
+<#
+        for (var j = 1; j <= i; j++)
+        {
+#>
+                !<#= WordCamel(j) #>Pred?.Invoke(product) ?? false ? <#= WordCamel(j) #>Ex :
+<#
+        }
+#>                null
+            ) is { } err
+                ? new Fault<IProduct<<#= Generic(i) #>>>(err, product)
+                : product;
+
+<#
+        if (i > Net35Limit)
+        {
+#>
+#endif
+<#
+        }
+    }
+#>
+}

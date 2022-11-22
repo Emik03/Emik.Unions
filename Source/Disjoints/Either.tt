@@ -1,0 +1,62 @@
+﻿<#@ include file="../Include.ttinclude" #>// <copyright file="Either.cs" company="Emik">
+// Copyright (c) Emik. This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+// </copyright>
+namespace Emik.Unions.Disjoints;
+
+#pragma warning disable SA1508
+/// <summary>A static class that provides methods for creating new instances of disjoint union types.</summary>
+public static class Either
+{
+<#
+    for (var i = OrMin; i <= OrMax; i++)
+    {
+#>
+<#
+        if (i > Net35Limit)
+        {
+#>
+#if !NET35
+<#
+        }
+#>
+<#
+        for (var j = 1; j <= i; j++)
+        {
+#>
+    /// <summary>
+    /// Creates a <see cref="IEither{<#= Generic(i) #>}"/> with the inner value <typeparamref name="T<#= j #>"/>.
+    /// </summary>
+<#
+            for (var k = 1; k <= i; k++)
+            {
+#>
+    /// <typeparam name="T<#= k #>">
+    /// The <#= Word(k) #> generic parameter of <see cref="IEither{<#= Generic(i) #>}"/>.
+    /// </typeparam>
+<#
+            }
+#>
+    /// <param name="<#= WordCamel(j) #>">
+    /// The parameter to pass in the type <see cref="IEither{<#= Generic(i) #>}"/>.
+    /// </param>
+    /// <returns><see cref="IEither{<#= Generic(i) #>}"/> with <paramref name="<#= WordCamel(j) #>"/>.</returns>
+    [Pure]
+    public static IEither<<#= Generic(i) #>> New<<#= Generic(i) #>>(T<#= j #> <#= WordCamel(j) #>)
+        =>
+            new InnerEither<<#= Generic(i) #>>(<#= WordCamel(j) #>);
+
+<#
+        }
+#>
+<#
+        if (i > Net35Limit)
+        {
+#>
+#endif
+<#
+        }
+#>
+<#
+    }
+#>
+}

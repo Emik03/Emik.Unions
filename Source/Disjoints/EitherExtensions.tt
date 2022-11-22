@@ -1,0 +1,305 @@
+<#@ include file="../Include.ttinclude" #>// ReSharper disable InconsistentNaming
+// <copyright file="EitherExtensions.cs" company="Emik">
+// Copyright (c) Emik. This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+// </copyright>
+namespace Emik.Unions.Disjoints;
+
+#pragma warning disable SA1001, SA1508
+/// <summary>A static class that provides functionality for disjoint union types.</summary>
+public static class EitherExtensions
+{
+<#
+    for (var i = OrMin; i <= OrMax; i++)
+    {
+#><#
+        if (i > Net35Limit)
+        {
+#>
+#if !NET35
+<#
+        }
+#><#
+        for (var j = 0; j is 0 or 1; j++)
+        {
+            var b = j is 0;
+
+            foreach (var k in ToPowerSet(Enumerable.Range(1, i).ToArray()).Skip(1).Take((1 << i) - 2))
+            {
+                var truthy = k.ToArray();
+                var falsy = Enumerable.Range(1, i).Except(truthy).ToArray();
+#>
+    /// <summary>Determines whether the disjoint union is the type provided.</summary>
+    <#
+                for (var l = 1; l <= i; l++)
+                {
+#>/// <typeparam name="T<#= l #>">
+    /// The <#= Word(l) #> generic parameter of <see cref="IEither{<#= Generic(i) #>}"/>.
+    /// </typeparam>
+    <#
+                }
+#>/// <param name="that">The instance of the disjoint union.</param>
+    /// <param name="<#= EitherParameter(truthy) #>">The truthy value.</param>
+<#
+                if (b)
+                {
+#>
+    /// <param name="<#= EitherParameter(falsy) #>">The falsy value.</param>
+<#
+                }
+#>
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// The value <paramref name="that"/> has an invalid <see cref="IEither.Index"/>.
+    /// </exception>
+    /// <returns>
+    /// The value <see langword="true"/> if <paramref name="that"/> matches the pattern,
+    /// otherwise <see langword="false"/>.
+    /// </returns>
+    [Pure]
+    public static bool Is<<#= Generic(i) #>>(
+        this IEither<<#= Generic(i) #>> that,
+        [NotNullWhen(true)] out <#= EitherType(truthy) #> <#= EitherParameter(truthy) #><#
+                if (b)
+                {
+#>,
+        [NotNullWhen(false)] out <#= EitherType(falsy) #> <#= EitherParameter(falsy) #>
+<#
+                }
+                else
+                {
+#>
+
+<#
+                }
+#>    )
+    {
+        if (that.Index is >= 0 and <= <#= i - 1 #>)
+            throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-<#= i #>.");
+
+        if (that.Index is <#= IndexPatternMatch(truthy) #>)
+        {
+            <#= EitherParameter(truthy) #> = default;
+
+<#
+                if (b)
+                {
+#>
+            <#= EitherParameter(falsy) #> = <#= EitherNew(falsy, 4) #>throw Unreachable;
+
+<#
+                }
+#>
+            return false;
+        }
+
+        <#= EitherParameter(truthy) #> = <#= EitherNew(truthy, 3) #>throw Unreachable;
+
+<#
+                if (b)
+                {
+#>
+        <#= EitherParameter(falsy) #> = default;
+
+<#
+                }
+#>
+        return true;
+    }
+
+<#
+            }
+        }
+#>
+    /// <summary>Runs the callback based on the value of the disjoint union.</summary>
+<#
+        for (var k = 1; k <= i; k++)
+        {
+#>
+    /// <typeparam name="T<#= k #>">
+    /// The <#= Word(k) #> generic parameter of <see cref="IEither{<#= Generic(i) #>}"/>.
+    /// </typeparam>
+<#
+        }
+#>
+    /// <param name="that">The instance of the disjoint union.</param>
+<#
+        for (var k = 1; k <= i; k++)
+        {
+#>
+    /// <param name="on<#= k #>">
+    /// The callback for <paramref name="that"/> having <see cref="IEither{<#= Generic(i) #>}.<#= WordPascal(k) #>"/>.
+    /// </param>
+<#
+        }
+#>
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// The value <paramref name="that"/> has an invalid <see cref="IEither.Index"/>.
+    /// </exception>
+    /// <returns>Itself.</returns>
+    public static IEither<<#= Generic(i) #>> Is<<#= Generic(i) #>>(
+        this IEither<<#= Generic(i) #>> that,
+<#
+        for (var k = 1; k <= i; k++)
+        {
+#>
+        [InstantHandle] Action<T<#= k #>>? on<#= k #> = null<#
+            if (k != i)
+            {
+#>,
+<#
+            }
+#>
+<#
+        }
+#>)
+    {
+        switch (that.Index)
+        {
+<#
+        for (var k = 1; k <= i; k++)
+        {
+#>            case <#= k - 1 #>:
+                on<#= k #>?.Invoke(that.<#= WordPascal(k) #> ?? throw Unreachable);
+                return that;
+<#
+        }
+#>
+        }
+
+        throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-<#= i #>.");
+    }
+
+    /// <summary>Runs the callback based on the value of the disjoint union.</summary>
+<#
+        for (var k = 1; k <= i; k++)
+        {
+#>
+    /// <typeparam name="T<#= k #>">
+    /// The <#= Word(k) #> generic parameter of <see cref="IEither{<#= Generic(i) #>}"/>.
+    /// </typeparam>
+<#
+        }
+#>
+    /// <typeparam name="TResult">The type for the <see langword="return"/> type of the callbacks.</typeparam>
+    /// <param name="that">The instance of the disjoint union.</param>
+<#
+        for (var k = 1; k <= i; k++)
+        {
+#>
+    /// <param name="on<#= k #>">
+    /// The callback for <paramref name="that"/> having <see cref="IEither{<#= Generic(i) #>}.<#= WordPascal(k) #>"/>.
+    /// </param>
+<#
+        }
+#>
+    /// <returns>
+    /// The value returned from the callback that corresponded to the
+    /// <see cref="IEither.Value"/> of <paramref name="that"/>.
+    /// </returns>
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// The value <paramref name="that"/> has an invalid <see cref="IEither.Index"/>.
+    /// </exception>
+    [MustUseReturnValue]
+    public static TResult Is<<#= Generic(i) #>, TResult>(
+        this IEither<<#= Generic(i) #>> that,
+<#
+        for (var k = 1; k <= i; k++)
+        {
+#>
+        [InstantHandle] Converter<T<#= k #>, TResult> on<#= k #><#
+            if (k != i)
+            {
+#>,
+<#
+            }
+            else
+            {
+#>)<#
+            }
+#>
+<#
+        }
+#> =>
+       that.Index switch
+       {
+    <#
+        for (var k = 1; k <= i; k++)
+        {
+#>
+       <#= k - 1 #> => on<#= k #>(that.<#= WordPascal(k) #> ?? throw Unreachable),
+    <#
+        }
+#>
+       _ => throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-<#= i #>."),
+       };
+
+    /// <summary>Performs an index operation on the disjoint union.</summary>
+<#
+        for (var k = 1; k <= i; k++)
+        {
+#>
+    /// <typeparam name="T<#= k #>">The <#= Word(k) #> generic parameter of <see cref="IEither{<#= Generic(i) #>}"/>.</typeparam>
+<#
+        }
+#>
+    /// <param name="that">The instance of the disjoint union.</param>
+    /// <param name="index">The index to apply.</param>
+    /// <returns>The <see cref="object"/> corresponding to the index of the disjoint union.</returns>
+    /// <exception cref="ArgumentOutOfRangeException">The value <paramref name="index"/> is out of range.</exception>
+    [Pure]
+    public static KeyValuePair<PropertyInfo, object?> Index<<#= Generic(i) #>>(
+        this IEither<<#= Generic(i) #>> that,
+        [ValueRange(0, <#= i - 1 #>)] int index)
+        =>
+            index switch
+            {
+    <#
+        for (var k = 1; k <= i; k++)
+        {
+#>
+            <#= k - 1 #> => new(that.Properties[<#= k - 1 #>], that.<#= WordPascal(k) #>),
+    <#
+        }
+#>
+            _ => throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-<#= i #>."),
+            };
+
+    /// <summary>Gets the <see cref="Type"/> of <see cref="IEither.Value"/>.</summary>
+    <#
+        for (var k = 1; k <= i; k++)
+        {
+#>/// <typeparam name="T<#= k #>">
+    /// The <#= Word(k) #> generic parameter of <see cref="IEither{<#= Generic(i) #>}"/>.
+    /// </typeparam>
+    <#
+        }
+#>/// <param name="that">The instance of the disjoint union.</param>
+    /// <returns>The <see cref="Type"/> of the <see cref="IEither.Value"/>.</returns>
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// The value <paramref name="that"/> has an invalid <see cref="IEither.Index"/>.
+    /// </exception>
+    [Pure]
+    public static Type InnerType<<#= Generic(i) #>>(this IEither<<#= Generic(i) #>> that) =>
+        that.Index switch
+        {
+    <#
+        for (var k = 1; k <= i; k++)
+        {
+#>
+        <#= k - 1 #> => (Type)typeof(T<#= k #>),
+    <#
+        }
+#>
+        _ => throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-<#= i #>."),
+        };
+
+<#
+        if (i > Net35Limit)
+        {
+#>
+#endif
+<#
+        }
+#><#
+    }
+#>
+}

@@ -1,0 +1,270 @@
+﻿<#@ include file="../Include.ttinclude" #>// <copyright file="Product.Overloads.cs" company="Emik">
+// Copyright (c) Emik. This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+// </copyright>
+#pragma warning disable CA1000, CA1033
+namespace Emik.Unions.Tagged;
+
+<#
+    for (var i = AndMin; i <= AndMax; i++)
+    {
+#>
+<#
+        if (i > Net35Limit)
+        {
+#>
+#if !NET35
+<#
+        }
+#>
+/// <summary>Defines an inheritable record that automates logic for a union.</summary>
+<#
+        for (var j = 1; j <= i; j++)
+        {
+#>
+/// <typeparam name="T<#= j #>">The <#= Word(j) #> type of the union.</typeparam>
+<#
+        }
+#>
+/// <typeparam name="TType">The type of the inheriting record.</typeparam>
+public abstract record Product<<#= Generic(i) #>, TType> : IProduct<<#= Generic(i) #>>
+    where TType : Product<<#= Generic(i) #>, TType>
+{
+    static readonly PropertyInfo[] s_properties =
+        typeof(TType)
+           .GetProperties(BindingFlags.Instance | BindingFlags.Public)
+           .Where(a => a.GetGetMethod() is not null)
+           .ToArray();
+
+    static readonly Func<<#= Generic(i) #>, TType> s_factory = Factories.From<<#= Generic(i) #>, TType>().Expect();
+
+    readonly string? _ex;
+
+    /// <summary>Initializes a new instance of the <see cref="Product{<#= Generic(i) #>, TType}"/> class.</summary>
+    /// <remarks><para>Using this constructor means that any state is considered valid.</para></remarks>
+    protected Product() { }
+
+    /// <summary>Initializes a new instance of the <see cref="Product{<#= Generic(i) #>, TType}"/> class.</summary>
+<#
+        for (var j = 1; j <= Assertions; j++)
+        {
+#>
+    /// <param name="<#= WordCamel(j) #>">The <#= Word(j) #> condition to assert. True is a valid state.</param>
+    /// <param name="<#= WordCamel(j) #>Ex">
+    /// The expression of <paramref name="<#= WordCamel(j) #>"/> to pass as the failure value.
+    /// </param>
+<#
+        }
+#>
+    protected Product(
+<#
+        for (var j = 1; j <= Assertions; j++)
+        {
+#>
+        bool <#= WordCamel(j) #><#
+            if (j != 1)
+            {
+#> = true<#
+            }
+#>,
+<#
+        }
+#>
+<#
+        for (var j = 1; j <= Assertions; j++)
+        {
+#>
+        [CallerArgumentExpression(nameof(<#= WordCamel(j) #>))] string? <#= WordCamel(j) #>Ex = null<#
+            if (j != Assertions)
+            {
+#>,<#
+            }
+            else
+            {
+#>)<#
+            }
+#>
+
+<#
+        }
+#>
+        =>
+            _ex =
+<#
+        for (var j = 1; j <= Assertions; j++)
+        {
+#>
+            !<#= WordCamel(j) #> ? <#= WordCamel(j) #>Ex :
+<#
+        }
+#>
+            null;
+
+    /// <summary>Initializes a new instance of the <see cref="Product{<#= Generic(i) #>, TType}"/> class.</summary>
+<#
+        for (var j = 1; j <= Assertions; j++)
+        {
+#>
+    /// <param name="<#= WordCamel(j) #>">The <#= Word(j) #> condition to assert. True is a valid state.</param>
+    /// <param name="<#= WordCamel(j) #>Ex">
+    /// The expression of <paramref name="<#= WordCamel(j) #>"/> to pass as the failure value.
+    /// </param>
+<#
+        }
+#>
+    /// <exception cref="InvalidCastException">The inheriting record is not <typeparamref name="TType"/>.</exception>
+    protected Product(
+<#
+        for (var j = 1; j <= Assertions; j++)
+        {
+#>
+        [RequireStaticDelegate] Predicate<TType>? <#= WordCamel(j) #><#
+            if (j != 1)
+            {
+#> = null<#
+            }
+#>,
+<#
+        }
+#>
+<#
+        for (var j = 1; j <= Assertions; j++)
+        {
+#>
+        [CallerArgumentExpression(nameof(<#= WordCamel(j) #>))] string? <#= WordCamel(j) #>Ex = null<#
+            if (j != Assertions)
+            {
+#>,<#
+            }
+            else
+            {
+#>)<#
+            }
+#>
+
+<#
+        }
+#>
+        =>
+            _ex =
+<#
+        for (var j = 1; j <= Assertions; j++)
+        {
+#>
+            !<#= WordCamel(j) #>?.Invoke((TType)this) ?? false ? <#= WordCamel(j) #>Ex :
+<#
+        }
+#>
+            null;
+
+<#
+        for (var j = 1; j <= i; j++)
+        {
+#>
+    static readonly Converter<TType, T<#= j #>> s_<#= Word(j) #>Getter =
+        (Converter<TType, T<#= j #>>)Delegate.CreateDelegate(
+            typeof(Converter<TType, T<#= j #>>),
+            s_properties[<#= j - 1 #>].GetGetMethod() ?? throw Unreachable
+        );
+
+    /// <inheritdoc/>
+    [Pure]
+    T<#= j #> IProduct<<#= Generic(i) #>>.<#= WordPascal(j) #> => s_<#= Word(j) #>Getter((TType)this);
+
+<#
+        }
+#>
+    /// <summary>Attempts to create a new instance of <typeparamref name="TType"/>.</summary>
+<#
+        for (var j = 1; j <= i; j++)
+        {
+#>
+    /// <param name="<#= WordCamel(j) #>">The <#= Word(j) #> value of the union.</param>
+<#
+        }
+#>
+    /// <returns>A new instance of <typeparamref name="TType"/> which encapsulates all of the parameters.</returns>
+    [MustUseReturnValue]
+#pragma warning disable MA0018, SA1114 // Normally a code smell, but is meant to be inherited anyway.
+    public static Result<TType, Fault<TType>> New(
+<#
+        for (var j = 1; j <= i; j++)
+        {
+#>
+        T<#= j #> <#= WordCamel(j) #><#
+            if (j != i)
+            {
+#>,
+<#
+            }
+            else
+            {
+#>)
+<#
+            }
+#><#
+        }
+#>#pragma warning restore MA0018, SA1114
+    {
+        var that = s_factory(
+<#
+        for (var j = 1; j <= i; j++)
+        {
+#>
+            <#= WordCamel(j) #><#
+            if (j != i)
+            {
+#>,
+<#
+            }
+#>
+<#
+        }
+#>
+);
+
+        return that._ex is { } ex ? new Fault<TType>(ex, that) : that;
+    }
+
+    /// <inheritdoc/>
+    [Pure]
+    IReadOnlyList<PropertyInfo> IProperties.Properties => s_properties.AsRead();
+
+    /// <inheritdoc/>
+    [Pure]
+    public KeyValuePair<PropertyInfo, object?> this[[ValueRange(0, <#= i - 1 #>)] int index] => this.Index(index);
+
+    /// <inheritdoc/>
+    [Pure]
+    public KeyValuePair<PropertyInfo, object?> this[[Localizable(false), LocalizationRequired(false)] string name] =>
+        this.Index(name);
+
+    /// <inheritdoc/>
+    [Pure]
+    public object? this[PropertyInfo name] => this.Index(name.Name).Value;
+
+    /// <inheritdoc/>
+    [LinqTunnel, Pure]
+    IEnumerator<KeyValuePair<PropertyInfo, object?>> IPropertyEnumerable.Enumeration()
+    {
+<#
+        for (var k = 1; k <= i; k++)
+        {
+#>
+        yield return new(s_properties[<#= k - 1 #>], s_<#= Word(k) #>Getter((TType)this));
+<#
+        }
+#>
+    }
+}
+
+<#
+        if (i > Net35Limit)
+        {
+#>
+#endif
+<#
+        }
+#>
+<#
+    }
+#>
