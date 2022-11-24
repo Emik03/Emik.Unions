@@ -135,7 +135,7 @@ public abstract record Either<<#= Generic(i) #>, TType> : IEither<<#= Generic(i)
 
     /// <inheritdoc/>
     [Pure]
-    IReadOnlyList<PropertyInfo> IProperties.Properties => s_properties.AsRead();
+    IReadOnlyList<PropertyInfo> IProperties.Properties => s_properties.ToReadOnly();
 
     /// <inheritdoc/>
     [Pure]

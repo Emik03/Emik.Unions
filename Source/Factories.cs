@@ -31,16 +31,15 @@ public static class Factories
 
         var exNew = Expression.New(
                 info,
-                exFirst
-            )
-            ;
+                exFirst)
+        ;
 
         return Expression
            .Lambda<Func<T1, TType>>(
                 exNew,
                 exFirst
-            )
-           .Compile();
+           )
+          .Compile();
     }
 
     /// <summary>Creates a factory from a given type.</summary>
@@ -69,17 +68,16 @@ public static class Factories
         var exNew = Expression.New(
                 info,
                 exFirst,
-                exSecond
-            )
-            ;
+                exSecond)
+        ;
 
         return Expression
            .Lambda<Func<T1, T2, TType>>(
                 exNew,
                 exFirst,
                 exSecond
-            )
-           .Compile();
+           )
+          .Compile();
     }
 
     /// <summary>Creates a factory from a given type.</summary>
@@ -111,9 +109,8 @@ public static class Factories
                 info,
                 exFirst,
                 exSecond,
-                exThird
-            )
-            ;
+                exThird)
+        ;
 
         return Expression
            .Lambda<Func<T1, T2, T3, TType>>(
@@ -121,8 +118,8 @@ public static class Factories
                 exFirst,
                 exSecond,
                 exThird
-            )
-           .Compile();
+           )
+          .Compile();
     }
 
     /// <summary>Creates a factory from a given type.</summary>
@@ -157,9 +154,8 @@ public static class Factories
                 exFirst,
                 exSecond,
                 exThird,
-                exFourth
-            )
-            ;
+                exFourth)
+        ;
 
         return Expression
            .Lambda<Func<T1, T2, T3, T4, TType>>(
@@ -168,8 +164,8 @@ public static class Factories
                 exSecond,
                 exThird,
                 exFourth
-            )
-           .Compile();
+           )
+          .Compile();
     }
 
     /// <summary>Creates a factory from a given type.</summary>
@@ -207,9 +203,8 @@ public static class Factories
                 exSecond,
                 exThird,
                 exFourth,
-                exFifth
-            )
-            ;
+                exFifth)
+        ;
 
         return Expression
            .Lambda<Func<T1, T2, T3, T4, T5, TType>>(
@@ -219,7 +214,8 @@ public static class Factories
                 exThird,
                 exFourth,
                 exFifth
-            )
-           .Compile();
+           )
+          .Compile();
     }
+
 }

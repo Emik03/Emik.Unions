@@ -227,7 +227,7 @@ public abstract record Product<<#= Generic(i) #>, TType> : IProduct<<#= Generic(
 
     /// <inheritdoc/>
     [Pure]
-    IReadOnlyList<PropertyInfo> IProperties.Properties => s_properties.AsRead();
+    IReadOnlyList<PropertyInfo> IProperties.Properties => s_properties.ToReadOnly();
 
     /// <inheritdoc/>
     [Pure]

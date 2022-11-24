@@ -68,7 +68,7 @@ sealed record InnerEither<<#= Generic(i) #>> : IEither<<#= Generic(i) #>>
 
     /// <inheritdoc/>
     [Pure]
-    public IReadOnlyList<PropertyInfo> Properties => s_properties.AsRead();
+    public IReadOnlyList<PropertyInfo> Properties => s_properties.ToReadOnly();
 
     /// <inheritdoc/>
     [Pure]
