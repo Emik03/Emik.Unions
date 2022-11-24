@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <NoWarn>$(NoWarn);SA1518;SA1633</NoWarn>
-        <TargetFrameworks>net7.0;netstandard2.1;netstandard2.0;net48;net45;net35</TargetFrameworks>
+        <TargetFrameworks>net7.0;netstandard2.1;netstandard2.0;net48;net452;net35</TargetFrameworks>
         <Description>Contains the functional programming paradigm; unions in both disjointed- and tagged flavors.</Description>
     </PropertyGroup>
     <ItemGroup>
@@ -93,13 +93,13 @@
             <DependentUpon>Include.ttinclude</DependentUpon>
         </Compile>
         <None Update="Source\Disjoints\Overload.tt">
-          <Generator>TextTemplatingFileGenerator</Generator>
-          <LastGenOutput>Overload.cs</LastGenOutput>
+            <Generator>TextTemplatingFileGenerator</Generator>
+            <LastGenOutput>Overload.cs</LastGenOutput>
         </None>
         <Compile Update="Source\Disjoints\Overload.cs">
-          <Design>true</Design>
-          <AutoGen>true</AutoGen>
-          <DependentUpon>Overload.tt</DependentUpon>
+            <Design>true</Design>
+            <AutoGen>true</AutoGen>
+            <DependentUpon>Overload.tt</DependentUpon>
         </Compile>
     </ItemGroup>
 </Project>
