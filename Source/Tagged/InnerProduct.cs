@@ -17,8 +17,7 @@ sealed record InnerProduct<T1> : IProduct<T1>
     /// <summary>Initializes a new instance of the <see cref="InnerProduct{T1}"/> class.</summary>
     /// <param name="first">The first parameter to pass in the union.</param>
     internal InnerProduct(
-        T1 first
-    )
+        T1 first)
     {
         First = first;
     }
@@ -71,8 +70,7 @@ sealed record InnerProduct<T1, T2> : IProduct<T1, T2>
     /// <param name="second">The second parameter to pass in the union.</param>
     internal InnerProduct(
         T1 first,
-        T2 second
-    )
+        T2 second)
     {
         First = first;
         Second = second;
@@ -134,8 +132,7 @@ sealed record InnerProduct<T1, T2, T3> : IProduct<T1, T2, T3>
     internal InnerProduct(
         T1 first,
         T2 second,
-        T3 third
-    )
+        T3 third)
     {
         First = first;
         Second = second;
@@ -206,8 +203,7 @@ sealed record InnerProduct<T1, T2, T3, T4> : IProduct<T1, T2, T3, T4>
         T1 first,
         T2 second,
         T3 third,
-        T4 fourth
-    )
+        T4 fourth)
     {
         First = first;
         Second = second;
@@ -261,3 +257,4 @@ sealed record InnerProduct<T1, T2, T3, T4> : IProduct<T1, T2, T3, T4>
         yield return new(s_properties[3], Fourth);
     }
 }
+
