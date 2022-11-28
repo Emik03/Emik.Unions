@@ -71,7 +71,7 @@ public static class EitherExtensions
                 }
 #>    )
     {
-        if (that.Index is < 0 and > <#= i - 1 #>)
+        if (that.Index is < 0 or > <#= i - 1 #>)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-<#= i #>.");
 
         if (that.Index is <#= IndexPatternMatch(truthy) #>)
