@@ -29,11 +29,10 @@ namespace Emik.Unions.Tagged;
 public abstract record Product<<#= Generic(i) #>, TType> : IProduct<<#= Generic(i) #>>
     where TType : Product<<#= Generic(i) #>, TType>
 {
-    static readonly PropertyInfo[] s_properties =
-        typeof(TType)
-           .GetProperties(BindingFlags.Instance | BindingFlags.Public)
-           .Where(a => a.GetGetMethod() is not null)
-           .ToArray();
+    static readonly PropertyInfo[] s_properties = typeof(TType)
+       .GetProperties(BindingFlags.Instance | BindingFlags.Public)
+       .Where(a => a.GetGetMethod() is not null)
+       .ToArray();
 
     static readonly Func<<#= Generic(i) #>, TType> s_factory = Factories.From<<#= Generic(i) #>, TType>().Expect();
 

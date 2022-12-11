@@ -11,11 +11,10 @@ namespace Emik.Unions.Tagged;
 public abstract record Product<T1, TType> : IProduct<T1>
     where TType : Product<T1, TType>
 {
-    static readonly PropertyInfo[] s_properties =
-        typeof(TType)
-           .GetProperties(BindingFlags.Instance | BindingFlags.Public)
-           .Where(a => a.GetGetMethod() is not null)
-           .ToArray();
+    static readonly PropertyInfo[] s_properties = typeof(TType)
+       .GetProperties(BindingFlags.Instance | BindingFlags.Public)
+       .Where(a => a.GetGetMethod() is not null)
+       .ToArray();
 
     static readonly Func<T1, TType> s_factory = Factories.From<T1, TType>().Expect();
 
@@ -151,11 +150,10 @@ public abstract record Product<T1, TType> : IProduct<T1>
 public abstract record Product<T1, T2, TType> : IProduct<T1, T2>
     where TType : Product<T1, T2, TType>
 {
-    static readonly PropertyInfo[] s_properties =
-        typeof(TType)
-           .GetProperties(BindingFlags.Instance | BindingFlags.Public)
-           .Where(a => a.GetGetMethod() is not null)
-           .ToArray();
+    static readonly PropertyInfo[] s_properties = typeof(TType)
+       .GetProperties(BindingFlags.Instance | BindingFlags.Public)
+       .Where(a => a.GetGetMethod() is not null)
+       .ToArray();
 
     static readonly Func<T1, T2, TType> s_factory = Factories.From<T1, T2, TType>().Expect();
 
@@ -306,11 +304,10 @@ public abstract record Product<T1, T2, TType> : IProduct<T1, T2>
 public abstract record Product<T1, T2, T3, TType> : IProduct<T1, T2, T3>
     where TType : Product<T1, T2, T3, TType>
 {
-    static readonly PropertyInfo[] s_properties =
-        typeof(TType)
-           .GetProperties(BindingFlags.Instance | BindingFlags.Public)
-           .Where(a => a.GetGetMethod() is not null)
-           .ToArray();
+    static readonly PropertyInfo[] s_properties = typeof(TType)
+       .GetProperties(BindingFlags.Instance | BindingFlags.Public)
+       .Where(a => a.GetGetMethod() is not null)
+       .ToArray();
 
     static readonly Func<T1, T2, T3, TType> s_factory = Factories.From<T1, T2, T3, TType>().Expect();
 
@@ -476,11 +473,10 @@ public abstract record Product<T1, T2, T3, TType> : IProduct<T1, T2, T3>
 public abstract record Product<T1, T2, T3, T4, TType> : IProduct<T1, T2, T3, T4>
     where TType : Product<T1, T2, T3, T4, TType>
 {
-    static readonly PropertyInfo[] s_properties =
-        typeof(TType)
-           .GetProperties(BindingFlags.Instance | BindingFlags.Public)
-           .Where(a => a.GetGetMethod() is not null)
-           .ToArray();
+    static readonly PropertyInfo[] s_properties = typeof(TType)
+       .GetProperties(BindingFlags.Instance | BindingFlags.Public)
+       .Where(a => a.GetGetMethod() is not null)
+       .ToArray();
 
     static readonly Func<T1, T2, T3, T4, TType> s_factory = Factories.From<T1, T2, T3, T4, TType>().Expect();
 

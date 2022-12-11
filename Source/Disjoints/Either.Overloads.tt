@@ -1,4 +1,4 @@
-﻿<#@ include file="../Include.ttinclude" #><#@ import namespace="System.Collections.Generic" #>// <copyright file="Either.Overloads.cs" company="Emik">
+﻿<#@ include file="../Include.ttinclude" #>// <copyright file="Either.Overloads.cs" company="Emik">
 // Copyright (c) Emik. This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
 // </copyright>
 #pragma warning disable CA1000, CA1033
@@ -39,11 +39,10 @@ public abstract record Either<<#= Generic(i) #>, TType> : IEither<<#= Generic(i)
 {
     int _index = -1;
 
-    static readonly PropertyInfo[] s_properties =
-        typeof(TType)
-           .GetProperties(BindingFlags.Instance | BindingFlags.Public)
-           .Where(a => a.GetGetMethod() is not null)
-           .ToArray();
+    static readonly PropertyInfo[] s_properties = typeof(TType)
+       .GetProperties(BindingFlags.Instance | BindingFlags.Public)
+       .Where(a => a.GetGetMethod() is not null)
+       .ToArray();
 
     static readonly Func<<#= GenericNullable(i) #>, TType> s_factory =
         Factories.From<<#= GenericNullable(i) #>, TType>().Expect();

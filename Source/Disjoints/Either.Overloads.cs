@@ -16,11 +16,10 @@ public abstract record Either<T1, T2, TType> : IEither<T1, T2>
 {
     int _index = -1;
 
-    static readonly PropertyInfo[] s_properties =
-        typeof(TType)
-           .GetProperties(BindingFlags.Instance | BindingFlags.Public)
-           .Where(a => a.GetGetMethod() is not null)
-           .ToArray();
+    static readonly PropertyInfo[] s_properties = typeof(TType)
+       .GetProperties(BindingFlags.Instance | BindingFlags.Public)
+       .Where(a => a.GetGetMethod() is not null)
+       .ToArray();
 
     static readonly Func<T1?, T2?, TType> s_factory =
         Factories.From<T1?, T2?, TType>().Expect();
@@ -124,11 +123,10 @@ public abstract record Either<T1, T2, T3, TType> : IEither<T1, T2, T3>
 {
     int _index = -1;
 
-    static readonly PropertyInfo[] s_properties =
-        typeof(TType)
-           .GetProperties(BindingFlags.Instance | BindingFlags.Public)
-           .Where(a => a.GetGetMethod() is not null)
-           .ToArray();
+    static readonly PropertyInfo[] s_properties = typeof(TType)
+       .GetProperties(BindingFlags.Instance | BindingFlags.Public)
+       .Where(a => a.GetGetMethod() is not null)
+       .ToArray();
 
     static readonly Func<T1?, T2?, T3?, TType> s_factory =
         Factories.From<T1?, T2?, T3?, TType>().Expect();
@@ -269,11 +267,10 @@ public abstract record Either<T1, T2, T3, T4, TType> : IEither<T1, T2, T3, T4>
 {
     int _index = -1;
 
-    static readonly PropertyInfo[] s_properties =
-        typeof(TType)
-           .GetProperties(BindingFlags.Instance | BindingFlags.Public)
-           .Where(a => a.GetGetMethod() is not null)
-           .ToArray();
+    static readonly PropertyInfo[] s_properties = typeof(TType)
+       .GetProperties(BindingFlags.Instance | BindingFlags.Public)
+       .Where(a => a.GetGetMethod() is not null)
+       .ToArray();
 
     static readonly Func<T1?, T2?, T3?, T4?, TType> s_factory =
         Factories.From<T1?, T2?, T3?, T4?, TType>().Expect();
@@ -453,11 +450,10 @@ public abstract record Either<T1, T2, T3, T4, T5, TType> : IEither<T1, T2, T3, T
 {
     int _index = -1;
 
-    static readonly PropertyInfo[] s_properties =
-        typeof(TType)
-           .GetProperties(BindingFlags.Instance | BindingFlags.Public)
-           .Where(a => a.GetGetMethod() is not null)
-           .ToArray();
+    static readonly PropertyInfo[] s_properties = typeof(TType)
+       .GetProperties(BindingFlags.Instance | BindingFlags.Public)
+       .Where(a => a.GetGetMethod() is not null)
+       .ToArray();
 
     static readonly Func<T1?, T2?, T3?, T4?, T5?, TType> s_factory =
         Factories.From<T1?, T2?, T3?, T4?, T5?, TType>().Expect();
