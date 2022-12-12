@@ -52,7 +52,7 @@ public abstract record Functor<TType>
         throw new MissingMethodException(typeof(TType).Name, nameof(New));
     }
 }
-
+#pragma warning disable CA1033
 /// <summary>Defines a type that acts as a functor and <c>newtype</c> idiom from Rust simultaneously.</summary>
 /// <typeparam name="T">The type that can be converted into this type.</typeparam>
 /// <typeparam name="TResult">The resulting type that encapsulates this type.</typeparam>
@@ -63,12 +63,6 @@ public abstract record Functor<T, TResult, TType>(Converter<T, TResult> Converte
     IProduct<TResult, Converter<T, TResult>>
     where TType : Functor<T, TResult, TType>
 {
-    /// <inheritdoc cref="Functor{TType}.New"/>
-    [Pure]
-#pragma warning disable CS8604
-    protected new static Func<TType> New => () => s_factory(default);
-#pragma warning restore CS8604
-
     static readonly Func<TResult, TType> s_factory = Factories.From<TResult, TType>().Expect();
 
     static readonly PropertyInfo[] s_properties = typeof(TType)
@@ -81,31 +75,47 @@ public abstract record Functor<T, TResult, TType>(Converter<T, TResult> Converte
         s_properties[0].GetGetMethod() ?? throw new MissingMethodException(typeof(TType).Name, "any property")
     );
 
+    static readonly TResult? s_default = Default();
+
     /// <inheritdoc />
+    [Pure]
     public object? this[PropertyInfo name] => this.Index(name.Name).Value;
 
     /// <inheritdoc />
+    [Pure]
     public KeyValuePair<PropertyInfo, object?> this[[ValueRange(0, 1)] int index] => this.Index(index);
 
     /// <inheritdoc />
+    [Pure]
     public KeyValuePair<PropertyInfo, object?> this[[Localizable(false), LocalizationRequired(false)] string name] =>
         this.Index(name);
 
     /// <inheritdoc />
-    TResult IProduct<TResult, Converter<T, TResult>>.First => this;
+    [Pure]
+    Converter<T, TResult> IProduct<TResult, Converter<T, TResult>>.Second => Converter;
 
     /// <inheritdoc />
+    [Pure]
     public Converter<T, TType> Factory => x => s_factory(Converter(x));
 
     /// <inheritdoc />
+    [Pure]
     IReadOnlyList<PropertyInfo> IProperties.Properties => s_properties.ToReadOnly();
 
     /// <inheritdoc />
-    Converter<T, TResult> IProduct<TResult, Converter<T, TResult>>.Second => Converter;
+    [Pure]
+    TResult IProduct<TResult, Converter<T, TResult>>.First => this;
+
+    /// <inheritdoc cref="Functor{TType}.New"/>
+    [Pure]
+#pragma warning disable CS8604
+    protected new static Func<TType> New => () => s_factory(s_default);
+#pragma warning restore CS8604
 
     /// <summary>Gets the encapsulated value.</summary>
     /// <param name="functor">The value encapsulating an inner value.</param>
     /// <returns>The inner value of the parameter <paramref name="functor"/>.</returns>
+    [Pure]
     public static implicit operator TResult(Functor<T, TResult, TType> functor) => s_getter((TType)functor);
 
     /// <summary>Maps this instance to another functor.</summary>
@@ -113,14 +123,44 @@ public abstract record Functor<T, TResult, TType>(Converter<T, TResult> Converte
     /// <returns>
     /// The instance of <typeparamref name="TFunctor"/> from the mapping of <typeparamref name="TType"/>.
     /// </returns>
+    [MustUseReturnValue]
     public TFunctor To<TFunctor>()
         where TFunctor : Functor<TFunctor>, IFunctor<TResult, TFunctor> =>
         Functor<TFunctor>.Instance.Factory(this);
 
+    /// <inheritdoc cref="To{TFunctor}"/>
+    [MustUseReturnValue]
+    public TFunctor Then<TFunctor>()
+        where TFunctor : Functor<TFunctor>, IFunctor<TType, TFunctor> =>
+        Functor<TFunctor>.Instance.Factory((TType)this);
+
     /// <inheritdoc />
+    [Pure]
     IEnumerator<KeyValuePair<PropertyInfo, object?>> IPropertyEnumerable.Enumeration()
     {
         yield return new(s_properties[0], (TResult)this);
         yield return new(s_properties[1], Converter);
     }
+
+    [MustUseReturnValue]
+    static IEnumerable<object> Fields() =>
+        typeof(TResult)
+           .GetFields()
+           .Where(x => x.IsStatic && x.FieldType == typeof(TResult))
+           .Select(x => x.GetValue(null));
+
+    [MustUseReturnValue]
+    static IEnumerable<object> Methods() =>
+        typeof(TResult)
+           .GetMethods()
+           .Where(x => x.IsStatic && x.ReturnType == typeof(TResult) && !x.GetParameters().Any())
+           .Select(x => x.Invoke(null, null));
+
+    [MustUseReturnValue]
+    static TResult? Default() =>
+        (TResult?)Please
+           .Try(Activator.CreateInstance, typeof(TResult), true)
+           .MapErr(_ => Fields().Concat(Methods()).Filter().FirstOrDefault())
+           .Value ??
+        default;
 }
