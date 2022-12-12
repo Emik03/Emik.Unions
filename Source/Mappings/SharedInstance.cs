@@ -8,6 +8,17 @@ namespace Emik.Unions.Mappings;
 public abstract record SharedInstance<TType>
     where TType : SharedInstance<TType>
 {
+    const string New = nameof(New);
+
+    /// <summary>
+    /// Gets or sets the method used to create an instance of <typeparamref name="TType"/> without parameters.
+    /// This is meant to be set in a static constructor to intercept the creation of <see cref="Instance"/>.
+    /// </summary>
+    static readonly Func<TType> s_new =
+        (typeof(TType).GetProperty(New, BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.FlattenHierarchy) ??
+            throw new MissingMethodException(typeof(TType).Name, New)).GetValue(null, null) as Func<TType> ??
+        throw new ArgumentNullException(New);
+
     static TType? s_instance;
 
     /// <summary>
@@ -15,9 +26,6 @@ public abstract record SharedInstance<TType>
     /// </summary>
     protected SharedInstance() => s_instance = (TType)this;
 
-    /// <summary>Gets a value indicating whether an instance is created.</summary>
-    protected static bool HasInstance => s_instance is not null;
-
     /// <summary>Gets the shared instance.</summary>
-    protected static TType Instance => s_instance ?? throw new InvalidOperationException("Uninitialized value.");
+    protected static TType Instance => s_instance ?? s_new();
 }

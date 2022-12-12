@@ -41,7 +41,7 @@ public abstract record Either<<#= Generic(i) #>, TType> : IEither<<#= Generic(i)
 
     static readonly PropertyInfo[] s_properties = typeof(TType)
        .GetProperties(BindingFlags.Instance | BindingFlags.Public)
-       .Where(a => a.GetGetMethod() is not null)
+       .Where(x => x.GetGetMethod() is not null && x.GetSetMethod() is not null)
        .ToArray();
 
     static readonly Func<<#= GenericNullable(i) #>, TType> s_factory =

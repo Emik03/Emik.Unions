@@ -12,7 +12,7 @@ public abstract record Product<T1, TType> : IProduct<T1>
 {
     static readonly PropertyInfo[] s_properties = typeof(TType)
        .GetProperties(BindingFlags.Instance | BindingFlags.Public)
-       .Where(a => a.GetGetMethod() is not null)
+       .Where(x => x.GetGetMethod() is not null && x.GetSetMethod() is not null)
        .ToArray();
 
     static readonly Func<T1, TType> s_factory = Factories.From<T1, TType>().Expect();
@@ -151,7 +151,7 @@ public abstract record Product<T1, T2, TType> : IProduct<T1, T2>
 {
     static readonly PropertyInfo[] s_properties = typeof(TType)
        .GetProperties(BindingFlags.Instance | BindingFlags.Public)
-       .Where(a => a.GetGetMethod() is not null)
+       .Where(x => x.GetGetMethod() is not null && x.GetSetMethod() is not null)
        .ToArray();
 
     static readonly Func<T1, T2, TType> s_factory = Factories.From<T1, T2, TType>().Expect();
@@ -305,7 +305,7 @@ public abstract record Product<T1, T2, T3, TType> : IProduct<T1, T2, T3>
 {
     static readonly PropertyInfo[] s_properties = typeof(TType)
        .GetProperties(BindingFlags.Instance | BindingFlags.Public)
-       .Where(a => a.GetGetMethod() is not null)
+       .Where(x => x.GetGetMethod() is not null && x.GetSetMethod() is not null)
        .ToArray();
 
     static readonly Func<T1, T2, T3, TType> s_factory = Factories.From<T1, T2, T3, TType>().Expect();
@@ -474,7 +474,7 @@ public abstract record Product<T1, T2, T3, T4, TType> : IProduct<T1, T2, T3, T4>
 {
     static readonly PropertyInfo[] s_properties = typeof(TType)
        .GetProperties(BindingFlags.Instance | BindingFlags.Public)
-       .Where(a => a.GetGetMethod() is not null)
+       .Where(x => x.GetGetMethod() is not null && x.GetSetMethod() is not null)
        .ToArray();
 
     static readonly Func<T1, T2, T3, T4, TType> s_factory = Factories.From<T1, T2, T3, T4, TType>().Expect();

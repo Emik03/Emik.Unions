@@ -40,7 +40,16 @@ public interface IProduct : IPropertyEnumerable, IProperties
 <#
         }
 #>
-public interface IProduct<<#= GenericCovariant(i) #>> : IProduct
+public interface IProduct<<#= GenericCovariant(i) #>> : <#
+        if (i > Net35Limit)
+        {
+#>IProduct<#
+        }
+        else
+        {
+#>IProduct<#
+        }
+#>
 {
 <#
         for (var j = 1; j <= i; j++)

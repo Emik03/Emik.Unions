@@ -30,7 +30,7 @@ public abstract record Product<<#= Generic(i) #>, TType> : IProduct<<#= Generic(
 {
     static readonly PropertyInfo[] s_properties = typeof(TType)
        .GetProperties(BindingFlags.Instance | BindingFlags.Public)
-       .Where(a => a.GetGetMethod() is not null)
+       .Where(x => x.GetGetMethod() is not null && x.GetSetMethod() is not null)
        .ToArray();
 
     static readonly Func<<#= Generic(i) #>, TType> s_factory = Factories.From<<#= Generic(i) #>, TType>().Expect();

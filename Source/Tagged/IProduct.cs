@@ -22,8 +22,7 @@ public interface IProduct : IPropertyEnumerable, IProperties
 
 /// <summary>Defines an interface for union of size 1.</summary>
 /// <typeparam name="T1">The first type of the union.</typeparam>
-public interface IProduct<out T1> : IProduct
-{
+public interface IProduct<out T1> : IProduct{
     /// <summary>Gets the <typeparamref name="T1"/> first value of the union.</summary>
     [Pure]
     T1 First { get; }
@@ -33,8 +32,7 @@ public interface IProduct<out T1> : IProduct
 /// <summary>Defines an interface for union of size 2.</summary>
 /// <typeparam name="T1">The first type of the union.</typeparam>
 /// <typeparam name="T2">The second type of the union.</typeparam>
-public interface IProduct<out T1, out T2> : IProduct
-{
+public interface IProduct<out T1, out T2> : IProduct{
     /// <summary>Gets the <typeparamref name="T1"/> first value of the union.</summary>
     [Pure]
     T1 First { get; }
@@ -49,8 +47,7 @@ public interface IProduct<out T1, out T2> : IProduct
 /// <typeparam name="T1">The first type of the union.</typeparam>
 /// <typeparam name="T2">The second type of the union.</typeparam>
 /// <typeparam name="T3">The third type of the union.</typeparam>
-public interface IProduct<out T1, out T2, out T3> : IProduct
-{
+public interface IProduct<out T1, out T2, out T3> : IProduct{
     /// <summary>Gets the <typeparamref name="T1"/> first value of the union.</summary>
     [Pure]
     T1 First { get; }
@@ -70,8 +67,7 @@ public interface IProduct<out T1, out T2, out T3> : IProduct
 /// <typeparam name="T2">The second type of the union.</typeparam>
 /// <typeparam name="T3">The third type of the union.</typeparam>
 /// <typeparam name="T4">The fourth type of the union.</typeparam>
-public interface IProduct<out T1, out T2, out T3, out T4> : IProduct
-{
+public interface IProduct<out T1, out T2, out T3, out T4> : IProduct{
     /// <summary>Gets the <typeparamref name="T1"/> first value of the union.</summary>
     [Pure]
     T1 First { get; }

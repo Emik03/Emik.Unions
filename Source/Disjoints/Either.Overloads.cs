@@ -2,8 +2,9 @@
 // <copyright file="Either.Overloads.cs" company="Emik">
 // Copyright (c) Emik. This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
 // </copyright>
-namespace Emik.Unions.Disjoints;
 #pragma warning disable CA1000, CA1033, RCS1036
+namespace Emik.Unions.Disjoints;
+
 /// <summary>Defines an inheritable record that automates logic for a disjoint union.</summary>
 /// <typeparam name="T1">The first type of the disjoint union.</typeparam>
 /// <typeparam name="T2">The second type of the disjoint union.</typeparam>
@@ -17,7 +18,7 @@ public abstract record Either<T1, T2, TType> : IEither<T1, T2>
 
     static readonly PropertyInfo[] s_properties = typeof(TType)
        .GetProperties(BindingFlags.Instance | BindingFlags.Public)
-       .Where(a => a.GetGetMethod() is not null)
+       .Where(x => x.GetGetMethod() is not null && x.GetSetMethod() is not null)
        .ToArray();
 
     static readonly Func<T1?, T2?, TType> s_factory =
@@ -48,8 +49,7 @@ public abstract record Either<T1, T2, TType> : IEither<T1, T2>
     {
         var instance = s_factory(
             first,
-            default
-        );
+            default);
 
         instance._index = 0;
 
@@ -81,8 +81,7 @@ public abstract record Either<T1, T2, TType> : IEither<T1, T2>
     {
         var instance = s_factory(
             default,
-            second
-        );
+            second);
 
         instance._index = 1;
 
@@ -126,7 +125,7 @@ public abstract record Either<T1, T2, T3, TType> : IEither<T1, T2, T3>
 
     static readonly PropertyInfo[] s_properties = typeof(TType)
        .GetProperties(BindingFlags.Instance | BindingFlags.Public)
-       .Where(a => a.GetGetMethod() is not null)
+       .Where(x => x.GetGetMethod() is not null && x.GetSetMethod() is not null)
        .ToArray();
 
     static readonly Func<T1?, T2?, T3?, TType> s_factory =
@@ -158,8 +157,7 @@ public abstract record Either<T1, T2, T3, TType> : IEither<T1, T2, T3>
         var instance = s_factory(
             first,
             default,
-            default
-        );
+            default);
 
         instance._index = 0;
 
@@ -192,8 +190,7 @@ public abstract record Either<T1, T2, T3, TType> : IEither<T1, T2, T3>
         var instance = s_factory(
             default,
             second,
-            default
-        );
+            default);
 
         instance._index = 1;
 
@@ -226,8 +223,7 @@ public abstract record Either<T1, T2, T3, TType> : IEither<T1, T2, T3>
         var instance = s_factory(
             default,
             default,
-            third
-        );
+            third);
 
         instance._index = 2;
 
@@ -273,7 +269,7 @@ public abstract record Either<T1, T2, T3, T4, TType> : IEither<T1, T2, T3, T4>
 
     static readonly PropertyInfo[] s_properties = typeof(TType)
        .GetProperties(BindingFlags.Instance | BindingFlags.Public)
-       .Where(a => a.GetGetMethod() is not null)
+       .Where(x => x.GetGetMethod() is not null && x.GetSetMethod() is not null)
        .ToArray();
 
     static readonly Func<T1?, T2?, T3?, T4?, TType> s_factory =
@@ -306,8 +302,7 @@ public abstract record Either<T1, T2, T3, T4, TType> : IEither<T1, T2, T3, T4>
             first,
             default,
             default,
-            default
-        );
+            default);
 
         instance._index = 0;
 
@@ -341,8 +336,7 @@ public abstract record Either<T1, T2, T3, T4, TType> : IEither<T1, T2, T3, T4>
             default,
             second,
             default,
-            default
-        );
+            default);
 
         instance._index = 1;
 
@@ -376,8 +370,7 @@ public abstract record Either<T1, T2, T3, T4, TType> : IEither<T1, T2, T3, T4>
             default,
             default,
             third,
-            default
-        );
+            default);
 
         instance._index = 2;
 
@@ -411,8 +404,7 @@ public abstract record Either<T1, T2, T3, T4, TType> : IEither<T1, T2, T3, T4>
             default,
             default,
             default,
-            fourth
-        );
+            fourth);
 
         instance._index = 3;
 
@@ -460,7 +452,7 @@ public abstract record Either<T1, T2, T3, T4, T5, TType> : IEither<T1, T2, T3, T
 
     static readonly PropertyInfo[] s_properties = typeof(TType)
        .GetProperties(BindingFlags.Instance | BindingFlags.Public)
-       .Where(a => a.GetGetMethod() is not null)
+       .Where(x => x.GetGetMethod() is not null && x.GetSetMethod() is not null)
        .ToArray();
 
     static readonly Func<T1?, T2?, T3?, T4?, T5?, TType> s_factory =
@@ -494,8 +486,7 @@ public abstract record Either<T1, T2, T3, T4, T5, TType> : IEither<T1, T2, T3, T
             default,
             default,
             default,
-            default
-        );
+            default);
 
         instance._index = 0;
 
@@ -530,8 +521,7 @@ public abstract record Either<T1, T2, T3, T4, T5, TType> : IEither<T1, T2, T3, T
             second,
             default,
             default,
-            default
-        );
+            default);
 
         instance._index = 1;
 
@@ -566,8 +556,7 @@ public abstract record Either<T1, T2, T3, T4, T5, TType> : IEither<T1, T2, T3, T
             default,
             third,
             default,
-            default
-        );
+            default);
 
         instance._index = 2;
 
@@ -602,8 +591,7 @@ public abstract record Either<T1, T2, T3, T4, T5, TType> : IEither<T1, T2, T3, T
             default,
             default,
             fourth,
-            default
-        );
+            default);
 
         instance._index = 3;
 
@@ -638,8 +626,7 @@ public abstract record Either<T1, T2, T3, T4, T5, TType> : IEither<T1, T2, T3, T
             default,
             default,
             default,
-            fifth
-        );
+            fifth);
 
         instance._index = 4;
 
@@ -667,3 +654,4 @@ public abstract record Either<T1, T2, T3, T4, T5, TType> : IEither<T1, T2, T3, T
     public sealed override string ToString() =>
         $"{typeof(TType).Name}[{_index}] {{ {s_properties[_index].Name} = {this[_index]} }}";
 }
+
