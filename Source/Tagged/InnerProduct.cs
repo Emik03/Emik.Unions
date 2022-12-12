@@ -3,7 +3,7 @@
 // Copyright (c) Emik. This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
 // </copyright>
 namespace Emik.Unions.Tagged;
-
+#pragma warning disable IDE0021, RCS1036
 /// <summary>
 /// Defines an internal disjoint union for storing 1 of 1 different values.
 /// Instances of this type are exposed to the consumer as an interface.
@@ -44,7 +44,7 @@ sealed record InnerProduct<T1> : IProduct<T1>
     public IReadOnlyList<PropertyInfo> Properties => s_properties.ToReadOnly();
 
     /// <inheritdoc />
-    public override string ToString() => @$"{nameof(Product)} {{ {First} }}";
+    public override string ToString() => $"{nameof(Product)} {{ {First} }}";
 
     /// <inheritdoc/>
     [LinqTunnel, Pure]
@@ -102,7 +102,7 @@ sealed record InnerProduct<T1, T2> : IProduct<T1, T2>
     public IReadOnlyList<PropertyInfo> Properties => s_properties.ToReadOnly();
 
     /// <inheritdoc />
-    public override string ToString() => @$"{nameof(Product)} {{ {First}, {Second} }}";
+    public override string ToString() => $"{nameof(Product)} {{ {First}, {Second} }}";
 
     /// <inheritdoc/>
     [LinqTunnel, Pure]
@@ -169,7 +169,7 @@ sealed record InnerProduct<T1, T2, T3> : IProduct<T1, T2, T3>
     public IReadOnlyList<PropertyInfo> Properties => s_properties.ToReadOnly();
 
     /// <inheritdoc />
-    public override string ToString() => @$"{nameof(Product)} {{ {First}, {Second}, {Third} }}";
+    public override string ToString() => $"{nameof(Product)} {{ {First}, {Second}, {Third} }}";
 
     /// <inheritdoc/>
     [LinqTunnel, Pure]
@@ -245,7 +245,7 @@ sealed record InnerProduct<T1, T2, T3, T4> : IProduct<T1, T2, T3, T4>
     public IReadOnlyList<PropertyInfo> Properties => s_properties.ToReadOnly();
 
     /// <inheritdoc />
-    public override string ToString() => @$"{nameof(Product)} {{ {First}, {Second}, {Third}, {Fourth} }}";
+    public override string ToString() => $"{nameof(Product)} {{ {First}, {Second}, {Third}, {Fourth} }}";
 
     /// <inheritdoc/>
     [LinqTunnel, Pure]

@@ -3,7 +3,7 @@
 // Copyright (c) Emik. This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
 // </copyright>
 namespace Emik.Unions.Disjoints;
-
+#pragma warning disable RCS1036
 /// <summary>
 /// Defines an internal disjoint union for storing 1 of 2 different values.
 /// Instances of this type are exposed to the consumer as an interface.
@@ -62,8 +62,7 @@ sealed record InnerEither<T1, T2> : IEither<T1, T2>
 
     /// <inheritdoc/>
     [Pure]
-    public override string ToString() =>
-        @$"{nameof(Either)}[{Index}] {{ {Value} }}";
+    public override string ToString() => $"{nameof(Either)}[{Index}] {{ {Value} }}";
 }
 
 /// <summary>
@@ -139,8 +138,7 @@ sealed record InnerEither<T1, T2, T3> : IEither<T1, T2, T3>
 
     /// <inheritdoc/>
     [Pure]
-    public override string ToString() =>
-        @$"{nameof(Either)}[{Index}] {{ {Value} }}";
+    public override string ToString() => $"{nameof(Either)}[{Index}] {{ {Value} }}";
 }
 
 /// <summary>
@@ -231,8 +229,7 @@ sealed record InnerEither<T1, T2, T3, T4> : IEither<T1, T2, T3, T4>
 
     /// <inheritdoc/>
     [Pure]
-    public override string ToString() =>
-        @$"{nameof(Either)}[{Index}] {{ {Value} }}";
+    public override string ToString() => $"{nameof(Either)}[{Index}] {{ {Value} }}";
 }
 
 /// <summary>
@@ -338,7 +335,6 @@ sealed record InnerEither<T1, T2, T3, T4, T5> : IEither<T1, T2, T3, T4, T5>
 
     /// <inheritdoc/>
     [Pure]
-    public override string ToString() =>
-        @$"{nameof(Either)}[{Index}] {{ {Value} }}";
+    public override string ToString() => $"{nameof(Either)}[{Index}] {{ {Value} }}";
 }
 

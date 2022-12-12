@@ -2,17 +2,16 @@
 // <copyright file="Either.Overloads.cs" company="Emik">
 // Copyright (c) Emik. This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
 // </copyright>
-#pragma warning disable CA1000, CA1033
 namespace Emik.Unions.Disjoints;
-
+#pragma warning disable CA1000, CA1033, RCS1036
 /// <summary>Defines an inheritable record that automates logic for a disjoint union.</summary>
 /// <typeparam name="T1">The first type of the disjoint union.</typeparam>
 /// <typeparam name="T2">The second type of the disjoint union.</typeparam>
 /// <typeparam name="TType">The type of the inheriting record.</typeparam>
 public abstract record Either<T1, T2, TType> : IEither<T1, T2>
-    where TType : Either<T1, T2, TType>
     where T1 : notnull
     where T2 : notnull
+    where TType : Either<T1, T2, TType>
 {
     int _index = -1;
 
@@ -49,7 +48,8 @@ public abstract record Either<T1, T2, TType> : IEither<T1, T2>
     {
         var instance = s_factory(
             first,
-            default);
+            default
+        );
 
         instance._index = 0;
 
@@ -81,7 +81,8 @@ public abstract record Either<T1, T2, TType> : IEither<T1, T2>
     {
         var instance = s_factory(
             default,
-            second);
+            second
+        );
 
         instance._index = 1;
 
@@ -107,7 +108,7 @@ public abstract record Either<T1, T2, TType> : IEither<T1, T2>
     /// <inheritdoc/>
     [Pure]
     public sealed override string ToString() =>
-        @$"{typeof(TType).Name}[{_index}] {{ {s_properties[_index].Name} = {this[_index]} }}";
+        $"{typeof(TType).Name}[{_index}] {{ {s_properties[_index].Name} = {this[_index]} }}";
 }
 
 /// <summary>Defines an inheritable record that automates logic for a disjoint union.</summary>
@@ -116,10 +117,10 @@ public abstract record Either<T1, T2, TType> : IEither<T1, T2>
 /// <typeparam name="T3">The third type of the disjoint union.</typeparam>
 /// <typeparam name="TType">The type of the inheriting record.</typeparam>
 public abstract record Either<T1, T2, T3, TType> : IEither<T1, T2, T3>
-    where TType : Either<T1, T2, T3, TType>
     where T1 : notnull
     where T2 : notnull
     where T3 : notnull
+    where TType : Either<T1, T2, T3, TType>
 {
     int _index = -1;
 
@@ -157,7 +158,8 @@ public abstract record Either<T1, T2, T3, TType> : IEither<T1, T2, T3>
         var instance = s_factory(
             first,
             default,
-            default);
+            default
+        );
 
         instance._index = 0;
 
@@ -190,7 +192,8 @@ public abstract record Either<T1, T2, T3, TType> : IEither<T1, T2, T3>
         var instance = s_factory(
             default,
             second,
-            default);
+            default
+        );
 
         instance._index = 1;
 
@@ -223,7 +226,8 @@ public abstract record Either<T1, T2, T3, TType> : IEither<T1, T2, T3>
         var instance = s_factory(
             default,
             default,
-            third);
+            third
+        );
 
         instance._index = 2;
 
@@ -249,7 +253,7 @@ public abstract record Either<T1, T2, T3, TType> : IEither<T1, T2, T3>
     /// <inheritdoc/>
     [Pure]
     public sealed override string ToString() =>
-        @$"{typeof(TType).Name}[{_index}] {{ {s_properties[_index].Name} = {this[_index]} }}";
+        $"{typeof(TType).Name}[{_index}] {{ {s_properties[_index].Name} = {this[_index]} }}";
 }
 
 /// <summary>Defines an inheritable record that automates logic for a disjoint union.</summary>
@@ -259,11 +263,11 @@ public abstract record Either<T1, T2, T3, TType> : IEither<T1, T2, T3>
 /// <typeparam name="T4">The fourth type of the disjoint union.</typeparam>
 /// <typeparam name="TType">The type of the inheriting record.</typeparam>
 public abstract record Either<T1, T2, T3, T4, TType> : IEither<T1, T2, T3, T4>
-    where TType : Either<T1, T2, T3, T4, TType>
     where T1 : notnull
     where T2 : notnull
     where T3 : notnull
     where T4 : notnull
+    where TType : Either<T1, T2, T3, T4, TType>
 {
     int _index = -1;
 
@@ -302,7 +306,8 @@ public abstract record Either<T1, T2, T3, T4, TType> : IEither<T1, T2, T3, T4>
             first,
             default,
             default,
-            default);
+            default
+        );
 
         instance._index = 0;
 
@@ -336,7 +341,8 @@ public abstract record Either<T1, T2, T3, T4, TType> : IEither<T1, T2, T3, T4>
             default,
             second,
             default,
-            default);
+            default
+        );
 
         instance._index = 1;
 
@@ -370,7 +376,8 @@ public abstract record Either<T1, T2, T3, T4, TType> : IEither<T1, T2, T3, T4>
             default,
             default,
             third,
-            default);
+            default
+        );
 
         instance._index = 2;
 
@@ -404,7 +411,8 @@ public abstract record Either<T1, T2, T3, T4, TType> : IEither<T1, T2, T3, T4>
             default,
             default,
             default,
-            fourth);
+            fourth
+        );
 
         instance._index = 3;
 
@@ -430,7 +438,7 @@ public abstract record Either<T1, T2, T3, T4, TType> : IEither<T1, T2, T3, T4>
     /// <inheritdoc/>
     [Pure]
     public sealed override string ToString() =>
-        @$"{typeof(TType).Name}[{_index}] {{ {s_properties[_index].Name} = {this[_index]} }}";
+        $"{typeof(TType).Name}[{_index}] {{ {s_properties[_index].Name} = {this[_index]} }}";
 }
 
 /// <summary>Defines an inheritable record that automates logic for a disjoint union.</summary>
@@ -441,12 +449,12 @@ public abstract record Either<T1, T2, T3, T4, TType> : IEither<T1, T2, T3, T4>
 /// <typeparam name="T5">The fifth type of the disjoint union.</typeparam>
 /// <typeparam name="TType">The type of the inheriting record.</typeparam>
 public abstract record Either<T1, T2, T3, T4, T5, TType> : IEither<T1, T2, T3, T4, T5>
-    where TType : Either<T1, T2, T3, T4, T5, TType>
     where T1 : notnull
     where T2 : notnull
     where T3 : notnull
     where T4 : notnull
     where T5 : notnull
+    where TType : Either<T1, T2, T3, T4, T5, TType>
 {
     int _index = -1;
 
@@ -486,7 +494,8 @@ public abstract record Either<T1, T2, T3, T4, T5, TType> : IEither<T1, T2, T3, T
             default,
             default,
             default,
-            default);
+            default
+        );
 
         instance._index = 0;
 
@@ -521,7 +530,8 @@ public abstract record Either<T1, T2, T3, T4, T5, TType> : IEither<T1, T2, T3, T
             second,
             default,
             default,
-            default);
+            default
+        );
 
         instance._index = 1;
 
@@ -556,7 +566,8 @@ public abstract record Either<T1, T2, T3, T4, T5, TType> : IEither<T1, T2, T3, T
             default,
             third,
             default,
-            default);
+            default
+        );
 
         instance._index = 2;
 
@@ -591,7 +602,8 @@ public abstract record Either<T1, T2, T3, T4, T5, TType> : IEither<T1, T2, T3, T
             default,
             default,
             fourth,
-            default);
+            default
+        );
 
         instance._index = 3;
 
@@ -626,7 +638,8 @@ public abstract record Either<T1, T2, T3, T4, T5, TType> : IEither<T1, T2, T3, T
             default,
             default,
             default,
-            fifth);
+            fifth
+        );
 
         instance._index = 4;
 
@@ -652,6 +665,5 @@ public abstract record Either<T1, T2, T3, T4, T5, TType> : IEither<T1, T2, T3, T
     /// <inheritdoc/>
     [Pure]
     public sealed override string ToString() =>
-        @$"{typeof(TType).Name}[{_index}] {{ {s_properties[_index].Name} = {this[_index]} }}";
+        $"{typeof(TType).Name}[{_index}] {{ {s_properties[_index].Name} = {this[_index]} }}";
 }
-

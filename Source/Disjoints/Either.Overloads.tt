@@ -1,7 +1,7 @@
 ﻿<#@ include file="../Include.ttinclude" #>// <copyright file="Either.Overloads.cs" company="Emik">
 // Copyright (c) Emik. This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
 // </copyright>
-#pragma warning disable CA1000, CA1033
+#pragma warning disable CA1000, CA1033, RCS1036
 namespace Emik.Unions.Disjoints;
 
 <#
@@ -27,7 +27,6 @@ namespace Emik.Unions.Disjoints;
 #>
 /// <typeparam name="TType">The type of the inheriting record.</typeparam>
 public abstract record Either<<#= Generic(i) #>, TType> : IEither<<#= Generic(i) #>>
-    where TType : Either<<#= Generic(i) #>, TType>
 <#
         for (var j = 1; j <= i; j++)
         {
@@ -36,6 +35,7 @@ public abstract record Either<<#= Generic(i) #>, TType> : IEither<<#= Generic(i)
 <#
         }
 #>
+    where TType : Either<<#= Generic(i) #>, TType>
 {
     int _index = -1;
 
@@ -139,7 +139,7 @@ public abstract record Either<<#= Generic(i) #>, TType> : IEither<<#= Generic(i)
     /// <inheritdoc/>
     [Pure]
     public sealed override string ToString() =>
-        @$"{typeof(TType).Name}[{_index}] {{ {s_properties[_index].Name} = {this[_index]} }}";
+        $"{typeof(TType).Name}[{_index}] {{ {s_properties[_index].Name} = {this[_index]} }}";
 }
 
 <#
