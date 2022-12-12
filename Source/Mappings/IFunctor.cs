@@ -21,5 +21,6 @@ public interface IFunctor<
     where TType : IFunctor<T, TType>
 {
     /// <summary>Gets the factory that creates a <typeparamref name="TType"/> out of <typeparamref name="T"/>.</summary>
+    [Pure]
     Converter<T, TType> Factory { get; }
 }
