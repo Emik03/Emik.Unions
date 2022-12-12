@@ -225,7 +225,7 @@ public abstract record Product<<#= Generic(i) #>, TType> : IProduct<<#= Generic(
 
     /// <inheritdoc/>
     [Pure]
-    IReadOnlyList<PropertyInfo> IProperties.Properties => s_properties.ToReadOnly();
+    public object? this[PropertyInfo name] => this.Index(name.Name).Value;
 
     /// <inheritdoc/>
     [Pure]
@@ -238,7 +238,7 @@ public abstract record Product<<#= Generic(i) #>, TType> : IProduct<<#= Generic(
 
     /// <inheritdoc/>
     [Pure]
-    public object? this[PropertyInfo name] => this.Index(name.Name).Value;
+    IReadOnlyList<PropertyInfo> IProperties.Properties => s_properties.ToReadOnly();
 
     /// <inheritdoc/>
     [LinqTunnel, Pure]

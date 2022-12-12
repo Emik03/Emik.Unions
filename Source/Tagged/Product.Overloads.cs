@@ -119,7 +119,7 @@ public abstract record Product<T1, TType> : IProduct<T1>
 
     /// <inheritdoc/>
     [Pure]
-    IReadOnlyList<PropertyInfo> IProperties.Properties => s_properties.ToReadOnly();
+    public object? this[PropertyInfo name] => this.Index(name.Name).Value;
 
     /// <inheritdoc/>
     [Pure]
@@ -132,7 +132,7 @@ public abstract record Product<T1, TType> : IProduct<T1>
 
     /// <inheritdoc/>
     [Pure]
-    public object? this[PropertyInfo name] => this.Index(name.Name).Value;
+    IReadOnlyList<PropertyInfo> IProperties.Properties => s_properties.ToReadOnly();
 
     /// <inheritdoc/>
     [LinqTunnel, Pure]
@@ -271,7 +271,7 @@ public abstract record Product<T1, T2, TType> : IProduct<T1, T2>
 
     /// <inheritdoc/>
     [Pure]
-    IReadOnlyList<PropertyInfo> IProperties.Properties => s_properties.ToReadOnly();
+    public object? this[PropertyInfo name] => this.Index(name.Name).Value;
 
     /// <inheritdoc/>
     [Pure]
@@ -284,7 +284,7 @@ public abstract record Product<T1, T2, TType> : IProduct<T1, T2>
 
     /// <inheritdoc/>
     [Pure]
-    public object? this[PropertyInfo name] => this.Index(name.Name).Value;
+    IReadOnlyList<PropertyInfo> IProperties.Properties => s_properties.ToReadOnly();
 
     /// <inheritdoc/>
     [LinqTunnel, Pure]
@@ -438,7 +438,7 @@ public abstract record Product<T1, T2, T3, TType> : IProduct<T1, T2, T3>
 
     /// <inheritdoc/>
     [Pure]
-    IReadOnlyList<PropertyInfo> IProperties.Properties => s_properties.ToReadOnly();
+    public object? this[PropertyInfo name] => this.Index(name.Name).Value;
 
     /// <inheritdoc/>
     [Pure]
@@ -451,7 +451,7 @@ public abstract record Product<T1, T2, T3, TType> : IProduct<T1, T2, T3>
 
     /// <inheritdoc/>
     [Pure]
-    public object? this[PropertyInfo name] => this.Index(name.Name).Value;
+    IReadOnlyList<PropertyInfo> IProperties.Properties => s_properties.ToReadOnly();
 
     /// <inheritdoc/>
     [LinqTunnel, Pure]
@@ -620,7 +620,7 @@ public abstract record Product<T1, T2, T3, T4, TType> : IProduct<T1, T2, T3, T4>
 
     /// <inheritdoc/>
     [Pure]
-    IReadOnlyList<PropertyInfo> IProperties.Properties => s_properties.ToReadOnly();
+    public object? this[PropertyInfo name] => this.Index(name.Name).Value;
 
     /// <inheritdoc/>
     [Pure]
@@ -633,7 +633,7 @@ public abstract record Product<T1, T2, T3, T4, TType> : IProduct<T1, T2, T3, T4>
 
     /// <inheritdoc/>
     [Pure]
-    public object? this[PropertyInfo name] => this.Index(name.Name).Value;
+    IReadOnlyList<PropertyInfo> IProperties.Properties => s_properties.ToReadOnly();
 
     /// <inheritdoc/>
     [LinqTunnel, Pure]

@@ -24,7 +24,7 @@ sealed record InnerProduct<T1> : IProduct<T1>
 
     /// <inheritdoc/>
     [Pure]
-    public T1 First { get; }
+    public object? this[PropertyInfo name] => this.Index(name.Name).Value;
 
     /// <inheritdoc/>
     [Pure]
@@ -37,7 +37,7 @@ sealed record InnerProduct<T1> : IProduct<T1>
 
     /// <inheritdoc/>
     [Pure]
-    public object? this[PropertyInfo name] => this.Index(name.Name).Value;
+    public T1 First { get; }
 
     /// <inheritdoc/>
     [Pure]
@@ -78,11 +78,7 @@ sealed record InnerProduct<T1, T2> : IProduct<T1, T2>
 
     /// <inheritdoc/>
     [Pure]
-    public T1 First { get; }
-
-    /// <inheritdoc/>
-    [Pure]
-    public T2 Second { get; }
+    public object? this[PropertyInfo name] => this.Index(name.Name).Value;
 
     /// <inheritdoc/>
     [Pure]
@@ -95,7 +91,11 @@ sealed record InnerProduct<T1, T2> : IProduct<T1, T2>
 
     /// <inheritdoc/>
     [Pure]
-    public object? this[PropertyInfo name] => this.Index(name.Name).Value;
+    public T1 First { get; }
+
+    /// <inheritdoc/>
+    [Pure]
+    public T2 Second { get; }
 
     /// <inheritdoc/>
     [Pure]
@@ -141,15 +141,7 @@ sealed record InnerProduct<T1, T2, T3> : IProduct<T1, T2, T3>
 
     /// <inheritdoc/>
     [Pure]
-    public T1 First { get; }
-
-    /// <inheritdoc/>
-    [Pure]
-    public T2 Second { get; }
-
-    /// <inheritdoc/>
-    [Pure]
-    public T3 Third { get; }
+    public object? this[PropertyInfo name] => this.Index(name.Name).Value;
 
     /// <inheritdoc/>
     [Pure]
@@ -162,7 +154,15 @@ sealed record InnerProduct<T1, T2, T3> : IProduct<T1, T2, T3>
 
     /// <inheritdoc/>
     [Pure]
-    public object? this[PropertyInfo name] => this.Index(name.Name).Value;
+    public T1 First { get; }
+
+    /// <inheritdoc/>
+    [Pure]
+    public T2 Second { get; }
+
+    /// <inheritdoc/>
+    [Pure]
+    public T3 Third { get; }
 
     /// <inheritdoc/>
     [Pure]
@@ -213,6 +213,19 @@ sealed record InnerProduct<T1, T2, T3, T4> : IProduct<T1, T2, T3, T4>
 
     /// <inheritdoc/>
     [Pure]
+    public object? this[PropertyInfo name] => this.Index(name.Name).Value;
+
+    /// <inheritdoc/>
+    [Pure]
+    public KeyValuePair<PropertyInfo, object?> this[int index] => this.Index(index);
+
+    /// <inheritdoc/>
+    [Pure]
+    public KeyValuePair<PropertyInfo, object?> this[[Localizable(false), LocalizationRequired(false)] string name] =>
+        this.Index(name);
+
+    /// <inheritdoc/>
+    [Pure]
     public T1 First { get; }
 
     /// <inheritdoc/>
@@ -226,19 +239,6 @@ sealed record InnerProduct<T1, T2, T3, T4> : IProduct<T1, T2, T3, T4>
     /// <inheritdoc/>
     [Pure]
     public T4 Fourth { get; }
-
-    /// <inheritdoc/>
-    [Pure]
-    public KeyValuePair<PropertyInfo, object?> this[int index] => this.Index(index);
-
-    /// <inheritdoc/>
-    [Pure]
-    public KeyValuePair<PropertyInfo, object?> this[[Localizable(false), LocalizationRequired(false)] string name] =>
-        this.Index(name);
-
-    /// <inheritdoc/>
-    [Pure]
-    public object? this[PropertyInfo name] => this.Index(name.Name).Value;
 
     /// <inheritdoc/>
     [Pure]

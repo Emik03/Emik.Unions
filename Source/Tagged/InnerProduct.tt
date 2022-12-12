@@ -70,6 +70,19 @@ sealed record InnerProduct<<#= Generic(i) #>> : IProduct<<#= Generic(i) #>>
         }
 #>
     }
+
+    /// <inheritdoc/>
+    [Pure]
+    public object? this[PropertyInfo name] => this.Index(name.Name).Value;
+
+    /// <inheritdoc/>
+    [Pure]
+    public KeyValuePair<PropertyInfo, object?> this[int index] => this.Index(index);
+
+    /// <inheritdoc/>
+    [Pure]
+    public KeyValuePair<PropertyInfo, object?> this[[Localizable(false), LocalizationRequired(false)] string name] =>
+        this.Index(name);
 <#
         for (var j = 1; j <= i; j++)
         {
@@ -81,19 +94,6 @@ sealed record InnerProduct<<#= Generic(i) #>> : IProduct<<#= Generic(i) #>>
 <#
         }
 #>
-
-    /// <inheritdoc/>
-    [Pure]
-    public KeyValuePair<PropertyInfo, object?> this[int index] => this.Index(index);
-
-    /// <inheritdoc/>
-    [Pure]
-    public KeyValuePair<PropertyInfo, object?> this[[Localizable(false), LocalizationRequired(false)] string name] =>
-        this.Index(name);
-
-    /// <inheritdoc/>
-    [Pure]
-    public object? this[PropertyInfo name] => this.Index(name.Name).Value;
 
     /// <inheritdoc/>
     [Pure]
