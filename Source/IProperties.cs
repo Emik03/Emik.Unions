@@ -6,6 +6,11 @@ namespace Emik.Unions;
 /// <summary>Provides an indexer.</summary>
 public interface IProperties
 {
+    /// <summary>Gets all properties of this type.</summary>
+    /// <returns>An <see cref="Array"/> of <see cref="PropertyInfo"/> instances.</returns>
+    [Pure]
+    IReadOnlyList<PropertyInfo> Properties { get; }
+
     /// <summary>
     /// Gets an <see cref="object"/> corresponding to the property of the type based on the index passed in.
     /// </summary>
@@ -13,9 +18,4 @@ public interface IProperties
     /// <returns><see cref="object"/> corresponding to the property number <paramref name="index"/>.</returns>
     [Pure] // ReSharper disable once UnusedMemberInSuper.Global
     KeyValuePair<PropertyInfo, object?> this[[NonNegativeValue] int index] { get; }
-
-    /// <summary>Gets all properties of this type.</summary>
-    /// <returns>An <see cref="Array"/> of <see cref="PropertyInfo"/> instances.</returns>
-    [Pure]
-    IReadOnlyList<PropertyInfo> Properties { get; }
 }
