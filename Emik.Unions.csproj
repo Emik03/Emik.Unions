@@ -53,6 +53,10 @@
             <Generator>TextTemplatingFileGenerator</Generator>
             <LastGenOutput>EitherExtensions.cs</LastGenOutput>
         </None>
+        <None Update="Source/Disjoints/Overload.tt">
+            <Generator>TextTemplatingFileGenerator</Generator>
+            <LastGenOutput>Overload.cs</LastGenOutput>
+        </None>
         <ProjectReference Include="../Emik.Results/Emik.Results.csproj" />
         <Compile Update="Source/Factories.cs" Design="true" AutoGen="true">
             <DependentUpon>Factories.tt</DependentUpon>
@@ -87,19 +91,11 @@
         <Compile Update="Source/Disjoints/EitherExtensions.cs" Design="true" AutoGen="true">
             <DependentUpon>EitherExtensions.tt</DependentUpon>
         </Compile>
-        <Compile Update="Source\Include.cs">
-            <AutoGen>True</AutoGen>
-            <DesignTime>True</DesignTime>
-            <DependentUpon>Include.ttinclude</DependentUpon>
-        </Compile>
-        <None Update="Source\Disjoints\Overload.tt">
-            <Generator>TextTemplatingFileGenerator</Generator>
-            <LastGenOutput>Overload.cs</LastGenOutput>
-        </None>
-        <Compile Update="Source\Disjoints\Overload.cs">
-            <Design>true</Design>
-            <AutoGen>true</AutoGen>
+        <Compile Update="Source/Disjoints/Overload.cs" Design="true" AutoGen="true">
             <DependentUpon>Overload.tt</DependentUpon>
+        </Compile>
+        <Compile Update="Source/Include.cs" Design="true" AutoGen="true">
+            <DependentUpon>Include.ttinclude</DependentUpon>
         </Compile>
     </ItemGroup>
 </Project>

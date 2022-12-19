@@ -98,7 +98,8 @@
                 "",
                 i.Select(
                     j =>
-                        $"that.{WordPascal(j)} is {{ }} {WordCamel(j)} ? Either.New<{generic}>({WordCamel(j)}) :\n{new string(' ', indent * 4)}"));
+                        $"that.{WordPascal(j)} is {{ }} {WordCamel(j)} ? Either.New<{generic}>({WordCamel(j)}) :\n{new string
+                            (' ', indent * 4)}"));
 
     public static string IndexPatternMatch(IEnumerable<int> i)
         => string.Join("and ", i.Select(j => $"not {j - 1} ")).TrimEnd();
