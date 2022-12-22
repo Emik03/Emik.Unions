@@ -1,9 +1,18 @@
+#region Emik.MPL
+
 // <copyright file="Functor.cs" company="Emik">
 // Copyright (c) Emik. This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
 // </copyright>
+
+#endregion
+
 namespace Emik.Unions.Mappings;
 
+#region
+
 using static BindingFlags;
+
+#endregion
 
 /// <summary>Defines a functor of unspecified types.</summary>
 /// <typeparam name="TType">The type of the inheriting record.</typeparam>
@@ -77,6 +86,16 @@ public abstract record Functor<T, TResult, TType>(Converter<T, TResult> Converte
 
     static readonly TResult? s_default = Default();
 
+    /// <inheritdoc cref="Functor{TType}.New"/>
+    [Pure]
+#pragma warning disable CS8604
+    protected new static Func<TType> New => () => s_factory(s_default);
+#pragma warning restore CS8604
+
+    /// <inheritdoc />
+    [Pure]
+    public Converter<T, TType> Factory => x => s_factory(Converter(x));
+
     /// <inheritdoc />
     [Pure]
     public object? this[PropertyInfo name] => this.Index(name.Name).Value;
@@ -96,21 +115,19 @@ public abstract record Functor<T, TResult, TType>(Converter<T, TResult> Converte
 
     /// <inheritdoc />
     [Pure]
-    public Converter<T, TType> Factory => x => s_factory(Converter(x));
-
-    /// <inheritdoc />
-    [Pure]
     IReadOnlyList<PropertyInfo> IProperties.Properties => s_properties.ToReadOnly();
 
     /// <inheritdoc />
     [Pure]
     TResult IProduct<TResult, Converter<T, TResult>>.First => this;
 
-    /// <inheritdoc cref="Functor{TType}.New"/>
+    /// <inheritdoc />
     [Pure]
-#pragma warning disable CS8604
-    protected new static Func<TType> New => () => s_factory(s_default);
-#pragma warning restore CS8604
+    IEnumerator<KeyValuePair<PropertyInfo, object?>> IPropertyEnumerable.Enumeration()
+    {
+        yield return new(s_properties[0], (TResult)this);
+        yield return new(s_properties[1], Converter);
+    }
 
     /// <summary>Gets the encapsulated value.</summary>
     /// <param name="functor">The value encapsulating an inner value.</param>
@@ -133,14 +150,6 @@ public abstract record Functor<T, TResult, TType>(Converter<T, TResult> Converte
     public TFunctor Then<TFunctor>()
         where TFunctor : Functor<TFunctor>, IFunctor<TType, TFunctor> =>
         Functor<TFunctor>.Instance.Factory((TType)this);
-
-    /// <inheritdoc />
-    [Pure]
-    IEnumerator<KeyValuePair<PropertyInfo, object?>> IPropertyEnumerable.Enumeration()
-    {
-        yield return new(s_properties[0], (TResult)this);
-        yield return new(s_properties[1], Converter);
-    }
 
     [MustUseReturnValue]
     static IEnumerable<object> Fields() =>
