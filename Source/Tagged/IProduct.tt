@@ -47,7 +47,8 @@ public interface IProduct<<#= GenericCovariant(i) #>> : <#
         }
         else
         {
-#>IProduct<#
+#>IProduct
+<#
         }
 #>
 {

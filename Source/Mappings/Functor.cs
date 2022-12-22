@@ -152,18 +152,20 @@ public abstract record Functor<T, TResult, TType>(Converter<T, TResult> Converte
         Functor<TFunctor>.Instance.Factory((TType)this);
 
     [MustUseReturnValue]
-    static IEnumerable<object> Fields() =>
+    static IEnumerable<object?> Fields() =>
         typeof(TResult)
            .GetFields()
            .Where(x => x.IsStatic && x.FieldType == typeof(TResult))
-           .Select(x => x.GetValue(null));
+           .Select(x => x.GetValue(null))
+           .ItemCanBeNull();
 
     [MustUseReturnValue]
-    static IEnumerable<object> Methods() =>
+    static IEnumerable<object?> Methods() =>
         typeof(TResult)
            .GetMethods()
            .Where(x => x.IsStatic && x.ReturnType == typeof(TResult) && !x.GetParameters().Any())
-           .Select(x => x.Invoke(null, null));
+           .Select(x => x.Invoke(null, null))
+           .ItemCanBeNull();
 
     [MustUseReturnValue]
     static TResult? Default() =>
