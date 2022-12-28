@@ -115,7 +115,18 @@ public abstract record Functor<T, TResult, TType>(Converter<T, TResult> Converte
 
     /// <inheritdoc />
     [Pure]
-    IReadOnlyList<PropertyInfo> IProperties.Properties => s_properties.ToReadOnly();
+#if NETFRAMEWORK && !NET40_OR_GREATER
+    IList
+#else
+    IReadOnlyList
+#endif
+        <PropertyInfo> IProperties.Properties =>
+        s_properties
+#if NETFRAMEWORK && !NET40_OR_GREATER
+           .ToList();
+#else
+           .ToReadOnly();
+#endif
 
     /// <inheritdoc />
     [Pure]

@@ -58,7 +58,19 @@ sealed record InnerEither<T1, T2> : IEither<T1, T2>
 
     /// <inheritdoc/>
     [Pure]
-    public IReadOnlyList<PropertyInfo> Properties => s_properties.ToReadOnly();
+    public
+#if NETFRAMEWORK && !NET40_OR_GREATER
+    IList
+#else
+    IReadOnlyList
+#endif
+        <PropertyInfo> Properties =>
+        s_properties
+#if NETFRAMEWORK && !NET40_OR_GREATER
+           .ToList();
+#else
+           .ToReadOnly();
+#endif
 
     /// <inheritdoc/>
     [Pure]
@@ -134,7 +146,19 @@ sealed record InnerEither<T1, T2, T3> : IEither<T1, T2, T3>
 
     /// <inheritdoc/>
     [Pure]
-    public IReadOnlyList<PropertyInfo> Properties => s_properties.ToReadOnly();
+    public
+#if NETFRAMEWORK && !NET40_OR_GREATER
+    IList
+#else
+    IReadOnlyList
+#endif
+        <PropertyInfo> Properties =>
+        s_properties
+#if NETFRAMEWORK && !NET40_OR_GREATER
+           .ToList();
+#else
+           .ToReadOnly();
+#endif
 
     /// <inheritdoc/>
     [Pure]
@@ -225,13 +249,26 @@ sealed record InnerEither<T1, T2, T3, T4> : IEither<T1, T2, T3, T4>
 
     /// <inheritdoc/>
     [Pure]
-    public IReadOnlyList<PropertyInfo> Properties => s_properties.ToReadOnly();
+    public
+#if NETFRAMEWORK && !NET40_OR_GREATER
+    IList
+#else
+    IReadOnlyList
+#endif
+        <PropertyInfo> Properties =>
+        s_properties
+#if NETFRAMEWORK && !NET40_OR_GREATER
+           .ToList();
+#else
+           .ToReadOnly();
+#endif
 
     /// <inheritdoc/>
     [Pure]
     public override string ToString() => $"{nameof(Either)}[{Index}] {{ {Value} }}";
 }
 
+#if !NET35
 /// <summary>
 /// Defines an internal disjoint union for storing 1 of 5 different values.
 /// Instances of this type are exposed to the consumer as an interface.
@@ -331,10 +368,23 @@ sealed record InnerEither<T1, T2, T3, T4, T5> : IEither<T1, T2, T3, T4, T5>
 
     /// <inheritdoc/>
     [Pure]
-    public IReadOnlyList<PropertyInfo> Properties => s_properties.ToReadOnly();
+    public
+#if NETFRAMEWORK && !NET40_OR_GREATER
+    IList
+#else
+    IReadOnlyList
+#endif
+        <PropertyInfo> Properties =>
+        s_properties
+#if NETFRAMEWORK && !NET40_OR_GREATER
+           .ToList();
+#else
+           .ToReadOnly();
+#endif
 
     /// <inheritdoc/>
     [Pure]
     public override string ToString() => $"{nameof(Either)}[{Index}] {{ {Value} }}";
 }
 
+#endif

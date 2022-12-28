@@ -14,7 +14,12 @@ public interface IProperties
     /// <summary>Gets all properties of this type.</summary>
     /// <returns>An <see cref="Array"/> of <see cref="PropertyInfo"/> instances.</returns>
     [Pure]
-    IReadOnlyList<PropertyInfo> Properties { get; }
+#if NETFRAMEWORK && !NET40_OR_GREATER
+    IList
+#else
+    IReadOnlyList
+#endif
+        <PropertyInfo> Properties { get; }
 
     /// <summary>
     /// Gets an <see cref="object"/> corresponding to the property of the type based on the index passed in.

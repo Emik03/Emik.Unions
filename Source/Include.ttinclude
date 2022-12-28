@@ -10,7 +10,7 @@
 
     public const int Assertions = 4;
 
-    public const int Net35Limit = 9;
+    public const int Net35Limit = 4;
 
     public const int OrMin = 2;
 

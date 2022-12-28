@@ -167,6 +167,7 @@ public static class Factories
           .Compile();
     }
 
+#if !NET35
     /// <summary>Creates a factory from a given type.</summary>
     /// <typeparam name="T1">The first type of <typeparamref name="TType"/>.</typeparam>
     /// <typeparam name="T2">The second type of <typeparamref name="TType"/>.</typeparam>
@@ -217,4 +218,5 @@ public static class Factories
           .Compile();
     }
 
+#endif
 }

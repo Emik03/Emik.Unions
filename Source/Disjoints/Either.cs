@@ -202,6 +202,7 @@ public static class Either
         =>
             new InnerEither<T1, T2, T3, T4>(fourth);
 
+#if !NET35
     /// <summary>
     /// Creates a <see cref="IEither{T1, T2, T3, T4, T5}"/> with the inner value <typeparamref name="T1"/>.
     /// </summary>
@@ -337,4 +338,5 @@ public static class Either
         =>
             new InnerEither<T1, T2, T3, T4, T5>(fifth);
 
+#endif
 }

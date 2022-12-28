@@ -134,7 +134,18 @@ public abstract record Either<<#= Generic(i) #>, TType> : IEither<<#= Generic(i)
 
     /// <inheritdoc/>
     [Pure]
-    IReadOnlyList<PropertyInfo> IProperties.Properties => s_properties.ToReadOnly();
+#if NETFRAMEWORK && !NET40_OR_GREATER
+    IList
+#else
+    IReadOnlyList
+#endif
+        <PropertyInfo> IProperties.Properties =>
+        s_properties
+#if NETFRAMEWORK && !NET40_OR_GREATER
+           .ToList();
+#else
+           .ToReadOnly();
+#endif
 
     /// <inheritdoc/>
     [Pure]

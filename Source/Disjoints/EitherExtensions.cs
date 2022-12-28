@@ -2464,6 +2464,7 @@ public static class EitherExtensions
             _ => throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-4."),
         };
 
+#if !NET35
     /// <summary>Determines whether the disjoint union is the type provided.</summary>
     /// <typeparam name="T1">
     /// The first generic parameter of <see cref="IEither{T1, T2, T3, T4, T5}"/>.
@@ -5796,4 +5797,5 @@ public static class EitherExtensions
             _ => throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5."),
         };
 
+#endif
 }

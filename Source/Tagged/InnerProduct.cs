@@ -41,7 +41,19 @@ sealed record InnerProduct<T1> : IProduct<T1>
 
     /// <inheritdoc/>
     [Pure]
-    public IReadOnlyList<PropertyInfo> Properties => s_properties.ToReadOnly();
+    public
+#if NETFRAMEWORK && !NET40_OR_GREATER
+    IList
+#else
+    IReadOnlyList
+#endif
+        <PropertyInfo> Properties =>
+        s_properties
+#if NETFRAMEWORK && !NET40_OR_GREATER
+           .ToList();
+#else
+           .ToReadOnly();
+#endif
 
     /// <inheritdoc />
     public override string ToString() => $"{nameof(Product)} {{ {First} }}";
@@ -99,7 +111,19 @@ sealed record InnerProduct<T1, T2> : IProduct<T1, T2>
 
     /// <inheritdoc/>
     [Pure]
-    public IReadOnlyList<PropertyInfo> Properties => s_properties.ToReadOnly();
+    public
+#if NETFRAMEWORK && !NET40_OR_GREATER
+    IList
+#else
+    IReadOnlyList
+#endif
+        <PropertyInfo> Properties =>
+        s_properties
+#if NETFRAMEWORK && !NET40_OR_GREATER
+           .ToList();
+#else
+           .ToReadOnly();
+#endif
 
     /// <inheritdoc />
     public override string ToString() => $"{nameof(Product)} {{ {First}, {Second} }}";
@@ -166,7 +190,19 @@ sealed record InnerProduct<T1, T2, T3> : IProduct<T1, T2, T3>
 
     /// <inheritdoc/>
     [Pure]
-    public IReadOnlyList<PropertyInfo> Properties => s_properties.ToReadOnly();
+    public
+#if NETFRAMEWORK && !NET40_OR_GREATER
+    IList
+#else
+    IReadOnlyList
+#endif
+        <PropertyInfo> Properties =>
+        s_properties
+#if NETFRAMEWORK && !NET40_OR_GREATER
+           .ToList();
+#else
+           .ToReadOnly();
+#endif
 
     /// <inheritdoc />
     public override string ToString() => $"{nameof(Product)} {{ {First}, {Second}, {Third} }}";
@@ -242,7 +278,19 @@ sealed record InnerProduct<T1, T2, T3, T4> : IProduct<T1, T2, T3, T4>
 
     /// <inheritdoc/>
     [Pure]
-    public IReadOnlyList<PropertyInfo> Properties => s_properties.ToReadOnly();
+    public
+#if NETFRAMEWORK && !NET40_OR_GREATER
+    IList
+#else
+    IReadOnlyList
+#endif
+        <PropertyInfo> Properties =>
+        s_properties
+#if NETFRAMEWORK && !NET40_OR_GREATER
+           .ToList();
+#else
+           .ToReadOnly();
+#endif
 
     /// <inheritdoc />
     public override string ToString() => $"{nameof(Product)} {{ {First}, {Second}, {Third}, {Fourth} }}";

@@ -102,7 +102,18 @@ public abstract record Either<T1, T2, TType> : IEither<T1, T2>
 
     /// <inheritdoc/>
     [Pure]
-    IReadOnlyList<PropertyInfo> IProperties.Properties => s_properties.ToReadOnly();
+#if NETFRAMEWORK && !NET40_OR_GREATER
+    IList
+#else
+    IReadOnlyList
+#endif
+        <PropertyInfo> IProperties.Properties =>
+        s_properties
+#if NETFRAMEWORK && !NET40_OR_GREATER
+           .ToList();
+#else
+           .ToReadOnly();
+#endif
 
     /// <inheritdoc/>
     [Pure]
@@ -244,7 +255,18 @@ public abstract record Either<T1, T2, T3, TType> : IEither<T1, T2, T3>
 
     /// <inheritdoc/>
     [Pure]
-    IReadOnlyList<PropertyInfo> IProperties.Properties => s_properties.ToReadOnly();
+#if NETFRAMEWORK && !NET40_OR_GREATER
+    IList
+#else
+    IReadOnlyList
+#endif
+        <PropertyInfo> IProperties.Properties =>
+        s_properties
+#if NETFRAMEWORK && !NET40_OR_GREATER
+           .ToList();
+#else
+           .ToReadOnly();
+#endif
 
     /// <inheritdoc/>
     [Pure]
@@ -425,7 +447,18 @@ public abstract record Either<T1, T2, T3, T4, TType> : IEither<T1, T2, T3, T4>
 
     /// <inheritdoc/>
     [Pure]
-    IReadOnlyList<PropertyInfo> IProperties.Properties => s_properties.ToReadOnly();
+#if NETFRAMEWORK && !NET40_OR_GREATER
+    IList
+#else
+    IReadOnlyList
+#endif
+        <PropertyInfo> IProperties.Properties =>
+        s_properties
+#if NETFRAMEWORK && !NET40_OR_GREATER
+           .ToList();
+#else
+           .ToReadOnly();
+#endif
 
     /// <inheritdoc/>
     [Pure]
@@ -433,6 +466,7 @@ public abstract record Either<T1, T2, T3, T4, TType> : IEither<T1, T2, T3, T4>
         $"{typeof(TType).Name}[{_index}] {{ {s_properties[_index].Name} = {this[_index]} }}";
 }
 
+#if !NET35
 /// <summary>Defines an inheritable record that automates logic for a disjoint union.</summary>
 /// <typeparam name="T1">The first type of the disjoint union.</typeparam>
 /// <typeparam name="T2">The second type of the disjoint union.</typeparam>
@@ -647,7 +681,18 @@ public abstract record Either<T1, T2, T3, T4, T5, TType> : IEither<T1, T2, T3, T
 
     /// <inheritdoc/>
     [Pure]
-    IReadOnlyList<PropertyInfo> IProperties.Properties => s_properties.ToReadOnly();
+#if NETFRAMEWORK && !NET40_OR_GREATER
+    IList
+#else
+    IReadOnlyList
+#endif
+        <PropertyInfo> IProperties.Properties =>
+        s_properties
+#if NETFRAMEWORK && !NET40_OR_GREATER
+           .ToList();
+#else
+           .ToReadOnly();
+#endif
 
     /// <inheritdoc/>
     [Pure]
@@ -655,3 +700,4 @@ public abstract record Either<T1, T2, T3, T4, T5, TType> : IEither<T1, T2, T3, T
         $"{typeof(TType).Name}[{_index}] {{ {s_properties[_index].Name} = {this[_index]} }}";
 }
 
+#endif
