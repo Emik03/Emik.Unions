@@ -59,7 +59,6 @@
             <Generator>TextTemplatingFileGenerator</Generator>
             <LastGenOutput>Overload.cs</LastGenOutput>
         </None>
-        <ProjectReference Include="../Emik.Results/Emik.Results.csproj" />
         <Compile Update="Source/Factories.cs" Design="true" AutoGen="true">
             <DependentUpon>Factories.tt</DependentUpon>
         </Compile>
@@ -99,5 +98,6 @@
         <Compile Update="Source/Include.cs" Design="true" AutoGen="true">
             <DependentUpon>Include.ttinclude</DependentUpon>
         </Compile>
+        <PackageReference Include="Emik.Results" Version="1.0.0" PrivateAssets="all" ExcludeAssets="contentfiles" />
     </ItemGroup>
 </Project>
