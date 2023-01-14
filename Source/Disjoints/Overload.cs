@@ -3,7 +3,7 @@
 // Copyright (c) Emik. This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
 // </copyright>
 namespace Emik.Unions.Disjoints;
-#pragma warning disable CA1000, CA1033, RCS1036
+#pragma warning disable CA1000, CA1033, RCS1036, SA1508
 /// <summary>Defines a disjoint union with implicit conversions, for parameter signatures.</summary>
 /// <typeparam name="T1">The first type of the disjoint union.</typeparam>
 /// <typeparam name="T2">The second type of the disjoint union.</typeparam>

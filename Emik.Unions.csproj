@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <FileVersion>1.0.2</FileVersion>
+        <FileVersion>1.0.3</FileVersion>
         <NoWarn>$(NoWarn);SA1518;SA1633</NoWarn>
         <RepositoryUrl>https://github.com/Emik03/Emik.Unions</RepositoryUrl>
         <TargetFrameworks>net7.0;netstandard2.1;netstandard2.0;net48;net452;net35</TargetFrameworks>
@@ -99,6 +99,6 @@
         <Compile Update="Source/Include.cs" Design="true" AutoGen="true">
             <DependentUpon>Include.ttinclude</DependentUpon>
         </Compile>
-        <PackageReference Include="Emik.Results" Version="1.0.2" PrivateAssets="all" />
+        <PackageReference Include="Emik.Results" Version="1.0.3" PrivateAssets="all" />
     </ItemGroup>
 </Project>
