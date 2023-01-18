@@ -1,4 +1,7 @@
-﻿// ReSharper disable ArrangeConstructorOrDestructorBody BadParensLineBreaks BadPreprocessorIndent IncorrectBlankLinesNearBraces MissingIndent RedundantCast RedundantLinebreak UnusedMemberInSuper.Global
+﻿<#
+    // SPDX-License-Identifier: MPL-2.0
+#>
+// ReSharper disable ArrangeConstructorOrDestructorBody BadParensLineBreaks BadPreprocessorIndent IncorrectBlankLinesNearBraces MissingIndent RedundantCast RedundantLinebreak UnusedMemberInSuper.Global
 <#@ assembly name="System.Core" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="System.Linq" #>

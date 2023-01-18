@@ -1,8 +1,6 @@
-﻿// ReSharper disable ArrangeConstructorOrDestructorBody BadParensLineBreaks BadPreprocessorIndent IncorrectBlankLinesNearBraces MissingIndent RedundantCast RedundantLinebreak UnusedMemberInSuper.Global
+﻿// SPDX-License-Identifier: MPL-2.0
+// ReSharper disable ArrangeConstructorOrDestructorBody BadParensLineBreaks BadPreprocessorIndent IncorrectBlankLinesNearBraces MissingIndent RedundantCast RedundantLinebreak UnusedMemberInSuper.Global
 // ReSharper disable InconsistentNaming
-// <copyright file="EitherExtensions.cs" company="Emik">
-// Copyright (c) Emik. This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
-// </copyright>
 namespace Emik.Unions.Disjoints;
 #pragma warning disable SA1001, SA1508
 /// <summary>A static class that provides functionality for disjoint union types.</summary>

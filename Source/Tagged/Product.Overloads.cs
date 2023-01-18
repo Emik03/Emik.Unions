@@ -1,7 +1,6 @@
-﻿// ReSharper disable ArrangeConstructorOrDestructorBody BadParensLineBreaks BadPreprocessorIndent IncorrectBlankLinesNearBraces MissingIndent RedundantCast RedundantLinebreak UnusedMemberInSuper.Global
-// <copyright file="Product.Overloads.cs" company="Emik">
-// Copyright (c) Emik. This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
-// </copyright>
+﻿// SPDX-License-Identifier: MPL-2.0
+// ReSharper disable ArrangeConstructorOrDestructorBody BadParensLineBreaks BadPreprocessorIndent IncorrectBlankLinesNearBraces MissingIndent RedundantCast RedundantLinebreak UnusedMemberInSuper.Global
+
 namespace Emik.Unions.Tagged;
 #pragma warning disable CA1000, CA1033, RCS1036, RCS1232
 /// <summary>Defines an inheritable record that automates logic for a union.</summary>
