@@ -1,5 +1,5 @@
 ﻿// SPDX-License-Identifier: MPL-2.0
-// ReSharper disable ArrangeConstructorOrDestructorBody BadParensLineBreaks BadPreprocessorIndent IncorrectBlankLinesNearBraces MissingIndent RedundantCast RedundantLinebreak UnusedMemberInSuper.Global
+// ReSharper disable ArrangeConstructorOrDestructorBody BadParensLineBreaks BadPreprocessorIndent IncorrectBlankLinesNearBraces MissingIndent NotAccessedPositionalProperty.Global RedundantCast RedundantLinebreak UnusedMemberInSuper.Global
 
 namespace Emik.Unions.Tagged;
 #pragma warning disable CA1000, CA1033, RCS1036, RCS1232

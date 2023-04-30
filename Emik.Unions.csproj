@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: MPL-2.0 -->
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <FileVersion>1.0.3</FileVersion>
+        <FileVersion>1.0.4</FileVersion>
         <NoWarn>$(NoWarn);SA1518;SA1633</NoWarn>
         <RepositoryUrl>https://github.com/Emik03/Emik.Unions</RepositoryUrl>
         <TargetFrameworks>net7.0;netstandard2.1;netstandard2.0;net48;net452;net35</TargetFrameworks>
