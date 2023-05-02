@@ -44,7 +44,7 @@ Implements [IProduct](IProduct.md 'Emik.Unions.Tagged.IProduct'), [IPropertyEnum
 
 | Properties | |
 | :--- | :--- |
-| [First](IProduct_T1,T2,T3,T4_.First.md 'Emik.Unions.Tagged.IProduct<T1,T2,T3,T4>.First') | Gets the [T1](IProduct_T1,T2,T3,T4_.md#Emik.Unions.Tagged.IProduct_T1,T2,T3,T4_.T1 'Emik.Unions.Tagged.IProduct<T1,T2,T3,T4>.T1') first value of the union. |
-| [Fourth](IProduct_T1,T2,T3,T4_.Fourth.md 'Emik.Unions.Tagged.IProduct<T1,T2,T3,T4>.Fourth') | Gets the [T4](IProduct_T1,T2,T3,T4_.md#Emik.Unions.Tagged.IProduct_T1,T2,T3,T4_.T4 'Emik.Unions.Tagged.IProduct<T1,T2,T3,T4>.T4') fourth value of the union. |
-| [Second](IProduct_T1,T2,T3,T4_.Second.md 'Emik.Unions.Tagged.IProduct<T1,T2,T3,T4>.Second') | Gets the [T2](IProduct_T1,T2,T3,T4_.md#Emik.Unions.Tagged.IProduct_T1,T2,T3,T4_.T2 'Emik.Unions.Tagged.IProduct<T1,T2,T3,T4>.T2') second value of the union. |
-| [Third](IProduct_T1,T2,T3,T4_.Third.md 'Emik.Unions.Tagged.IProduct<T1,T2,T3,T4>.Third') | Gets the [T3](IProduct_T1,T2,T3,T4_.md#Emik.Unions.Tagged.IProduct_T1,T2,T3,T4_.T3 'Emik.Unions.Tagged.IProduct<T1,T2,T3,T4>.T3') third value of the union. |
+| [First](IProduct_T1,T2,T3,T4_.First().md 'Emik.Unions.Tagged.IProduct<T1,T2,T3,T4>.First') | Gets the [T1](IProduct_T1,T2,T3,T4_.md#Emik.Unions.Tagged.IProduct_T1,T2,T3,T4_.T1 'Emik.Unions.Tagged.IProduct<T1,T2,T3,T4>.T1') first value of the union. |
+| [Fourth](IProduct_T1,T2,T3,T4_.Fourth().md 'Emik.Unions.Tagged.IProduct<T1,T2,T3,T4>.Fourth') | Gets the [T4](IProduct_T1,T2,T3,T4_.md#Emik.Unions.Tagged.IProduct_T1,T2,T3,T4_.T4 'Emik.Unions.Tagged.IProduct<T1,T2,T3,T4>.T4') fourth value of the union. |
+| [Second](IProduct_T1,T2,T3,T4_.Second().md 'Emik.Unions.Tagged.IProduct<T1,T2,T3,T4>.Second') | Gets the [T2](IProduct_T1,T2,T3,T4_.md#Emik.Unions.Tagged.IProduct_T1,T2,T3,T4_.T2 'Emik.Unions.Tagged.IProduct<T1,T2,T3,T4>.T2') second value of the union. |
+| [Third](IProduct_T1,T2,T3,T4_.Third().md 'Emik.Unions.Tagged.IProduct<T1,T2,T3,T4>.Third') | Gets the [T3](IProduct_T1,T2,T3,T4_.md#Emik.Unions.Tagged.IProduct_T1,T2,T3,T4_.T3 'Emik.Unions.Tagged.IProduct<T1,T2,T3,T4>.T3') third value of the union. |

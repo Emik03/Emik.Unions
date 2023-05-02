@@ -11,4 +11,4 @@
 
 | Interfaces | |
 | :--- | :--- |
-| [IFunctor&lt;T,TType&gt;](IFunctor_T,TType_.md 'Emik.Unions.Mappings.IFunctor<T,TType>') | A functor with an unspecified result type to allow for better type inference.<br/>Currently used in [To&lt;TFunctor&gt;()](Functor_T,TResult,TType_.To_TFunctor_().md 'Emik.Unions.Mappings.Functor<T,TResult,TType>.To<TFunctor>()'). |
+| [IFunctor&lt;T,TType&gt;](IFunctor_T,TType_.md 'Emik.Unions.Mappings.IFunctor<T,TType>') | A functor with an unspecified result type to allow for better type inference.<br/>Currently used in [To&lt;TFunctor&gt;()](Functor_T,TResult,TType_.To().md 'Emik.Unions.Mappings.Functor<T,TResult,TType>.To<TFunctor>()'). |

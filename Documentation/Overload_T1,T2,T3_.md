@@ -38,19 +38,19 @@ Implements [System.IEquatable&lt;](https://docs.microsoft.com/en-us/dotnet/api/S
 
 | Constructors | |
 | :--- | :--- |
-| [Overload(T1, T2, T3)](Overload_T1,T2,T3_..ctor.zmNGrMglQDp7OQPvtCJzBg.md 'Emik.Unions.Disjoints.Overload<T1,T2,T3>.Overload(T1, T2, T3)') | Defines a disjoint union with implicit conversions, for parameter signatures. |
+| [Overload(T1, T2, T3)](Overload_T1,T2,T3_..ctor(T1,T2,T3).md 'Emik.Unions.Disjoints.Overload<T1,T2,T3>.Overload(T1, T2, T3)') | Defines a disjoint union with implicit conversions, for parameter signatures. |
 
 | Properties | |
 | :--- | :--- |
-| [First](Overload_T1,T2,T3_.First.md 'Emik.Unions.Disjoints.Overload<T1,T2,T3>.First') | The first value of the disjoint union. |
-| [Second](Overload_T1,T2,T3_.Second.md 'Emik.Unions.Disjoints.Overload<T1,T2,T3>.Second') | The second value of the disjoint union. |
-| [Third](Overload_T1,T2,T3_.Third.md 'Emik.Unions.Disjoints.Overload<T1,T2,T3>.Third') | The third value of the disjoint union. |
+| [First](Overload_T1,T2,T3_.First().md 'Emik.Unions.Disjoints.Overload<T1,T2,T3>.First') | The first value of the disjoint union. |
+| [Second](Overload_T1,T2,T3_.Second().md 'Emik.Unions.Disjoints.Overload<T1,T2,T3>.Second') | The second value of the disjoint union. |
+| [Third](Overload_T1,T2,T3_.Third().md 'Emik.Unions.Disjoints.Overload<T1,T2,T3>.Third') | The third value of the disjoint union. |
 
 | Operators | |
 | :--- | :--- |
-| [explicit operator T1(Overload&lt;T1,T2,T3&gt;)](Overload_T1,T2,T3_.op_Explicit./M+ZImNo+wjIwLZxE3nY4Q.md 'Emik.Unions.Disjoints.Overload<T1,T2,T3>.op_Explicit T1(Emik.Unions.Disjoints.Overload<T1,T2,T3>)') | Gets the [T1](Overload_T1,T2,T3_.md#Emik.Unions.Disjoints.Overload_T1,T2,T3_.T1 'Emik.Unions.Disjoints.Overload<T1,T2,T3>.T1') first value of the disjoint union. |
-| [explicit operator T2(Overload&lt;T1,T2,T3&gt;)](Overload_T1,T2,T3_.op_Explicit.AkBGM6GDShlvAqp5zgMYSA.md 'Emik.Unions.Disjoints.Overload<T1,T2,T3>.op_Explicit T2(Emik.Unions.Disjoints.Overload<T1,T2,T3>)') | Gets the [T2](Overload_T1,T2,T3_.md#Emik.Unions.Disjoints.Overload_T1,T2,T3_.T2 'Emik.Unions.Disjoints.Overload<T1,T2,T3>.T2') second value of the disjoint union. |
-| [explicit operator T3(Overload&lt;T1,T2,T3&gt;)](Overload_T1,T2,T3_.op_Explicit.MXnhZx3PyX8gqrsLZ+Lm6w.md 'Emik.Unions.Disjoints.Overload<T1,T2,T3>.op_Explicit T3(Emik.Unions.Disjoints.Overload<T1,T2,T3>)') | Gets the [T3](Overload_T1,T2,T3_.md#Emik.Unions.Disjoints.Overload_T1,T2,T3_.T3 'Emik.Unions.Disjoints.Overload<T1,T2,T3>.T3') third value of the disjoint union. |
-| [implicit operator Overload&lt;T1,T2,T3&gt;(T1)](Overload_T1,T2,T3_.op_Implicit.0jfSzpQLJ/lq02yDlaXLFw.md 'Emik.Unions.Disjoints.Overload<T1,T2,T3>.op_Implicit Emik.Unions.Disjoints.Overload<T1,T2,T3>(T1)') | Creates a new instance of TType with<br/>the [T3](Overload_T1,T2,T3_.md#Emik.Unions.Disjoints.Overload_T1,T2,T3_.T3 'Emik.Unions.Disjoints.Overload<T1,T2,T3>.T3') value being set. |
-| [implicit operator Overload&lt;T1,T2,T3&gt;(T2)](Overload_T1,T2,T3_.op_Implicit.3g0p5visT7WmhA9L5T7sPg.md 'Emik.Unions.Disjoints.Overload<T1,T2,T3>.op_Implicit Emik.Unions.Disjoints.Overload<T1,T2,T3>(T2)') | Creates a new instance of TType with<br/>the [T3](Overload_T1,T2,T3_.md#Emik.Unions.Disjoints.Overload_T1,T2,T3_.T3 'Emik.Unions.Disjoints.Overload<T1,T2,T3>.T3') value being set. |
-| [implicit operator Overload&lt;T1,T2,T3&gt;(T3)](Overload_T1,T2,T3_.op_Implicit.2h56hjJpeiKWB+iF5LEdFA.md 'Emik.Unions.Disjoints.Overload<T1,T2,T3>.op_Implicit Emik.Unions.Disjoints.Overload<T1,T2,T3>(T3)') | Creates a new instance of TType with<br/>the [T3](Overload_T1,T2,T3_.md#Emik.Unions.Disjoints.Overload_T1,T2,T3_.T3 'Emik.Unions.Disjoints.Overload<T1,T2,T3>.T3') value being set. |
+| [explicit operator T1(Overload&lt;T1,T2,T3&gt;)](Overload_T1,T2,T3_.op_Explicit(Overload).md 'Emik.Unions.Disjoints.Overload<T1,T2,T3>.op_Explicit T1(Emik.Unions.Disjoints.Overload<T1,T2,T3>)') | Gets the [T1](Overload_T1,T2,T3_.md#Emik.Unions.Disjoints.Overload_T1,T2,T3_.T1 'Emik.Unions.Disjoints.Overload<T1,T2,T3>.T1') first value of the disjoint union. |
+| [explicit operator T2(Overload&lt;T1,T2,T3&gt;)](Overload_T1,T2,T3_.op_Explicit(Overload).md 'Emik.Unions.Disjoints.Overload<T1,T2,T3>.op_Explicit T2(Emik.Unions.Disjoints.Overload<T1,T2,T3>)') | Gets the [T2](Overload_T1,T2,T3_.md#Emik.Unions.Disjoints.Overload_T1,T2,T3_.T2 'Emik.Unions.Disjoints.Overload<T1,T2,T3>.T2') second value of the disjoint union. |
+| [explicit operator T3(Overload&lt;T1,T2,T3&gt;)](Overload_T1,T2,T3_.op_Explicit(Overload).md 'Emik.Unions.Disjoints.Overload<T1,T2,T3>.op_Explicit T3(Emik.Unions.Disjoints.Overload<T1,T2,T3>)') | Gets the [T3](Overload_T1,T2,T3_.md#Emik.Unions.Disjoints.Overload_T1,T2,T3_.T3 'Emik.Unions.Disjoints.Overload<T1,T2,T3>.T3') third value of the disjoint union. |
+| [implicit operator Overload&lt;T1,T2,T3&gt;(T1)](Overload_T1,T2,T3_.op_Implicit(T1).md 'Emik.Unions.Disjoints.Overload<T1,T2,T3>.op_Implicit Emik.Unions.Disjoints.Overload<T1,T2,T3>(T1)') | Creates a new instance of TType with<br/>the [T3](Overload_T1,T2,T3_.md#Emik.Unions.Disjoints.Overload_T1,T2,T3_.T3 'Emik.Unions.Disjoints.Overload<T1,T2,T3>.T3') value being set. |
+| [implicit operator Overload&lt;T1,T2,T3&gt;(T2)](Overload_T1,T2,T3_.op_Implicit(T2).md 'Emik.Unions.Disjoints.Overload<T1,T2,T3>.op_Implicit Emik.Unions.Disjoints.Overload<T1,T2,T3>(T2)') | Creates a new instance of TType with<br/>the [T3](Overload_T1,T2,T3_.md#Emik.Unions.Disjoints.Overload_T1,T2,T3_.T3 'Emik.Unions.Disjoints.Overload<T1,T2,T3>.T3') value being set. |
+| [implicit operator Overload&lt;T1,T2,T3&gt;(T3)](Overload_T1,T2,T3_.op_Implicit(T3).md 'Emik.Unions.Disjoints.Overload<T1,T2,T3>.op_Implicit Emik.Unions.Disjoints.Overload<T1,T2,T3>(T3)') | Creates a new instance of TType with<br/>the [T3](Overload_T1,T2,T3_.md#Emik.Unions.Disjoints.Overload_T1,T2,T3_.T3 'Emik.Unions.Disjoints.Overload<T1,T2,T3>.T3') value being set. |

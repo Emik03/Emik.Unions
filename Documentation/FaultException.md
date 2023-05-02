@@ -13,8 +13,8 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 
 | Constructors | |
 | :--- | :--- |
-| [FaultException(string, string, object)](FaultException..ctor.qM6lLWEVqAP+tpwmVwC/bw.md 'Emik.Unions.Tagged.FaultException.FaultException(string, string, object)') | Initializes a new instance of the [FaultException](FaultException.md 'Emik.Unions.Tagged.FaultException') class. |
+| [FaultException(string, string, object)](FaultException..ctor(String,String,Object).md 'Emik.Unions.Tagged.FaultException.FaultException(string, string, object)') | Initializes a new instance of the [FaultException](FaultException.md 'Emik.Unions.Tagged.FaultException') class. |
 
 | Properties | |
 | :--- | :--- |
-| [Uninit](FaultException.Uninit.md 'Emik.Unions.Tagged.FaultException.Uninit') | Gets the object that is in an invalid state. |
+| [Uninit](FaultException.Uninit().md 'Emik.Unions.Tagged.FaultException.Uninit') | Gets the object that is in an invalid state. |

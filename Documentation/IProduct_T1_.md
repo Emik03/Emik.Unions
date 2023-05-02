@@ -26,4 +26,4 @@ Implements [IProduct](IProduct.md 'Emik.Unions.Tagged.IProduct'), [IPropertyEnum
 
 | Properties | |
 | :--- | :--- |
-| [First](IProduct_T1_.First.md 'Emik.Unions.Tagged.IProduct<T1>.First') | Gets the [T1](IProduct_T1_.md#Emik.Unions.Tagged.IProduct_T1_.T1 'Emik.Unions.Tagged.IProduct<T1>.T1') first value of the union. |
+| [First](IProduct_T1_.First().md 'Emik.Unions.Tagged.IProduct<T1>.First') | Gets the [T1](IProduct_T1_.md#Emik.Unions.Tagged.IProduct_T1_.T1 'Emik.Unions.Tagged.IProduct<T1>.T1') first value of the union. |

@@ -38,6 +38,6 @@ Implements [IProduct](IProduct.md 'Emik.Unions.Tagged.IProduct'), [IPropertyEnum
 
 | Properties | |
 | :--- | :--- |
-| [First](IProduct_T1,T2,T3_.First.md 'Emik.Unions.Tagged.IProduct<T1,T2,T3>.First') | Gets the [T1](IProduct_T1,T2,T3_.md#Emik.Unions.Tagged.IProduct_T1,T2,T3_.T1 'Emik.Unions.Tagged.IProduct<T1,T2,T3>.T1') first value of the union. |
-| [Second](IProduct_T1,T2,T3_.Second.md 'Emik.Unions.Tagged.IProduct<T1,T2,T3>.Second') | Gets the [T2](IProduct_T1,T2,T3_.md#Emik.Unions.Tagged.IProduct_T1,T2,T3_.T2 'Emik.Unions.Tagged.IProduct<T1,T2,T3>.T2') second value of the union. |
-| [Third](IProduct_T1,T2,T3_.Third.md 'Emik.Unions.Tagged.IProduct<T1,T2,T3>.Third') | Gets the [T3](IProduct_T1,T2,T3_.md#Emik.Unions.Tagged.IProduct_T1,T2,T3_.T3 'Emik.Unions.Tagged.IProduct<T1,T2,T3>.T3') third value of the union. |
+| [First](IProduct_T1,T2,T3_.First().md 'Emik.Unions.Tagged.IProduct<T1,T2,T3>.First') | Gets the [T1](IProduct_T1,T2,T3_.md#Emik.Unions.Tagged.IProduct_T1,T2,T3_.T1 'Emik.Unions.Tagged.IProduct<T1,T2,T3>.T1') first value of the union. |
+| [Second](IProduct_T1,T2,T3_.Second().md 'Emik.Unions.Tagged.IProduct<T1,T2,T3>.Second') | Gets the [T2](IProduct_T1,T2,T3_.md#Emik.Unions.Tagged.IProduct_T1,T2,T3_.T2 'Emik.Unions.Tagged.IProduct<T1,T2,T3>.T2') second value of the union. |
+| [Third](IProduct_T1,T2,T3_.Third().md 'Emik.Unions.Tagged.IProduct<T1,T2,T3>.Third') | Gets the [T3](IProduct_T1,T2,T3_.md#Emik.Unions.Tagged.IProduct_T1,T2,T3_.T3 'Emik.Unions.Tagged.IProduct<T1,T2,T3>.T3') third value of the union. |

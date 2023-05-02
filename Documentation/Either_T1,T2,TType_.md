@@ -44,15 +44,15 @@ Implements [Emik.Unions.Disjoints.IEither&lt;](IEither_T1,T2_.md 'Emik.Unions.Di
 
 | Properties | |
 | :--- | :--- |
-| [this[int]](Either_T1,T2,TType_.Item.7LZM6OXkj+leTG9DzUlVwQ.md 'Emik.Unions.Disjoints.Either<T1,T2,TType>.this[int]') | Gets an [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') corresponding to the property of the type based on the index passed in. |
+| [this[int]](Either_T1,T2,TType_.Item(Int32).md 'Emik.Unions.Disjoints.Either<T1,T2,TType>.this[int]') | Gets an [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') corresponding to the property of the type based on the index passed in. |
 
 | Methods | |
 | :--- | :--- |
-| [New(T1)](Either_T1,T2,TType_.New.X7aBVQeiuWtHLFu1eYPoyw.md 'Emik.Unions.Disjoints.Either<T1,T2,TType>.New(T1)') | Creates a new instance of [TType](Either_T1,T2,TType_.md#Emik.Unions.Disjoints.Either_T1,T2,TType_.TType 'Emik.Unions.Disjoints.Either<T1,T2,TType>.TType') with<br/>the [T2](Either_T1,T2,TType_.md#Emik.Unions.Disjoints.Either_T1,T2,TType_.T2 'Emik.Unions.Disjoints.Either<T1,T2,TType>.T2') value being set. |
-| [New(T2)](Either_T1,T2,TType_.New.PoujcLi0qjrbFTT7gI95RQ.md 'Emik.Unions.Disjoints.Either<T1,T2,TType>.New(T2)') | Creates a new instance of [TType](Either_T1,T2,TType_.md#Emik.Unions.Disjoints.Either_T1,T2,TType_.TType 'Emik.Unions.Disjoints.Either<T1,T2,TType>.TType') with<br/>the [T2](Either_T1,T2,TType_.md#Emik.Unions.Disjoints.Either_T1,T2,TType_.T2 'Emik.Unions.Disjoints.Either<T1,T2,TType>.T2') value being set. |
+| [New(T1)](Either_T1,T2,TType_.New(T1).md 'Emik.Unions.Disjoints.Either<T1,T2,TType>.New(T1)') | Creates a new instance of [TType](Either_T1,T2,TType_.md#Emik.Unions.Disjoints.Either_T1,T2,TType_.TType 'Emik.Unions.Disjoints.Either<T1,T2,TType>.TType') with<br/>the [T2](Either_T1,T2,TType_.md#Emik.Unions.Disjoints.Either_T1,T2,TType_.T2 'Emik.Unions.Disjoints.Either<T1,T2,TType>.T2') value being set. |
+| [New(T2)](Either_T1,T2,TType_.New(T2).md 'Emik.Unions.Disjoints.Either<T1,T2,TType>.New(T2)') | Creates a new instance of [TType](Either_T1,T2,TType_.md#Emik.Unions.Disjoints.Either_T1,T2,TType_.TType 'Emik.Unions.Disjoints.Either<T1,T2,TType>.TType') with<br/>the [T2](Either_T1,T2,TType_.md#Emik.Unions.Disjoints.Either_T1,T2,TType_.T2 'Emik.Unions.Disjoints.Either<T1,T2,TType>.T2') value being set. |
 
 | Explicit Interface Implementations | |
 | :--- | :--- |
-| [Emik.Unions.Disjoints.IEither.Index](Either_T1,T2,TType_.Emik.Unions.Disjoints.IEither.Index.md 'Emik.Unions.Disjoints.Either<T1,T2,TType>.Emik.Unions.Disjoints.IEither.Index') | Gets the index where the value is contained. |
-| [Emik.Unions.Disjoints.IEither.Value](Either_T1,T2,TType_.Emik.Unions.Disjoints.IEither.Value.md 'Emik.Unions.Disjoints.Either<T1,T2,TType>.Emik.Unions.Disjoints.IEither.Value') | Gets the value. |
-| [Emik.Unions.IProperties.Properties](Either_T1,T2,TType_.Emik.Unions.IProperties.Properties.md 'Emik.Unions.Disjoints.Either<T1,T2,TType>.Emik.Unions.IProperties.Properties') | Gets all properties of this type. |
+| [Emik.Unions.Disjoints.IEither.Index](Either_T1,T2,TType_.Emik.Unions.Disjoints.IEither.Index().md 'Emik.Unions.Disjoints.Either<T1,T2,TType>.Emik.Unions.Disjoints.IEither.Index') | Gets the index where the value is contained. |
+| [Emik.Unions.Disjoints.IEither.Value](Either_T1,T2,TType_.Emik.Unions.Disjoints.IEither.Value().md 'Emik.Unions.Disjoints.Either<T1,T2,TType>.Emik.Unions.Disjoints.IEither.Value') | Gets the value. |
+| [Emik.Unions.IProperties.Properties](Either_T1,T2,TType_.Emik.Unions.IProperties.Properties().md 'Emik.Unions.Disjoints.Either<T1,T2,TType>.Emik.Unions.IProperties.Properties') | Gets all properties of this type. |

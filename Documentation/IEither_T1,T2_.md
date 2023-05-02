@@ -31,5 +31,5 @@ Implements [IEither](IEither.md 'Emik.Unions.Disjoints.IEither'), [IProperties](
 
 | Properties | |
 | :--- | :--- |
-| [First](IEither_T1,T2_.First.md 'Emik.Unions.Disjoints.IEither<T1,T2>.First') | Gets the [T1](IEither_T1,T2_.md#Emik.Unions.Disjoints.IEither_T1,T2_.T1 'Emik.Unions.Disjoints.IEither<T1,T2>.T1') first value of the disjoint union. |
-| [Second](IEither_T1,T2_.Second.md 'Emik.Unions.Disjoints.IEither<T1,T2>.Second') | Gets the [T2](IEither_T1,T2_.md#Emik.Unions.Disjoints.IEither_T1,T2_.T2 'Emik.Unions.Disjoints.IEither<T1,T2>.T2') second value of the disjoint union. |
+| [First](IEither_T1,T2_.First().md 'Emik.Unions.Disjoints.IEither<T1,T2>.First') | Gets the [T1](IEither_T1,T2_.md#Emik.Unions.Disjoints.IEither_T1,T2_.T1 'Emik.Unions.Disjoints.IEither<T1,T2>.T1') first value of the disjoint union. |
+| [Second](IEither_T1,T2_.Second().md 'Emik.Unions.Disjoints.IEither<T1,T2>.Second') | Gets the [T2](IEither_T1,T2_.md#Emik.Unions.Disjoints.IEither_T1,T2_.T2 'Emik.Unions.Disjoints.IEither<T1,T2>.T2') second value of the disjoint union. |

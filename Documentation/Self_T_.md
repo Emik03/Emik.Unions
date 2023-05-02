@@ -23,8 +23,8 @@ Implements [System.IEquatable&lt;](https://docs.microsoft.com/en-us/dotnet/api/S
 
 | Constructors | |
 | :--- | :--- |
-| [Self(T)](Self_T_..ctor.hZB2GMcobNQSZhOnLfQYEQ.md 'Emik.Unions.Mappings.Self<T>.Self(T)') | A functor that returns itself. |
+| [Self(T)](Self_T_..ctor(T).md 'Emik.Unions.Mappings.Self<T>.Self(T)') | A functor that returns itself. |
 
 | Properties | |
 | :--- | :--- |
-| [Value](Self_T_.Value.md 'Emik.Unions.Mappings.Self<T>.Value') | The encapsulated value. |
+| [Value](Self_T_.Value().md 'Emik.Unions.Mappings.Self<T>.Value') | The encapsulated value. |

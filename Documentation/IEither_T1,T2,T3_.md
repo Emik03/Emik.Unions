@@ -37,6 +37,6 @@ Implements [IEither](IEither.md 'Emik.Unions.Disjoints.IEither'), [IProperties](
 
 | Properties | |
 | :--- | :--- |
-| [First](IEither_T1,T2,T3_.First.md 'Emik.Unions.Disjoints.IEither<T1,T2,T3>.First') | Gets the [T1](IEither_T1,T2,T3_.md#Emik.Unions.Disjoints.IEither_T1,T2,T3_.T1 'Emik.Unions.Disjoints.IEither<T1,T2,T3>.T1') first value of the disjoint union. |
-| [Second](IEither_T1,T2,T3_.Second.md 'Emik.Unions.Disjoints.IEither<T1,T2,T3>.Second') | Gets the [T2](IEither_T1,T2,T3_.md#Emik.Unions.Disjoints.IEither_T1,T2,T3_.T2 'Emik.Unions.Disjoints.IEither<T1,T2,T3>.T2') second value of the disjoint union. |
-| [Third](IEither_T1,T2,T3_.Third.md 'Emik.Unions.Disjoints.IEither<T1,T2,T3>.Third') | Gets the [T3](IEither_T1,T2,T3_.md#Emik.Unions.Disjoints.IEither_T1,T2,T3_.T3 'Emik.Unions.Disjoints.IEither<T1,T2,T3>.T3') third value of the disjoint union. |
+| [First](IEither_T1,T2,T3_.First().md 'Emik.Unions.Disjoints.IEither<T1,T2,T3>.First') | Gets the [T1](IEither_T1,T2,T3_.md#Emik.Unions.Disjoints.IEither_T1,T2,T3_.T1 'Emik.Unions.Disjoints.IEither<T1,T2,T3>.T1') first value of the disjoint union. |
+| [Second](IEither_T1,T2,T3_.Second().md 'Emik.Unions.Disjoints.IEither<T1,T2,T3>.Second') | Gets the [T2](IEither_T1,T2,T3_.md#Emik.Unions.Disjoints.IEither_T1,T2,T3_.T2 'Emik.Unions.Disjoints.IEither<T1,T2,T3>.T2') second value of the disjoint union. |
+| [Third](IEither_T1,T2,T3_.Third().md 'Emik.Unions.Disjoints.IEither<T1,T2,T3>.Third') | Gets the [T3](IEither_T1,T2,T3_.md#Emik.Unions.Disjoints.IEither_T1,T2,T3_.T3 'Emik.Unions.Disjoints.IEither<T1,T2,T3>.T3') third value of the disjoint union. |

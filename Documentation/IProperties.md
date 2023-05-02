@@ -10,10 +10,12 @@ public interface IProperties
 ```
 
 Derived  
+&#8627; [Either&lt;T1,T2,T3,T4,T5,TType&gt;](Either_T1,T2,T3,T4,T5,TType_.md 'Emik.Unions.Disjoints.Either<T1,T2,T3,T4,T5,TType>')  
 &#8627; [Either&lt;T1,T2,T3,T4,TType&gt;](Either_T1,T2,T3,T4,TType_.md 'Emik.Unions.Disjoints.Either<T1,T2,T3,T4,TType>')  
 &#8627; [Either&lt;T1,T2,T3,TType&gt;](Either_T1,T2,T3,TType_.md 'Emik.Unions.Disjoints.Either<T1,T2,T3,TType>')  
 &#8627; [Either&lt;T1,T2,TType&gt;](Either_T1,T2,TType_.md 'Emik.Unions.Disjoints.Either<T1,T2,TType>')  
 &#8627; [IEither](IEither.md 'Emik.Unions.Disjoints.IEither')  
+&#8627; [IEither&lt;T1,T2,T3,T4,T5&gt;](IEither_T1,T2,T3,T4,T5_.md 'Emik.Unions.Disjoints.IEither<T1,T2,T3,T4,T5>')  
 &#8627; [IEither&lt;T1,T2,T3,T4&gt;](IEither_T1,T2,T3,T4_.md 'Emik.Unions.Disjoints.IEither<T1,T2,T3,T4>')  
 &#8627; [IEither&lt;T1,T2,T3&gt;](IEither_T1,T2,T3_.md 'Emik.Unions.Disjoints.IEither<T1,T2,T3>')  
 &#8627; [IEither&lt;T1,T2&gt;](IEither_T1,T2_.md 'Emik.Unions.Disjoints.IEither<T1,T2>')  
@@ -30,5 +32,5 @@ Derived
 
 | Properties | |
 | :--- | :--- |
-| [Properties](IProperties.Properties.md 'Emik.Unions.IProperties.Properties') | Gets all properties of this type. |
-| [this[int]](IProperties.Item.cRyzUVAbX0c36eqGzDuX1g.md 'Emik.Unions.IProperties.this[int]') | Gets an [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') corresponding to the property of the type based on the index passed in. |
+| [Properties](IProperties.Properties().md 'Emik.Unions.IProperties.Properties') | Gets all properties of this type. |
+| [this[int]](IProperties.Item(Int32).md 'Emik.Unions.IProperties.this[int]') | Gets an [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') corresponding to the property of the type based on the index passed in. |
