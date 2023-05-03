@@ -3,7 +3,7 @@
 
 ## FaultException Class
 
-The exception type that is raised by [Fault&lt;T&gt;](Fault_T_.md 'Emik.Unions.Tagged.Fault<T>').
+The exception type that is raised by [Fault&lt;T&gt;](Fault{T}.md 'Emik.Unions.Tagged.Fault<T>').
 
 ```csharp
 public sealed class FaultException : System.ArgumentException
@@ -17,4 +17,4 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 
 | Properties | |
 | :--- | :--- |
-| [Uninit](FaultException.Uninit().md 'Emik.Unions.Tagged.FaultException.Uninit') | Gets the object that is in an invalid state. |
+| [Uninit](FaultException.Uninit.md 'Emik.Unions.Tagged.FaultException.Uninit') | Gets the object that is in an invalid state. |

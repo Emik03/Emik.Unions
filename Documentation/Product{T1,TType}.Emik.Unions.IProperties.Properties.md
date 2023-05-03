@@ -1,0 +1,12 @@
+#### [Emik.Unions](index.md 'index')
+### [Emik.Unions.Tagged](Emik.Unions.Tagged.md 'Emik.Unions.Tagged').[Product&lt;T1,TType&gt;](Product{T1,TType}.md 'Emik.Unions.Tagged.Product<T1,TType>')
+
+## Product<T1,TType>.Emik.Unions.IProperties.Properties Property
+
+Gets all properties of this type.
+
+```csharp
+virtual System.Collections.Generic.IReadOnlyList<System.Reflection.PropertyInfo> Emik.Unions.IProperties.Properties { get; }
+```
+
+Implements [Properties](IProperties.Properties.md 'Emik.Unions.IProperties.Properties')

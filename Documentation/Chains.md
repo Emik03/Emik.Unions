@@ -13,4 +13,4 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 
 | Methods | |
 | :--- | :--- |
-| [Chain&lt;T&gt;(this T)](Chains.Chain(T).md 'Emik.Unions.Mappings.Chains.Chain<T>(this T)') | Starts a method chaining pattern of functors. |
+| [Chain&lt;T&gt;(this T)](Chains.Chain{T}(T).md 'Emik.Unions.Mappings.Chains.Chain<T>(this T)') | Starts a method chaining pattern of functors. |

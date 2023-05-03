@@ -20,7 +20,7 @@ The assertion message.
 
 `paramName` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
 
-The class responsible for creating the [Fault&lt;T&gt;](Fault_T_.md 'Emik.Unions.Tagged.Fault<T>').
+The class responsible for creating the [Fault&lt;T&gt;](Fault{T}.md 'Emik.Unions.Tagged.Fault<T>').
 
 <a name='Emik.Unions.Tagged.FaultException.FaultException(string,string,object).uninit'></a>
 
