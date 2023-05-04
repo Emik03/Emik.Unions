@@ -26,7 +26,7 @@ public interface IProduct : IPropertyEnumerable, IProperties
         if (i > Net35Limit)
         {
 #>
-#if !NET35
+#if !NETFRAMEWORK || NET40_OR_GREATER
 <#
         }
 #>

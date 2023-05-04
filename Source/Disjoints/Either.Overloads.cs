@@ -465,7 +465,7 @@ public abstract record Either<T1, T2, T3, T4, TType> : IEither<T1, T2, T3, T4>
         $"{typeof(TType).Name}[{_index}] {{ {s_properties[_index].Name} = {this[_index]} }}";
 }
 
-#if !NET35
+#if !NETFRAMEWORK || NET40_OR_GREATER
 /// <summary>Defines an inheritable record that automates logic for a disjoint union.</summary>
 /// <typeparam name="T1">The first type of the disjoint union.</typeparam>
 /// <typeparam name="T2">The second type of the disjoint union.</typeparam>

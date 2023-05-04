@@ -102,7 +102,7 @@ public sealed record Overload<T1, T2, T3, T4>(T1? First, T2? Second, T3? Third, 
 
 }
 
-#if !NET35
+#if !NETFRAMEWORK || NET40_OR_GREATER
 /// <summary>Defines a disjoint union with implicit conversions, for parameter signatures.</summary>
 /// <typeparam name="T1">The first type of the disjoint union.</typeparam>
 /// <typeparam name="T2">The second type of the disjoint union.</typeparam>

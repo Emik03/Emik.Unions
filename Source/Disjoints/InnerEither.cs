@@ -267,7 +267,7 @@ sealed record InnerEither<T1, T2, T3, T4> : IEither<T1, T2, T3, T4>
     public override string ToString() => $"{nameof(Either)}[{Index}] {{ {Value} }}";
 }
 
-#if !NET35
+#if !NETFRAMEWORK || NET40_OR_GREATER
 /// <summary>
 /// Defines an internal disjoint union for storing 1 of 5 different values.
 /// Instances of this type are exposed to the consumer as an interface.

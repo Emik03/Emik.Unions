@@ -75,7 +75,7 @@ public interface IEither<out T1, out T2, out T3, out T4> : IEither
 
 }
 
-#if !NET35
+#if !NETFRAMEWORK || NET40_OR_GREATER
 /// <summary>Defines an interface for disjoint union of size 5.</summary>
 /// <typeparam name="T1">The first type of the disjoint union.</typeparam>
 /// <typeparam name="T2">The second type of the disjoint union.</typeparam>
