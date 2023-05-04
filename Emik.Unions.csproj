@@ -7,7 +7,6 @@
         <RepositoryUrl>https://github.com/Emik03/Emik.Unions</RepositoryUrl>
         <PackageProjectUrl>https://github.com/Emik03/Emik.Unions</PackageProjectUrl>
         <TargetFrameworks>netcoreapp3.0;netstandard2.0;net45;net35</TargetFrameworks>
-        <PackageLicenseUrl>https://raw.githubusercontent.com/Emik03/Emik.Unions/main/README.md</PackageLicenseUrl>
         <Description>Contains the functional programming paradigm; unions in both disjointed- and tagged flavors.</Description>
         <PackageTags>Chain Disjoint Either Extension Factory Functional Fluent Functor Generic Inference Inheritance Interface Monad Monadic Monoid Overload Product Record Reflection Tagged Type Validation</PackageTags>
     </PropertyGroup>
