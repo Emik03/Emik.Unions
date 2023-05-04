@@ -1,12 +1,12 @@
 <!-- SPDX-License-Identifier: MPL-2.0 -->
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <FileVersion>1.1.1</FileVersion>
+        <FileVersion>1.1.2</FileVersion>
         <RepositoryType>GitHub</RepositoryType>
         <NoWarn>$(NoWarn);SA1518;SA1633</NoWarn>
         <RepositoryUrl>https://github.com/Emik03/Emik.Unions</RepositoryUrl>
         <PackageProjectUrl>https://github.com/Emik03/Emik.Unions</PackageProjectUrl>
-        <TargetFrameworks>net7.0;netcoreapp3.0;netstandard2.0;net45;net35</TargetFrameworks>
+        <TargetFrameworks>net5.0;netcoreapp3.0;netstandard2.0;net45;net35</TargetFrameworks>
         <Description>Contains the functional programming paradigm; unions in both disjointed- and tagged flavors.</Description>
         <PackageTags>Chain Disjoint Either Extension Factory Functional Fluent Functor Generic Inference Inheritance Interface Monad Monadic Monoid Overload Product Record Reflection Tagged Type Validation</PackageTags>
     </PropertyGroup>
