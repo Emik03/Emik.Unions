@@ -58,14 +58,14 @@ sealed record InnerEither<T1, T2> : IEither<T1, T2>
     /// <inheritdoc/>
     [Pure]
     public
-#if NETFRAMEWORK && !NET40_OR_GREATER
+#if NETFRAMEWORK && !NET45_OR_GREATER
     IList
 #else
     IReadOnlyList
 #endif
         <PropertyInfo> Properties =>
         s_properties
-#if NETFRAMEWORK && !NET40_OR_GREATER
+#if NETFRAMEWORK && !NET45_OR_GREATER
            .ToList();
 #else
            .ToReadOnly();
@@ -146,14 +146,14 @@ sealed record InnerEither<T1, T2, T3> : IEither<T1, T2, T3>
     /// <inheritdoc/>
     [Pure]
     public
-#if NETFRAMEWORK && !NET40_OR_GREATER
+#if NETFRAMEWORK && !NET45_OR_GREATER
     IList
 #else
     IReadOnlyList
 #endif
         <PropertyInfo> Properties =>
         s_properties
-#if NETFRAMEWORK && !NET40_OR_GREATER
+#if NETFRAMEWORK && !NET45_OR_GREATER
            .ToList();
 #else
            .ToReadOnly();
@@ -249,14 +249,14 @@ sealed record InnerEither<T1, T2, T3, T4> : IEither<T1, T2, T3, T4>
     /// <inheritdoc/>
     [Pure]
     public
-#if NETFRAMEWORK && !NET40_OR_GREATER
+#if NETFRAMEWORK && !NET45_OR_GREATER
     IList
 #else
     IReadOnlyList
 #endif
         <PropertyInfo> Properties =>
         s_properties
-#if NETFRAMEWORK && !NET40_OR_GREATER
+#if NETFRAMEWORK && !NET45_OR_GREATER
            .ToList();
 #else
            .ToReadOnly();
@@ -368,14 +368,14 @@ sealed record InnerEither<T1, T2, T3, T4, T5> : IEither<T1, T2, T3, T4, T5>
     /// <inheritdoc/>
     [Pure]
     public
-#if NETFRAMEWORK && !NET40_OR_GREATER
+#if NETFRAMEWORK && !NET45_OR_GREATER
     IList
 #else
     IReadOnlyList
 #endif
         <PropertyInfo> Properties =>
         s_properties
-#if NETFRAMEWORK && !NET40_OR_GREATER
+#if NETFRAMEWORK && !NET45_OR_GREATER
            .ToList();
 #else
            .ToReadOnly();

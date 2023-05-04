@@ -131,14 +131,14 @@ public abstract record Product<T1, TType> : IProduct<T1>
 
     /// <inheritdoc/>
     [Pure]
-#if NETFRAMEWORK && !NET40_OR_GREATER
+#if NETFRAMEWORK && !NET45_OR_GREATER
     IList
 #else
     IReadOnlyList
 #endif
         <PropertyInfo> IProperties.Properties =>
         s_properties
-#if NETFRAMEWORK && !NET40_OR_GREATER
+#if NETFRAMEWORK && !NET45_OR_GREATER
            .ToList();
 #else
            .ToReadOnly();
@@ -294,14 +294,14 @@ public abstract record Product<T1, T2, TType> : IProduct<T1, T2>
 
     /// <inheritdoc/>
     [Pure]
-#if NETFRAMEWORK && !NET40_OR_GREATER
+#if NETFRAMEWORK && !NET45_OR_GREATER
     IList
 #else
     IReadOnlyList
 #endif
         <PropertyInfo> IProperties.Properties =>
         s_properties
-#if NETFRAMEWORK && !NET40_OR_GREATER
+#if NETFRAMEWORK && !NET45_OR_GREATER
            .ToList();
 #else
            .ToReadOnly();
@@ -472,14 +472,14 @@ public abstract record Product<T1, T2, T3, TType> : IProduct<T1, T2, T3>
 
     /// <inheritdoc/>
     [Pure]
-#if NETFRAMEWORK && !NET40_OR_GREATER
+#if NETFRAMEWORK && !NET45_OR_GREATER
     IList
 #else
     IReadOnlyList
 #endif
         <PropertyInfo> IProperties.Properties =>
         s_properties
-#if NETFRAMEWORK && !NET40_OR_GREATER
+#if NETFRAMEWORK && !NET45_OR_GREATER
            .ToList();
 #else
            .ToReadOnly();
@@ -665,14 +665,14 @@ public abstract record Product<T1, T2, T3, T4, TType> : IProduct<T1, T2, T3, T4>
 
     /// <inheritdoc/>
     [Pure]
-#if NETFRAMEWORK && !NET40_OR_GREATER
+#if NETFRAMEWORK && !NET45_OR_GREATER
     IList
 #else
     IReadOnlyList
 #endif
         <PropertyInfo> IProperties.Properties =>
         s_properties
-#if NETFRAMEWORK && !NET40_OR_GREATER
+#if NETFRAMEWORK && !NET45_OR_GREATER
            .ToList();
 #else
            .ToReadOnly();

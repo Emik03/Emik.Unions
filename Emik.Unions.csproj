@@ -4,7 +4,7 @@
         <FileVersion>1.0.4</FileVersion>
         <NoWarn>$(NoWarn);SA1518;SA1633</NoWarn>
         <RepositoryUrl>https://github.com/Emik03/Emik.Unions</RepositoryUrl>
-        <TargetFrameworks>net7.0;netstandard2.1;netstandard2.0;net48;net452;net35</TargetFrameworks>
+        <TargetFrameworks>netcoreapp3.0;netstandard2.0;net45;net35</TargetFrameworks>
         <Description>Contains the functional programming paradigm; unions in both disjointed- and tagged flavors.</Description>
         <PackageTags>Chain Disjoint Either Extension Factory Functional Fluent Functor Generic Inference Inheritance Interface Monad Monadic Monoid Overload Product Record Reflection Tagged Type Validation</PackageTags>
     </PropertyGroup>

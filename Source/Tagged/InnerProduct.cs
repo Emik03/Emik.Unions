@@ -4,7 +4,7 @@
 namespace Emik.Unions.Tagged;
 #pragma warning disable IDE0021, RCS1036
 /// <summary>
-/// Defines an internal disjoint union for storing 1 of 1 different values.
+/// Defines an internal union for storing 1 different values.
 /// Instances of this type are exposed to the consumer as an interface.
 /// </summary>
 /// <typeparam name="T1">The first type of the disjoint union.</typeparam>
@@ -41,14 +41,14 @@ sealed record InnerProduct<T1> : IProduct<T1>
     /// <inheritdoc/>
     [Pure]
     public
-#if NETFRAMEWORK && !NET40_OR_GREATER
+#if NETFRAMEWORK && !NET45_OR_GREATER
     IList
 #else
     IReadOnlyList
 #endif
         <PropertyInfo> Properties =>
         s_properties
-#if NETFRAMEWORK && !NET40_OR_GREATER
+#if NETFRAMEWORK && !NET45_OR_GREATER
            .ToList();
 #else
            .ToReadOnly();
@@ -66,7 +66,7 @@ sealed record InnerProduct<T1> : IProduct<T1>
 }
 
 /// <summary>
-/// Defines an internal disjoint union for storing 1 of 2 different values.
+/// Defines an internal union for storing 2 different values.
 /// Instances of this type are exposed to the consumer as an interface.
 /// </summary>
 /// <typeparam name="T1">The first type of the disjoint union.</typeparam>
@@ -111,14 +111,14 @@ sealed record InnerProduct<T1, T2> : IProduct<T1, T2>
     /// <inheritdoc/>
     [Pure]
     public
-#if NETFRAMEWORK && !NET40_OR_GREATER
+#if NETFRAMEWORK && !NET45_OR_GREATER
     IList
 #else
     IReadOnlyList
 #endif
         <PropertyInfo> Properties =>
         s_properties
-#if NETFRAMEWORK && !NET40_OR_GREATER
+#if NETFRAMEWORK && !NET45_OR_GREATER
            .ToList();
 #else
            .ToReadOnly();
@@ -137,7 +137,7 @@ sealed record InnerProduct<T1, T2> : IProduct<T1, T2>
 }
 
 /// <summary>
-/// Defines an internal disjoint union for storing 1 of 3 different values.
+/// Defines an internal union for storing 3 different values.
 /// Instances of this type are exposed to the consumer as an interface.
 /// </summary>
 /// <typeparam name="T1">The first type of the disjoint union.</typeparam>
@@ -190,14 +190,14 @@ sealed record InnerProduct<T1, T2, T3> : IProduct<T1, T2, T3>
     /// <inheritdoc/>
     [Pure]
     public
-#if NETFRAMEWORK && !NET40_OR_GREATER
+#if NETFRAMEWORK && !NET45_OR_GREATER
     IList
 #else
     IReadOnlyList
 #endif
         <PropertyInfo> Properties =>
         s_properties
-#if NETFRAMEWORK && !NET40_OR_GREATER
+#if NETFRAMEWORK && !NET45_OR_GREATER
            .ToList();
 #else
            .ToReadOnly();
@@ -217,7 +217,7 @@ sealed record InnerProduct<T1, T2, T3> : IProduct<T1, T2, T3>
 }
 
 /// <summary>
-/// Defines an internal disjoint union for storing 1 of 4 different values.
+/// Defines an internal union for storing 4 different values.
 /// Instances of this type are exposed to the consumer as an interface.
 /// </summary>
 /// <typeparam name="T1">The first type of the disjoint union.</typeparam>
@@ -278,14 +278,14 @@ sealed record InnerProduct<T1, T2, T3, T4> : IProduct<T1, T2, T3, T4>
     /// <inheritdoc/>
     [Pure]
     public
-#if NETFRAMEWORK && !NET40_OR_GREATER
+#if NETFRAMEWORK && !NET45_OR_GREATER
     IList
 #else
     IReadOnlyList
 #endif
         <PropertyInfo> Properties =>
         s_properties
-#if NETFRAMEWORK && !NET40_OR_GREATER
+#if NETFRAMEWORK && !NET45_OR_GREATER
            .ToList();
 #else
            .ToReadOnly();

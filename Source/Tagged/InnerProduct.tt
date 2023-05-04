@@ -15,7 +15,7 @@ namespace Emik.Unions.Tagged;
         }
 #>
 /// <summary>
-/// Defines an internal disjoint union for storing 1 of <#= i #> different values.
+/// Defines an internal union for storing <#= i #> different values.
 /// Instances of this type are exposed to the consumer as an interface.
 /// </summary>
 <#
@@ -97,14 +97,14 @@ sealed record InnerProduct<<#= Generic(i) #>> : IProduct<<#= Generic(i) #>>
     /// <inheritdoc/>
     [Pure]
     public
-#if NETFRAMEWORK && !NET40_OR_GREATER
+#if NETFRAMEWORK && !NET45_OR_GREATER
     IList
 #else
     IReadOnlyList
 #endif
         <PropertyInfo> Properties =>
         s_properties
-#if NETFRAMEWORK && !NET40_OR_GREATER
+#if NETFRAMEWORK && !NET45_OR_GREATER
            .ToList();
 #else
            .ToReadOnly();

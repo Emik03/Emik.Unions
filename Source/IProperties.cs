@@ -7,7 +7,7 @@ public interface IProperties
     /// <summary>Gets all properties of this type.</summary>
     /// <returns>An <see cref="Array"/> of <see cref="PropertyInfo"/> instances.</returns>
     [Pure]
-#if NETFRAMEWORK && !NET40_OR_GREATER
+#if NETFRAMEWORK && !NET45_OR_GREATER
     IList
 #else
     IReadOnlyList

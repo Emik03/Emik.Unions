@@ -68,14 +68,14 @@ sealed record InnerEither<<#= Generic(i) #>> : IEither<<#= Generic(i) #>>
     /// <inheritdoc/>
     [Pure]
     public
-#if NETFRAMEWORK && !NET40_OR_GREATER
+#if NETFRAMEWORK && !NET45_OR_GREATER
     IList
 #else
     IReadOnlyList
 #endif
         <PropertyInfo> Properties =>
         s_properties
-#if NETFRAMEWORK && !NET40_OR_GREATER
+#if NETFRAMEWORK && !NET45_OR_GREATER
            .ToList();
 #else
            .ToReadOnly();
