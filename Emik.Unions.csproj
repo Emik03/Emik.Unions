@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: MPL-2.0 -->
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <FileVersion>1.0.4</FileVersion>
+        <FileVersion>1.0.5</FileVersion>
         <RepositoryType>GitHub</RepositoryType>
         <NoWarn>$(NoWarn);SA1518;SA1633</NoWarn>
         <RepositoryUrl>https://github.com/Emik03/Emik.Unions</RepositoryUrl>
