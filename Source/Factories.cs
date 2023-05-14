@@ -21,7 +21,7 @@ public static class Factories
 
         if (info is null)
             return new MissingMethodException(
-                typeof(TType).Name,
+                typeof(TType).UnfoldedName(),
                 ".ctor(T1)"
             );
 
@@ -56,7 +56,7 @@ public static class Factories
 
         if (info is null)
             return new MissingMethodException(
-                typeof(TType).Name,
+                typeof(TType).UnfoldedName(),
                 ".ctor(T1, T2)"
             );
 
@@ -95,7 +95,7 @@ public static class Factories
 
         if (info is null)
             return new MissingMethodException(
-                typeof(TType).Name,
+                typeof(TType).UnfoldedName(),
                 ".ctor(T1, T2, T3)"
             );
 
@@ -138,7 +138,7 @@ public static class Factories
 
         if (info is null)
             return new MissingMethodException(
-                typeof(TType).Name,
+                typeof(TType).UnfoldedName(),
                 ".ctor(T1, T2, T3, T4)"
             );
 
@@ -186,7 +186,7 @@ public static class Factories
 
         if (info is null)
             return new MissingMethodException(
-                typeof(TType).Name,
+                typeof(TType).UnfoldedName(),
                 ".ctor(T1, T2, T3, T4, T5)"
             );
 

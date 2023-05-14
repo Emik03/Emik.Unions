@@ -39,7 +39,7 @@ public static class Factories
 
         if (info is null)
             return new MissingMethodException(
-                typeof(TType).Name,
+                typeof(TType).UnfoldedName(),
                 ".ctor(<#= Generic(i) #>)"
             );
 

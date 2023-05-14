@@ -149,7 +149,7 @@ public abstract record Either<<#= Generic(i) #>, TType> : IEither<<#= Generic(i)
     /// <inheritdoc/>
     [Pure]
     public sealed override string ToString() =>
-        $"{typeof(TType).Name}[{_index}] {{ {s_properties[_index].Name} = {this[_index]} }}";
+        $"{typeof(TType).UnfoldedName()}[{_index}] {{ {s_properties[_index].Name} = {this[_index].Value} }}";
 }
 
 <#

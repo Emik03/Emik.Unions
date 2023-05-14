@@ -117,7 +117,7 @@ public abstract record Either<T1, T2, TType> : IEither<T1, T2>
     /// <inheritdoc/>
     [Pure]
     public sealed override string ToString() =>
-        $"{typeof(TType).Name}[{_index}] {{ {s_properties[_index].Name} = {this[_index]} }}";
+        $"{typeof(TType).UnfoldedName()}[{_index}] {{ {s_properties[_index].Name} = {this[_index].Value} }}";
 }
 
 /// <summary>Defines an inheritable record that automates logic for a disjoint union.</summary>
@@ -270,7 +270,7 @@ public abstract record Either<T1, T2, T3, TType> : IEither<T1, T2, T3>
     /// <inheritdoc/>
     [Pure]
     public sealed override string ToString() =>
-        $"{typeof(TType).Name}[{_index}] {{ {s_properties[_index].Name} = {this[_index]} }}";
+        $"{typeof(TType).UnfoldedName()}[{_index}] {{ {s_properties[_index].Name} = {this[_index].Value} }}";
 }
 
 /// <summary>Defines an inheritable record that automates logic for a disjoint union.</summary>
@@ -462,7 +462,7 @@ public abstract record Either<T1, T2, T3, T4, TType> : IEither<T1, T2, T3, T4>
     /// <inheritdoc/>
     [Pure]
     public sealed override string ToString() =>
-        $"{typeof(TType).Name}[{_index}] {{ {s_properties[_index].Name} = {this[_index]} }}";
+        $"{typeof(TType).UnfoldedName()}[{_index}] {{ {s_properties[_index].Name} = {this[_index].Value} }}";
 }
 
 #if !NETFRAMEWORK || NET40_OR_GREATER
@@ -696,7 +696,7 @@ public abstract record Either<T1, T2, T3, T4, T5, TType> : IEither<T1, T2, T3, T
     /// <inheritdoc/>
     [Pure]
     public sealed override string ToString() =>
-        $"{typeof(TType).Name}[{_index}] {{ {s_properties[_index].Name} = {this[_index]} }}";
+        $"{typeof(TType).UnfoldedName()}[{_index}] {{ {s_properties[_index].Name} = {this[_index].Value} }}";
 }
 
 #endif
