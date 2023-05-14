@@ -6,7 +6,7 @@
 Gets the value.
 
 ```csharp
-virtual object? Emik.Unions.Disjoints.IEither.Value { get; }
+object? Emik.Unions.Disjoints.IEither.Value { get; }
 ```
 
 Implements [Value](IEither.Value.md 'Emik.Unions.Disjoints.IEither.Value')

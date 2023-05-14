@@ -6,7 +6,7 @@
 Gets all properties of this type.
 
 ```csharp
-virtual System.Collections.Generic.IReadOnlyList<System.Reflection.PropertyInfo> Emik.Unions.IProperties.Properties { get; }
+System.Collections.Generic.IReadOnlyList<System.Reflection.PropertyInfo> Emik.Unions.IProperties.Properties { get; }
 ```
 
 Implements [Properties](IProperties.Properties.md 'Emik.Unions.IProperties.Properties')

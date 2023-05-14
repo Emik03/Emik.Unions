@@ -7,6 +7,7 @@ Defines a functor of unspecified types.
 
 ```csharp
 public abstract class Functor<TType> :
+System.Numerics.IEqualityOperators<Emik.Unions.Mappings.Functor<TType>, Emik.Unions.Mappings.Functor<TType>, bool>,
 System.IEquatable<Emik.Unions.Mappings.Functor<TType>>
     where TType : Emik.Unions.Mappings.Functor<TType>
 ```
@@ -23,7 +24,7 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 Derived  
 &#8627; [Functor&lt;T,TResult,TType&gt;](Functor{T,TResult,TType}.md 'Emik.Unions.Mappings.Functor<T,TResult,TType>')
 
-Implements [System.IEquatable&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.IEquatable-1 'System.IEquatable`1')[Emik.Unions.Mappings.Functor&lt;](Functor{TType}.md 'Emik.Unions.Mappings.Functor<TType>')[TType](Functor{TType}.md#Emik.Unions.Mappings.Functor_TType_.TType 'Emik.Unions.Mappings.Functor<TType>.TType')[&gt;](Functor{TType}.md 'Emik.Unions.Mappings.Functor<TType>')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.IEquatable-1 'System.IEquatable`1')
+Implements [System.Numerics.IEqualityOperators&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.Numerics.IEqualityOperators-3 'System.Numerics.IEqualityOperators`3')[Emik.Unions.Mappings.Functor&lt;](Functor{TType}.md 'Emik.Unions.Mappings.Functor<TType>')[TType](Functor{TType}.md#Emik.Unions.Mappings.Functor_TType_.TType 'Emik.Unions.Mappings.Functor<TType>.TType')[&gt;](Functor{TType}.md 'Emik.Unions.Mappings.Functor<TType>')[,](https://docs.microsoft.com/en-us/dotnet/api/System.Numerics.IEqualityOperators-3 'System.Numerics.IEqualityOperators`3')[Emik.Unions.Mappings.Functor&lt;](Functor{TType}.md 'Emik.Unions.Mappings.Functor<TType>')[TType](Functor{TType}.md#Emik.Unions.Mappings.Functor_TType_.TType 'Emik.Unions.Mappings.Functor<TType>.TType')[&gt;](Functor{TType}.md 'Emik.Unions.Mappings.Functor<TType>')[,](https://docs.microsoft.com/en-us/dotnet/api/System.Numerics.IEqualityOperators-3 'System.Numerics.IEqualityOperators`3')[System.Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean 'System.Boolean')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Numerics.IEqualityOperators-3 'System.Numerics.IEqualityOperators`3'), [System.IEquatable&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.IEquatable-1 'System.IEquatable`1')[Emik.Unions.Mappings.Functor&lt;](Functor{TType}.md 'Emik.Unions.Mappings.Functor<TType>')[TType](Functor{TType}.md#Emik.Unions.Mappings.Functor_TType_.TType 'Emik.Unions.Mappings.Functor<TType>.TType')[&gt;](Functor{TType}.md 'Emik.Unions.Mappings.Functor<TType>')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.IEquatable-1 'System.IEquatable`1')
 
 | Constructors | |
 | :--- | :--- |

@@ -6,7 +6,7 @@
 Gets an [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') corresponding to the property of the type based on the index passed in.
 
 ```csharp
-public virtual System.Collections.Generic.KeyValuePair<System.Reflection.PropertyInfo,object?> this[int index] { get; }
+public System.Collections.Generic.KeyValuePair<System.Reflection.PropertyInfo,object?> this[int index] { get; }
 ```
 #### Parameters
 

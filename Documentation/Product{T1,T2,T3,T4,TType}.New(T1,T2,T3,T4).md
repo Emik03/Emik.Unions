@@ -34,6 +34,8 @@ The third value of the union.
 
 The fourth value of the union.
 
+Implements [New(T1, T2, T3, T4)](IFactory{T1,T2,T3,T4,TType}.New(T1,T2,T3,T4).md 'Emik.Unions.Tagged.IFactory<T1,T2,T3,T4,TType>.New(T1, T2, T3, T4)')
+
 #### Returns
 [Emik.Results.Result&lt;](https://docs.microsoft.com/en-us/dotnet/api/Emik.Results.Result-2 'Emik.Results.Result`2')[TType](Product{T1,T2,T3,T4,TType}.md#Emik.Unions.Tagged.Product_T1,T2,T3,T4,TType_.TType 'Emik.Unions.Tagged.Product<T1,T2,T3,T4,TType>.TType')[,](https://docs.microsoft.com/en-us/dotnet/api/Emik.Results.Result-2 'Emik.Results.Result`2')[Emik.Unions.Tagged.Fault&lt;](Fault{T}.md 'Emik.Unions.Tagged.Fault<T>')[TType](Product{T1,T2,T3,T4,TType}.md#Emik.Unions.Tagged.Product_T1,T2,T3,T4,TType_.TType 'Emik.Unions.Tagged.Product<T1,T2,T3,T4,TType>.TType')[&gt;](Fault{T}.md 'Emik.Unions.Tagged.Fault<T>')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/Emik.Results.Result-2 'Emik.Results.Result`2')  
 A new instance of [TType](Product{T1,T2,T3,T4,TType}.md#Emik.Unions.Tagged.Product_T1,T2,T3,T4,TType_.TType 'Emik.Unions.Tagged.Product<T1,T2,T3,T4,TType>.TType') which encapsulates all of the parameters.

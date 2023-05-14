@@ -6,7 +6,7 @@
 Gets the index where the value is contained.
 
 ```csharp
-virtual int Emik.Unions.Disjoints.IEither.Index { get; }
+int Emik.Unions.Disjoints.IEither.Index { get; }
 ```
 
 Implements [Index](IEither.Index.md 'Emik.Unions.Disjoints.IEither.Index')
