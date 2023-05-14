@@ -9,7 +9,11 @@ namespace Emik.Unions.Disjoints;
 /// </summary>
 /// <typeparam name="T1">The first type of the disjoint union.</typeparam>
 /// <typeparam name="T2">The second type of the disjoint union.</typeparam>
-sealed record InnerEither<T1, T2> : IEither<T1, T2>
+sealed record InnerEither<T1, T2> :
+#if NET7_0_OR_GREATER
+    IEqualityOperators<InnerEither<T1, T2>, InnerEither<T1, T2>, bool>,
+#endif
+    IEither<T1, T2>
 {
     static readonly PropertyInfo[] s_properties =
         typeof(InnerEither<T1, T2>)
@@ -83,7 +87,11 @@ sealed record InnerEither<T1, T2> : IEither<T1, T2>
 /// <typeparam name="T1">The first type of the disjoint union.</typeparam>
 /// <typeparam name="T2">The second type of the disjoint union.</typeparam>
 /// <typeparam name="T3">The third type of the disjoint union.</typeparam>
-sealed record InnerEither<T1, T2, T3> : IEither<T1, T2, T3>
+sealed record InnerEither<T1, T2, T3> :
+#if NET7_0_OR_GREATER
+    IEqualityOperators<InnerEither<T1, T2, T3>, InnerEither<T1, T2, T3>, bool>,
+#endif
+    IEither<T1, T2, T3>
 {
     static readonly PropertyInfo[] s_properties =
         typeof(InnerEither<T1, T2, T3>)
@@ -172,7 +180,11 @@ sealed record InnerEither<T1, T2, T3> : IEither<T1, T2, T3>
 /// <typeparam name="T2">The second type of the disjoint union.</typeparam>
 /// <typeparam name="T3">The third type of the disjoint union.</typeparam>
 /// <typeparam name="T4">The fourth type of the disjoint union.</typeparam>
-sealed record InnerEither<T1, T2, T3, T4> : IEither<T1, T2, T3, T4>
+sealed record InnerEither<T1, T2, T3, T4> :
+#if NET7_0_OR_GREATER
+    IEqualityOperators<InnerEither<T1, T2, T3, T4>, InnerEither<T1, T2, T3, T4>, bool>,
+#endif
+    IEither<T1, T2, T3, T4>
 {
     static readonly PropertyInfo[] s_properties =
         typeof(InnerEither<T1, T2, T3, T4>)
@@ -277,7 +289,11 @@ sealed record InnerEither<T1, T2, T3, T4> : IEither<T1, T2, T3, T4>
 /// <typeparam name="T3">The third type of the disjoint union.</typeparam>
 /// <typeparam name="T4">The fourth type of the disjoint union.</typeparam>
 /// <typeparam name="T5">The fifth type of the disjoint union.</typeparam>
-sealed record InnerEither<T1, T2, T3, T4, T5> : IEither<T1, T2, T3, T4, T5>
+sealed record InnerEither<T1, T2, T3, T4, T5> :
+#if NET7_0_OR_GREATER
+    IEqualityOperators<InnerEither<T1, T2, T3, T4, T5>, InnerEither<T1, T2, T3, T4, T5>, bool>,
+#endif
+    IEither<T1, T2, T3, T4, T5>
 {
     static readonly PropertyInfo[] s_properties =
         typeof(InnerEither<T1, T2, T3, T4, T5>)

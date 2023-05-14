@@ -81,6 +81,13 @@
     public static string GenericSame(int i, string s = "")
         => i is 0 ? s : GenericSame(i - 1, s is "" ? "T" : "T, " + s);
 
+    public static string GenericVariant(int i, string s = "")
+#if NET35
+        => i is 0 ? s : GenericVariant(i - 1, s is "" ? $"T{i}" : $"T{i}, " + s); // Covariance not supported in .NET 3.5
+#else
+        => i is 0 ? s : GenericVariant(i - 1, s is "" ? $"in T{i}" : $"in T{i}, " + s);
+#endif
+
     public static string EitherParameter(IEnumerable<int> i)
         => string.Join("", i.Select(x => $"n{x}"));
 

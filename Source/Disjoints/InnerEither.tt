@@ -26,7 +26,11 @@ namespace Emik.Unions.Disjoints;
 <#
         }
 #>
-sealed record InnerEither<<#= Generic(i) #>> : IEither<<#= Generic(i) #>>
+sealed record InnerEither<<#= Generic(i) #>> :
+#if NET7_0_OR_GREATER
+    IEqualityOperators<InnerEither<<#= Generic(i) #>>, InnerEither<<#= Generic(i) #>>, bool>,
+#endif
+    IEither<<#= Generic(i) #>>
 {
     static readonly PropertyInfo[] s_properties =
         typeof(InnerEither<<#= Generic(i) #>>)

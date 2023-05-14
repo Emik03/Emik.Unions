@@ -1,5 +1,6 @@
 ﻿// SPDX-License-Identifier: MPL-2.0
-<#@ include file="../Include.ttinclude" #>#pragma warning disable CA1000, CA1033, RCS1036
+<#@ include file="../Include.ttinclude" #>
+#pragma warning disable CA1000, CA1033, RCS1036
 namespace Emik.Unions.Disjoints;
 
 <#
@@ -25,9 +26,9 @@ namespace Emik.Unions.Disjoints;
 #>
 /// <typeparam name="TType">The type of the inheriting record.</typeparam>
 [DoNotVirtualize]
-public abstract record Either<<#= Generic(i) #>, TType> :
+public abstract record Ordered<<#= Generic(i) #>, TType> :
 #if NET7_0_OR_GREATER
-    IEqualityOperators<Either<<#= Generic(i) #>, TType>, Either<<#= Generic(i) #>, TType>, bool>,
+    IEqualityOperators<Ordered<<#= Generic(i) #>, TType>, Ordered<<#= Generic(i) #>, TType>, bool>,
     IFactories<<#= Generic(i) #>, TType>,
 #endif
     IEither<<#= Generic(i) #>>
@@ -39,31 +40,20 @@ public abstract record Either<<#= Generic(i) #>, TType> :
 <#
         }
 #>
-    where TType : Either<<#= Generic(i) #>, TType>
+    where TType : Ordered<<#= Generic(i) #>, TType>, new()
 {
-    int _index = -1;
-
-    static readonly PropertyInfo[] s_properties = typeof(TType)
+    static readonly PropertyInfo[] s_properties = typeof(Ordered<<#= Generic(i) #>, TType>)
        .GetProperties(BindingFlags.Instance | BindingFlags.Public)
        .Where(x => x.GetGetMethod() is not null && x.GetSetMethod() is not null)
        .ToArray();
-
-    static readonly Func<<#= GenericNullable(i) #>, TType> s_factory =
-        Factories.From<<#= GenericNullable(i) #>, TType>().Expect();
 <#
         for (var j = 1; j <= i; j++)
         {
 #>
 
-    static readonly Converter<TType, T<#= j #>?> s_<#= Word(j) #>Getter =
-        (Converter<TType, T<#= j #>?>)Delegate.CreateDelegate(
-            typeof(Converter<TType, T<#= j #>?>),
-            s_properties[<#= j - 1 #>].GetGetMethod() ?? throw Unreachable
-        );
-
     /// <inheritdoc/>
     [Pure]
-    T<#= j #>? IEither<<#= Generic(i) #>>.<#= WordPascal(j) #> => s_<#= Word(j) #>Getter((TType)this);
+    public T<#= j #>? <#= WordPascal(j) #> { get; protected init; }
 
     /// <summary>
     /// Creates a new instance of <typeparamref name="TType"/> with
@@ -75,51 +65,13 @@ public abstract record Either<<#= Generic(i) #>, TType> :
     /// </returns>
     [Pure]
 #pragma warning disable MA0018 // Normally a code smell, though this class is abstract and meant to be inherited anyway.
-    public static TType New(T<#= j #> <#= WordCamel(j) #>)
+    public static TType New(T<#= j #> <#= WordCamel(j) #>) =>
 #pragma warning restore MA0018
-    {
-        var instance = s_factory(
-<#
-            for (var k = 1; k < j; k++)
-            {
-#>
-            default,
-<#
-            }
-#>
-            <#= WordCamel(j) #><#
-            if (j != i)
-            {
-#>,<#
-            }
-            else
-            {
-#>)<#
-            }
-#>
-<#
-            for (var k = j; k < i; k++)
-            {
-#>
-
-            default<#
-                if (k != i - 1)
-                {
-#>,<#
-                }
-                else
-                {
-#>)<#
-                }
-#>
-<#
-            }
-#>;
-
-        instance._index = <#= j - 1 #>;
-
-        return instance;
-    }
+        new()
+        {
+            <#= WordPascal(j) #> = <#= WordCamel(j) #>,
+            Index = <#= j - 1 #>,
+        };
 <#
         }
 #>
@@ -130,11 +82,11 @@ public abstract record Either<<#= Generic(i) #>, TType> :
 
     /// <inheritdoc/>
     [Pure, ValueRange(-1, <#= i - 1 #>)]
-    int IEither.Index => _index;
+    public int Index { get; protected init; }
 
     /// <inheritdoc/>
     [Pure]
-    object? IEither.Value => this[_index].Value;
+    public object? Value => this[Index].Value;
 
     /// <inheritdoc/>
     [Pure]
@@ -154,7 +106,7 @@ public abstract record Either<<#= Generic(i) #>, TType> :
     /// <inheritdoc/>
     [Pure]
     public sealed override string ToString() =>
-        $"{typeof(TType).UnfoldedName()}[{_index}] {{ {s_properties[_index].Name} = {this[_index].Value} }}";
+        $"{typeof(TType).UnfoldedName()}[{Index}] {{ {this[Index].Value} }}";
 }
 
 <#

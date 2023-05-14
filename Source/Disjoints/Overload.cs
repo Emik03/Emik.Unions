@@ -1,8 +1,9 @@
 ﻿// SPDX-License-Identifier: MPL-2.0
+// ReSharper disable WrongIndentSize
 // ReSharper disable ArrangeConstructorOrDestructorBody BadParensLineBreaks BadPreprocessorIndent IncorrectBlankLinesNearBraces MissingIndent NotAccessedPositionalProperty.Global RedundantCast RedundantLinebreak UnusedMemberInSuper.Global
 
 namespace Emik.Unions.Disjoints;
-#pragma warning disable CA1000, CA1033, RCS1036, SA1508
+#pragma warning disable CA1000, CA1033, RCS1036, SA1001, SA1508
 /// <summary>Defines a disjoint union with implicit conversions, for parameter signatures.</summary>
 /// <typeparam name="T1">The first type of the disjoint union.</typeparam>
 /// <typeparam name="T2">The second type of the disjoint union.</typeparam>
@@ -10,6 +11,10 @@ namespace Emik.Unions.Disjoints;
 /// <param name="Second">The second value of the disjoint union.</param>
 public sealed record Overload<T1, T2>(T1? First, T2? Second)
     : Either<T1, T2, Overload<T1, T2>>
+#if NET7_0_OR_GREATER
+,
+        IEqualityOperators<Overload<T1, T2>, Overload<T1, T2>, bool>
+#endif
     where T1 : notnull
     where T2 : notnull
 {
@@ -36,6 +41,10 @@ public sealed record Overload<T1, T2>(T1? First, T2? Second)
 /// <param name="Third">The third value of the disjoint union.</param>
 public sealed record Overload<T1, T2, T3>(T1? First, T2? Second, T3? Third)
     : Either<T1, T2, T3, Overload<T1, T2, T3>>
+#if NET7_0_OR_GREATER
+,
+        IEqualityOperators<Overload<T1, T2, T3>, Overload<T1, T2, T3>, bool>
+#endif
     where T1 : notnull
     where T2 : notnull
     where T3 : notnull
@@ -71,6 +80,10 @@ public sealed record Overload<T1, T2, T3>(T1? First, T2? Second, T3? Third)
 /// <param name="Fourth">The fourth value of the disjoint union.</param>
 public sealed record Overload<T1, T2, T3, T4>(T1? First, T2? Second, T3? Third, T4? Fourth)
     : Either<T1, T2, T3, T4, Overload<T1, T2, T3, T4>>
+#if NET7_0_OR_GREATER
+,
+        IEqualityOperators<Overload<T1, T2, T3, T4>, Overload<T1, T2, T3, T4>, bool>
+#endif
     where T1 : notnull
     where T2 : notnull
     where T3 : notnull
@@ -116,6 +129,10 @@ public sealed record Overload<T1, T2, T3, T4>(T1? First, T2? Second, T3? Third, 
 /// <param name="Fifth">The fifth value of the disjoint union.</param>
 public sealed record Overload<T1, T2, T3, T4, T5>(T1? First, T2? Second, T3? Third, T4? Fourth, T5? Fifth)
     : Either<T1, T2, T3, T4, T5, Overload<T1, T2, T3, T4, T5>>
+#if NET7_0_OR_GREATER
+,
+        IEqualityOperators<Overload<T1, T2, T3, T4, T5>, Overload<T1, T2, T3, T4, T5>, bool>
+#endif
     where T1 : notnull
     where T2 : notnull
     where T3 : notnull

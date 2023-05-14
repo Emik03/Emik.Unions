@@ -1,5 +1,6 @@
 ﻿// SPDX-License-Identifier: MPL-2.0
 // ReSharper disable ArrangeConstructorOrDestructorBody BadParensLineBreaks BadPreprocessorIndent IncorrectBlankLinesNearBraces MissingIndent NotAccessedPositionalProperty.Global RedundantCast RedundantLinebreak UnusedMemberInSuper.Global
+
 #pragma warning disable CA1000, CA1033, RCS1036
 namespace Emik.Unions.Disjoints;
 
@@ -8,35 +9,24 @@ namespace Emik.Unions.Disjoints;
 /// <typeparam name="T2">The second type of the disjoint union.</typeparam>
 /// <typeparam name="TType">The type of the inheriting record.</typeparam>
 [DoNotVirtualize]
-public abstract record Either<T1, T2, TType> :
+public abstract record Ordered<T1, T2, TType> :
 #if NET7_0_OR_GREATER
-    IEqualityOperators<Either<T1, T2, TType>, Either<T1, T2, TType>, bool>,
+    IEqualityOperators<Ordered<T1, T2, TType>, Ordered<T1, T2, TType>, bool>,
     IFactories<T1, T2, TType>,
 #endif
     IEither<T1, T2>
     where T1 : notnull
     where T2 : notnull
-    where TType : Either<T1, T2, TType>
+    where TType : Ordered<T1, T2, TType>, new()
 {
-    int _index = -1;
-
-    static readonly PropertyInfo[] s_properties = typeof(TType)
+    static readonly PropertyInfo[] s_properties = typeof(Ordered<T1, T2, TType>)
        .GetProperties(BindingFlags.Instance | BindingFlags.Public)
        .Where(x => x.GetGetMethod() is not null && x.GetSetMethod() is not null)
        .ToArray();
 
-    static readonly Func<T1?, T2?, TType> s_factory =
-        Factories.From<T1?, T2?, TType>().Expect();
-
-    static readonly Converter<TType, T1?> s_firstGetter =
-        (Converter<TType, T1?>)Delegate.CreateDelegate(
-            typeof(Converter<TType, T1?>),
-            s_properties[0].GetGetMethod() ?? throw Unreachable
-        );
-
     /// <inheritdoc/>
     [Pure]
-    T1? IEither<T1, T2>.First => s_firstGetter((TType)this);
+    public T1? First { get; protected init; }
 
     /// <summary>
     /// Creates a new instance of <typeparamref name="TType"/> with
@@ -48,27 +38,17 @@ public abstract record Either<T1, T2, TType> :
     /// </returns>
     [Pure]
 #pragma warning disable MA0018 // Normally a code smell, though this class is abstract and meant to be inherited anyway.
-    public static TType New(T1 first)
+    public static TType New(T1 first) =>
 #pragma warning restore MA0018
-    {
-        var instance = s_factory(
-            first,
-            default);
-
-        instance._index = 0;
-
-        return instance;
-    }
-
-    static readonly Converter<TType, T2?> s_secondGetter =
-        (Converter<TType, T2?>)Delegate.CreateDelegate(
-            typeof(Converter<TType, T2?>),
-            s_properties[1].GetGetMethod() ?? throw Unreachable
-        );
+        new()
+        {
+            First = first,
+            Index = 0,
+        };
 
     /// <inheritdoc/>
     [Pure]
-    T2? IEither<T1, T2>.Second => s_secondGetter((TType)this);
+    public T2? Second { get; protected init; }
 
     /// <summary>
     /// Creates a new instance of <typeparamref name="TType"/> with
@@ -80,17 +60,13 @@ public abstract record Either<T1, T2, TType> :
     /// </returns>
     [Pure]
 #pragma warning disable MA0018 // Normally a code smell, though this class is abstract and meant to be inherited anyway.
-    public static TType New(T2 second)
+    public static TType New(T2 second) =>
 #pragma warning restore MA0018
-    {
-        var instance = s_factory(
-            default,
-            second);
-
-        instance._index = 1;
-
-        return instance;
-    }
+        new()
+        {
+            Second = second,
+            Index = 1,
+        };
 
     /// <inheritdoc/>
     [Pure]
@@ -98,11 +74,11 @@ public abstract record Either<T1, T2, TType> :
 
     /// <inheritdoc/>
     [Pure, ValueRange(-1, 1)]
-    int IEither.Index => _index;
+    public int Index { get; protected init; }
 
     /// <inheritdoc/>
     [Pure]
-    object? IEither.Value => this[_index].Value;
+    public object? Value => this[Index].Value;
 
     /// <inheritdoc/>
     [Pure]
@@ -122,7 +98,7 @@ public abstract record Either<T1, T2, TType> :
     /// <inheritdoc/>
     [Pure]
     public sealed override string ToString() =>
-        $"{typeof(TType).UnfoldedName()}[{_index}] {{ {s_properties[_index].Name} = {this[_index].Value} }}";
+        $"{typeof(TType).UnfoldedName()}[{Index}] {{ {this[Index].Value} }}";
 }
 
 /// <summary>Defines an inheritable record that automates logic for a disjoint union.</summary>
@@ -131,36 +107,25 @@ public abstract record Either<T1, T2, TType> :
 /// <typeparam name="T3">The third type of the disjoint union.</typeparam>
 /// <typeparam name="TType">The type of the inheriting record.</typeparam>
 [DoNotVirtualize]
-public abstract record Either<T1, T2, T3, TType> :
+public abstract record Ordered<T1, T2, T3, TType> :
 #if NET7_0_OR_GREATER
-    IEqualityOperators<Either<T1, T2, T3, TType>, Either<T1, T2, T3, TType>, bool>,
+    IEqualityOperators<Ordered<T1, T2, T3, TType>, Ordered<T1, T2, T3, TType>, bool>,
     IFactories<T1, T2, T3, TType>,
 #endif
     IEither<T1, T2, T3>
     where T1 : notnull
     where T2 : notnull
     where T3 : notnull
-    where TType : Either<T1, T2, T3, TType>
+    where TType : Ordered<T1, T2, T3, TType>, new()
 {
-    int _index = -1;
-
-    static readonly PropertyInfo[] s_properties = typeof(TType)
+    static readonly PropertyInfo[] s_properties = typeof(Ordered<T1, T2, T3, TType>)
        .GetProperties(BindingFlags.Instance | BindingFlags.Public)
        .Where(x => x.GetGetMethod() is not null && x.GetSetMethod() is not null)
        .ToArray();
 
-    static readonly Func<T1?, T2?, T3?, TType> s_factory =
-        Factories.From<T1?, T2?, T3?, TType>().Expect();
-
-    static readonly Converter<TType, T1?> s_firstGetter =
-        (Converter<TType, T1?>)Delegate.CreateDelegate(
-            typeof(Converter<TType, T1?>),
-            s_properties[0].GetGetMethod() ?? throw Unreachable
-        );
-
     /// <inheritdoc/>
     [Pure]
-    T1? IEither<T1, T2, T3>.First => s_firstGetter((TType)this);
+    public T1? First { get; protected init; }
 
     /// <summary>
     /// Creates a new instance of <typeparamref name="TType"/> with
@@ -172,28 +137,17 @@ public abstract record Either<T1, T2, T3, TType> :
     /// </returns>
     [Pure]
 #pragma warning disable MA0018 // Normally a code smell, though this class is abstract and meant to be inherited anyway.
-    public static TType New(T1 first)
+    public static TType New(T1 first) =>
 #pragma warning restore MA0018
-    {
-        var instance = s_factory(
-            first,
-            default,
-            default);
-
-        instance._index = 0;
-
-        return instance;
-    }
-
-    static readonly Converter<TType, T2?> s_secondGetter =
-        (Converter<TType, T2?>)Delegate.CreateDelegate(
-            typeof(Converter<TType, T2?>),
-            s_properties[1].GetGetMethod() ?? throw Unreachable
-        );
+        new()
+        {
+            First = first,
+            Index = 0,
+        };
 
     /// <inheritdoc/>
     [Pure]
-    T2? IEither<T1, T2, T3>.Second => s_secondGetter((TType)this);
+    public T2? Second { get; protected init; }
 
     /// <summary>
     /// Creates a new instance of <typeparamref name="TType"/> with
@@ -205,28 +159,17 @@ public abstract record Either<T1, T2, T3, TType> :
     /// </returns>
     [Pure]
 #pragma warning disable MA0018 // Normally a code smell, though this class is abstract and meant to be inherited anyway.
-    public static TType New(T2 second)
+    public static TType New(T2 second) =>
 #pragma warning restore MA0018
-    {
-        var instance = s_factory(
-            default,
-            second,
-            default);
-
-        instance._index = 1;
-
-        return instance;
-    }
-
-    static readonly Converter<TType, T3?> s_thirdGetter =
-        (Converter<TType, T3?>)Delegate.CreateDelegate(
-            typeof(Converter<TType, T3?>),
-            s_properties[2].GetGetMethod() ?? throw Unreachable
-        );
+        new()
+        {
+            Second = second,
+            Index = 1,
+        };
 
     /// <inheritdoc/>
     [Pure]
-    T3? IEither<T1, T2, T3>.Third => s_thirdGetter((TType)this);
+    public T3? Third { get; protected init; }
 
     /// <summary>
     /// Creates a new instance of <typeparamref name="TType"/> with
@@ -238,18 +181,13 @@ public abstract record Either<T1, T2, T3, TType> :
     /// </returns>
     [Pure]
 #pragma warning disable MA0018 // Normally a code smell, though this class is abstract and meant to be inherited anyway.
-    public static TType New(T3 third)
+    public static TType New(T3 third) =>
 #pragma warning restore MA0018
-    {
-        var instance = s_factory(
-            default,
-            default,
-            third);
-
-        instance._index = 2;
-
-        return instance;
-    }
+        new()
+        {
+            Third = third,
+            Index = 2,
+        };
 
     /// <inheritdoc/>
     [Pure]
@@ -257,11 +195,11 @@ public abstract record Either<T1, T2, T3, TType> :
 
     /// <inheritdoc/>
     [Pure, ValueRange(-1, 2)]
-    int IEither.Index => _index;
+    public int Index { get; protected init; }
 
     /// <inheritdoc/>
     [Pure]
-    object? IEither.Value => this[_index].Value;
+    public object? Value => this[Index].Value;
 
     /// <inheritdoc/>
     [Pure]
@@ -281,7 +219,7 @@ public abstract record Either<T1, T2, T3, TType> :
     /// <inheritdoc/>
     [Pure]
     public sealed override string ToString() =>
-        $"{typeof(TType).UnfoldedName()}[{_index}] {{ {s_properties[_index].Name} = {this[_index].Value} }}";
+        $"{typeof(TType).UnfoldedName()}[{Index}] {{ {this[Index].Value} }}";
 }
 
 /// <summary>Defines an inheritable record that automates logic for a disjoint union.</summary>
@@ -291,9 +229,9 @@ public abstract record Either<T1, T2, T3, TType> :
 /// <typeparam name="T4">The fourth type of the disjoint union.</typeparam>
 /// <typeparam name="TType">The type of the inheriting record.</typeparam>
 [DoNotVirtualize]
-public abstract record Either<T1, T2, T3, T4, TType> :
+public abstract record Ordered<T1, T2, T3, T4, TType> :
 #if NET7_0_OR_GREATER
-    IEqualityOperators<Either<T1, T2, T3, T4, TType>, Either<T1, T2, T3, T4, TType>, bool>,
+    IEqualityOperators<Ordered<T1, T2, T3, T4, TType>, Ordered<T1, T2, T3, T4, TType>, bool>,
     IFactories<T1, T2, T3, T4, TType>,
 #endif
     IEither<T1, T2, T3, T4>
@@ -301,27 +239,16 @@ public abstract record Either<T1, T2, T3, T4, TType> :
     where T2 : notnull
     where T3 : notnull
     where T4 : notnull
-    where TType : Either<T1, T2, T3, T4, TType>
+    where TType : Ordered<T1, T2, T3, T4, TType>, new()
 {
-    int _index = -1;
-
-    static readonly PropertyInfo[] s_properties = typeof(TType)
+    static readonly PropertyInfo[] s_properties = typeof(Ordered<T1, T2, T3, T4, TType>)
        .GetProperties(BindingFlags.Instance | BindingFlags.Public)
        .Where(x => x.GetGetMethod() is not null && x.GetSetMethod() is not null)
        .ToArray();
 
-    static readonly Func<T1?, T2?, T3?, T4?, TType> s_factory =
-        Factories.From<T1?, T2?, T3?, T4?, TType>().Expect();
-
-    static readonly Converter<TType, T1?> s_firstGetter =
-        (Converter<TType, T1?>)Delegate.CreateDelegate(
-            typeof(Converter<TType, T1?>),
-            s_properties[0].GetGetMethod() ?? throw Unreachable
-        );
-
     /// <inheritdoc/>
     [Pure]
-    T1? IEither<T1, T2, T3, T4>.First => s_firstGetter((TType)this);
+    public T1? First { get; protected init; }
 
     /// <summary>
     /// Creates a new instance of <typeparamref name="TType"/> with
@@ -333,29 +260,17 @@ public abstract record Either<T1, T2, T3, T4, TType> :
     /// </returns>
     [Pure]
 #pragma warning disable MA0018 // Normally a code smell, though this class is abstract and meant to be inherited anyway.
-    public static TType New(T1 first)
+    public static TType New(T1 first) =>
 #pragma warning restore MA0018
-    {
-        var instance = s_factory(
-            first,
-            default,
-            default,
-            default);
-
-        instance._index = 0;
-
-        return instance;
-    }
-
-    static readonly Converter<TType, T2?> s_secondGetter =
-        (Converter<TType, T2?>)Delegate.CreateDelegate(
-            typeof(Converter<TType, T2?>),
-            s_properties[1].GetGetMethod() ?? throw Unreachable
-        );
+        new()
+        {
+            First = first,
+            Index = 0,
+        };
 
     /// <inheritdoc/>
     [Pure]
-    T2? IEither<T1, T2, T3, T4>.Second => s_secondGetter((TType)this);
+    public T2? Second { get; protected init; }
 
     /// <summary>
     /// Creates a new instance of <typeparamref name="TType"/> with
@@ -367,29 +282,17 @@ public abstract record Either<T1, T2, T3, T4, TType> :
     /// </returns>
     [Pure]
 #pragma warning disable MA0018 // Normally a code smell, though this class is abstract and meant to be inherited anyway.
-    public static TType New(T2 second)
+    public static TType New(T2 second) =>
 #pragma warning restore MA0018
-    {
-        var instance = s_factory(
-            default,
-            second,
-            default,
-            default);
-
-        instance._index = 1;
-
-        return instance;
-    }
-
-    static readonly Converter<TType, T3?> s_thirdGetter =
-        (Converter<TType, T3?>)Delegate.CreateDelegate(
-            typeof(Converter<TType, T3?>),
-            s_properties[2].GetGetMethod() ?? throw Unreachable
-        );
+        new()
+        {
+            Second = second,
+            Index = 1,
+        };
 
     /// <inheritdoc/>
     [Pure]
-    T3? IEither<T1, T2, T3, T4>.Third => s_thirdGetter((TType)this);
+    public T3? Third { get; protected init; }
 
     /// <summary>
     /// Creates a new instance of <typeparamref name="TType"/> with
@@ -401,29 +304,17 @@ public abstract record Either<T1, T2, T3, T4, TType> :
     /// </returns>
     [Pure]
 #pragma warning disable MA0018 // Normally a code smell, though this class is abstract and meant to be inherited anyway.
-    public static TType New(T3 third)
+    public static TType New(T3 third) =>
 #pragma warning restore MA0018
-    {
-        var instance = s_factory(
-            default,
-            default,
-            third,
-            default);
-
-        instance._index = 2;
-
-        return instance;
-    }
-
-    static readonly Converter<TType, T4?> s_fourthGetter =
-        (Converter<TType, T4?>)Delegate.CreateDelegate(
-            typeof(Converter<TType, T4?>),
-            s_properties[3].GetGetMethod() ?? throw Unreachable
-        );
+        new()
+        {
+            Third = third,
+            Index = 2,
+        };
 
     /// <inheritdoc/>
     [Pure]
-    T4? IEither<T1, T2, T3, T4>.Fourth => s_fourthGetter((TType)this);
+    public T4? Fourth { get; protected init; }
 
     /// <summary>
     /// Creates a new instance of <typeparamref name="TType"/> with
@@ -435,19 +326,13 @@ public abstract record Either<T1, T2, T3, T4, TType> :
     /// </returns>
     [Pure]
 #pragma warning disable MA0018 // Normally a code smell, though this class is abstract and meant to be inherited anyway.
-    public static TType New(T4 fourth)
+    public static TType New(T4 fourth) =>
 #pragma warning restore MA0018
-    {
-        var instance = s_factory(
-            default,
-            default,
-            default,
-            fourth);
-
-        instance._index = 3;
-
-        return instance;
-    }
+        new()
+        {
+            Fourth = fourth,
+            Index = 3,
+        };
 
     /// <inheritdoc/>
     [Pure]
@@ -455,11 +340,11 @@ public abstract record Either<T1, T2, T3, T4, TType> :
 
     /// <inheritdoc/>
     [Pure, ValueRange(-1, 3)]
-    int IEither.Index => _index;
+    public int Index { get; protected init; }
 
     /// <inheritdoc/>
     [Pure]
-    object? IEither.Value => this[_index].Value;
+    public object? Value => this[Index].Value;
 
     /// <inheritdoc/>
     [Pure]
@@ -479,7 +364,7 @@ public abstract record Either<T1, T2, T3, T4, TType> :
     /// <inheritdoc/>
     [Pure]
     public sealed override string ToString() =>
-        $"{typeof(TType).UnfoldedName()}[{_index}] {{ {s_properties[_index].Name} = {this[_index].Value} }}";
+        $"{typeof(TType).UnfoldedName()}[{Index}] {{ {this[Index].Value} }}";
 }
 
 #if !NETFRAMEWORK || NET40_OR_GREATER
@@ -491,9 +376,9 @@ public abstract record Either<T1, T2, T3, T4, TType> :
 /// <typeparam name="T5">The fifth type of the disjoint union.</typeparam>
 /// <typeparam name="TType">The type of the inheriting record.</typeparam>
 [DoNotVirtualize]
-public abstract record Either<T1, T2, T3, T4, T5, TType> :
+public abstract record Ordered<T1, T2, T3, T4, T5, TType> :
 #if NET7_0_OR_GREATER
-    IEqualityOperators<Either<T1, T2, T3, T4, T5, TType>, Either<T1, T2, T3, T4, T5, TType>, bool>,
+    IEqualityOperators<Ordered<T1, T2, T3, T4, T5, TType>, Ordered<T1, T2, T3, T4, T5, TType>, bool>,
     IFactories<T1, T2, T3, T4, T5, TType>,
 #endif
     IEither<T1, T2, T3, T4, T5>
@@ -502,27 +387,16 @@ public abstract record Either<T1, T2, T3, T4, T5, TType> :
     where T3 : notnull
     where T4 : notnull
     where T5 : notnull
-    where TType : Either<T1, T2, T3, T4, T5, TType>
+    where TType : Ordered<T1, T2, T3, T4, T5, TType>, new()
 {
-    int _index = -1;
-
-    static readonly PropertyInfo[] s_properties = typeof(TType)
+    static readonly PropertyInfo[] s_properties = typeof(Ordered<T1, T2, T3, T4, T5, TType>)
        .GetProperties(BindingFlags.Instance | BindingFlags.Public)
        .Where(x => x.GetGetMethod() is not null && x.GetSetMethod() is not null)
        .ToArray();
 
-    static readonly Func<T1?, T2?, T3?, T4?, T5?, TType> s_factory =
-        Factories.From<T1?, T2?, T3?, T4?, T5?, TType>().Expect();
-
-    static readonly Converter<TType, T1?> s_firstGetter =
-        (Converter<TType, T1?>)Delegate.CreateDelegate(
-            typeof(Converter<TType, T1?>),
-            s_properties[0].GetGetMethod() ?? throw Unreachable
-        );
-
     /// <inheritdoc/>
     [Pure]
-    T1? IEither<T1, T2, T3, T4, T5>.First => s_firstGetter((TType)this);
+    public T1? First { get; protected init; }
 
     /// <summary>
     /// Creates a new instance of <typeparamref name="TType"/> with
@@ -534,30 +408,17 @@ public abstract record Either<T1, T2, T3, T4, T5, TType> :
     /// </returns>
     [Pure]
 #pragma warning disable MA0018 // Normally a code smell, though this class is abstract and meant to be inherited anyway.
-    public static TType New(T1 first)
+    public static TType New(T1 first) =>
 #pragma warning restore MA0018
-    {
-        var instance = s_factory(
-            first,
-            default,
-            default,
-            default,
-            default);
-
-        instance._index = 0;
-
-        return instance;
-    }
-
-    static readonly Converter<TType, T2?> s_secondGetter =
-        (Converter<TType, T2?>)Delegate.CreateDelegate(
-            typeof(Converter<TType, T2?>),
-            s_properties[1].GetGetMethod() ?? throw Unreachable
-        );
+        new()
+        {
+            First = first,
+            Index = 0,
+        };
 
     /// <inheritdoc/>
     [Pure]
-    T2? IEither<T1, T2, T3, T4, T5>.Second => s_secondGetter((TType)this);
+    public T2? Second { get; protected init; }
 
     /// <summary>
     /// Creates a new instance of <typeparamref name="TType"/> with
@@ -569,30 +430,17 @@ public abstract record Either<T1, T2, T3, T4, T5, TType> :
     /// </returns>
     [Pure]
 #pragma warning disable MA0018 // Normally a code smell, though this class is abstract and meant to be inherited anyway.
-    public static TType New(T2 second)
+    public static TType New(T2 second) =>
 #pragma warning restore MA0018
-    {
-        var instance = s_factory(
-            default,
-            second,
-            default,
-            default,
-            default);
-
-        instance._index = 1;
-
-        return instance;
-    }
-
-    static readonly Converter<TType, T3?> s_thirdGetter =
-        (Converter<TType, T3?>)Delegate.CreateDelegate(
-            typeof(Converter<TType, T3?>),
-            s_properties[2].GetGetMethod() ?? throw Unreachable
-        );
+        new()
+        {
+            Second = second,
+            Index = 1,
+        };
 
     /// <inheritdoc/>
     [Pure]
-    T3? IEither<T1, T2, T3, T4, T5>.Third => s_thirdGetter((TType)this);
+    public T3? Third { get; protected init; }
 
     /// <summary>
     /// Creates a new instance of <typeparamref name="TType"/> with
@@ -604,30 +452,17 @@ public abstract record Either<T1, T2, T3, T4, T5, TType> :
     /// </returns>
     [Pure]
 #pragma warning disable MA0018 // Normally a code smell, though this class is abstract and meant to be inherited anyway.
-    public static TType New(T3 third)
+    public static TType New(T3 third) =>
 #pragma warning restore MA0018
-    {
-        var instance = s_factory(
-            default,
-            default,
-            third,
-            default,
-            default);
-
-        instance._index = 2;
-
-        return instance;
-    }
-
-    static readonly Converter<TType, T4?> s_fourthGetter =
-        (Converter<TType, T4?>)Delegate.CreateDelegate(
-            typeof(Converter<TType, T4?>),
-            s_properties[3].GetGetMethod() ?? throw Unreachable
-        );
+        new()
+        {
+            Third = third,
+            Index = 2,
+        };
 
     /// <inheritdoc/>
     [Pure]
-    T4? IEither<T1, T2, T3, T4, T5>.Fourth => s_fourthGetter((TType)this);
+    public T4? Fourth { get; protected init; }
 
     /// <summary>
     /// Creates a new instance of <typeparamref name="TType"/> with
@@ -639,30 +474,17 @@ public abstract record Either<T1, T2, T3, T4, T5, TType> :
     /// </returns>
     [Pure]
 #pragma warning disable MA0018 // Normally a code smell, though this class is abstract and meant to be inherited anyway.
-    public static TType New(T4 fourth)
+    public static TType New(T4 fourth) =>
 #pragma warning restore MA0018
-    {
-        var instance = s_factory(
-            default,
-            default,
-            default,
-            fourth,
-            default);
-
-        instance._index = 3;
-
-        return instance;
-    }
-
-    static readonly Converter<TType, T5?> s_fifthGetter =
-        (Converter<TType, T5?>)Delegate.CreateDelegate(
-            typeof(Converter<TType, T5?>),
-            s_properties[4].GetGetMethod() ?? throw Unreachable
-        );
+        new()
+        {
+            Fourth = fourth,
+            Index = 3,
+        };
 
     /// <inheritdoc/>
     [Pure]
-    T5? IEither<T1, T2, T3, T4, T5>.Fifth => s_fifthGetter((TType)this);
+    public T5? Fifth { get; protected init; }
 
     /// <summary>
     /// Creates a new instance of <typeparamref name="TType"/> with
@@ -674,20 +496,13 @@ public abstract record Either<T1, T2, T3, T4, T5, TType> :
     /// </returns>
     [Pure]
 #pragma warning disable MA0018 // Normally a code smell, though this class is abstract and meant to be inherited anyway.
-    public static TType New(T5 fifth)
+    public static TType New(T5 fifth) =>
 #pragma warning restore MA0018
-    {
-        var instance = s_factory(
-            default,
-            default,
-            default,
-            default,
-            fifth);
-
-        instance._index = 4;
-
-        return instance;
-    }
+        new()
+        {
+            Fifth = fifth,
+            Index = 4,
+        };
 
     /// <inheritdoc/>
     [Pure]
@@ -695,11 +510,11 @@ public abstract record Either<T1, T2, T3, T4, T5, TType> :
 
     /// <inheritdoc/>
     [Pure, ValueRange(-1, 4)]
-    int IEither.Index => _index;
+    public int Index { get; protected init; }
 
     /// <inheritdoc/>
     [Pure]
-    object? IEither.Value => this[_index].Value;
+    public object? Value => this[Index].Value;
 
     /// <inheritdoc/>
     [Pure]
@@ -719,7 +534,7 @@ public abstract record Either<T1, T2, T3, T4, T5, TType> :
     /// <inheritdoc/>
     [Pure]
     public sealed override string ToString() =>
-        $"{typeof(TType).UnfoldedName()}[{_index}] {{ {s_properties[_index].Name} = {this[_index].Value} }}";
+        $"{typeof(TType).UnfoldedName()}[{Index}] {{ {this[Index].Value} }}";
 }
 
 #endif
