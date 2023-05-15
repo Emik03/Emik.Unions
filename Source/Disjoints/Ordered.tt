@@ -42,9 +42,9 @@ public abstract record Ordered<<#= Generic(i) #>, TType> :
 #>
     where TType : Ordered<<#= Generic(i) #>, TType>, new()
 {
-    static readonly PropertyInfo[] s_properties = typeof(TType)
+    static readonly PropertyInfo[] s_properties = typeof(Ordered<<#= Generic(i) #>, TType>)
        .GetProperties(BindingFlags.Instance | BindingFlags.Public)
-       .Where(x => x.GetGetMethod() is not null && x.GetSetMethod() is not null)
+       .Where(x => x.Name is not nameof(Index) && x.GetGetMethod() is not null && x.GetSetMethod(true) is not null)
        .ToArray();
 <#
         for (var j = 1; j <= i; j++)

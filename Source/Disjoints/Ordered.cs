@@ -19,9 +19,9 @@ public abstract record Ordered<T1, T2, TType> :
     where T2 : notnull
     where TType : Ordered<T1, T2, TType>, new()
 {
-    static readonly PropertyInfo[] s_properties = typeof(TType)
+    static readonly PropertyInfo[] s_properties = typeof(Ordered<T1, T2, TType>)
        .GetProperties(BindingFlags.Instance | BindingFlags.Public)
-       .Where(x => x.GetGetMethod() is not null && x.GetSetMethod() is not null)
+       .Where(x => x.Name is not nameof(Index) && x.GetGetMethod() is not null && x.GetSetMethod(true) is not null)
        .ToArray();
 
     /// <inheritdoc/>
@@ -118,9 +118,9 @@ public abstract record Ordered<T1, T2, T3, TType> :
     where T3 : notnull
     where TType : Ordered<T1, T2, T3, TType>, new()
 {
-    static readonly PropertyInfo[] s_properties = typeof(TType)
+    static readonly PropertyInfo[] s_properties = typeof(Ordered<T1, T2, T3, TType>)
        .GetProperties(BindingFlags.Instance | BindingFlags.Public)
-       .Where(x => x.GetGetMethod() is not null && x.GetSetMethod() is not null)
+       .Where(x => x.Name is not nameof(Index) && x.GetGetMethod() is not null && x.GetSetMethod(true) is not null)
        .ToArray();
 
     /// <inheritdoc/>
@@ -241,9 +241,9 @@ public abstract record Ordered<T1, T2, T3, T4, TType> :
     where T4 : notnull
     where TType : Ordered<T1, T2, T3, T4, TType>, new()
 {
-    static readonly PropertyInfo[] s_properties = typeof(TType)
+    static readonly PropertyInfo[] s_properties = typeof(Ordered<T1, T2, T3, T4, TType>)
        .GetProperties(BindingFlags.Instance | BindingFlags.Public)
-       .Where(x => x.GetGetMethod() is not null && x.GetSetMethod() is not null)
+       .Where(x => x.Name is not nameof(Index) && x.GetGetMethod() is not null && x.GetSetMethod(true) is not null)
        .ToArray();
 
     /// <inheritdoc/>
@@ -389,9 +389,9 @@ public abstract record Ordered<T1, T2, T3, T4, T5, TType> :
     where T5 : notnull
     where TType : Ordered<T1, T2, T3, T4, T5, TType>, new()
 {
-    static readonly PropertyInfo[] s_properties = typeof(TType)
+    static readonly PropertyInfo[] s_properties = typeof(Ordered<T1, T2, T3, T4, T5, TType>)
        .GetProperties(BindingFlags.Instance | BindingFlags.Public)
-       .Where(x => x.GetGetMethod() is not null && x.GetSetMethod() is not null)
+       .Where(x => x.Name is not nameof(Index) && x.GetGetMethod() is not null && x.GetSetMethod(true) is not null)
        .ToArray();
 
     /// <inheritdoc/>
