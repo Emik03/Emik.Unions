@@ -42,7 +42,7 @@ public abstract record Ordered<<#= Generic(i) #>, TType> :
 #>
     where TType : Ordered<<#= Generic(i) #>, TType>, new()
 {
-    static readonly PropertyInfo[] s_properties = typeof(Ordered<<#= Generic(i) #>, TType>)
+    static readonly PropertyInfo[] s_properties = typeof(TType)
        .GetProperties(BindingFlags.Instance | BindingFlags.Public)
        .Where(x => x.GetGetMethod() is not null && x.GetSetMethod() is not null)
        .ToArray();
@@ -82,7 +82,7 @@ public abstract record Ordered<<#= Generic(i) #>, TType> :
 
     /// <inheritdoc/>
     [Pure, ValueRange(-1, <#= i - 1 #>)]
-    public int Index { get; protected init; }
+    public int Index { get; protected init; } = -1;
 
     /// <inheritdoc/>
     [Pure]
