@@ -18,6 +18,10 @@
 
 | Interfaces | |
 | :--- | :--- |
+| [IFactory&lt;T1,T2,T3,T4,TType&gt;](IFactory{T1,T2,T3,T4,TType}.md 'Emik.Unions.Tagged.IFactory<T1,T2,T3,T4,TType>') | Defines an interface for a factory method with argument length 4. |
+| [IFactory&lt;T1,T2,T3,TType&gt;](IFactory{T1,T2,T3,TType}.md 'Emik.Unions.Tagged.IFactory<T1,T2,T3,TType>') | Defines an interface for a factory method with argument length 3. |
+| [IFactory&lt;T1,T2,TType&gt;](IFactory{T1,T2,TType}.md 'Emik.Unions.Tagged.IFactory<T1,T2,TType>') | Defines an interface for a factory method with argument length 2. |
+| [IFactory&lt;T1,TType&gt;](IFactory{T1,TType}.md 'Emik.Unions.Tagged.IFactory<T1,TType>') | Defines an interface for a factory method with argument length 1. |
 | [IProduct](IProduct.md 'Emik.Unions.Tagged.IProduct') | Provides an indexer. |
 | [IProduct&lt;T1,T2,T3,T4&gt;](IProduct{T1,T2,T3,T4}.md 'Emik.Unions.Tagged.IProduct<T1,T2,T3,T4>') | Defines an interface for union of size 4. |
 | [IProduct&lt;T1,T2,T3&gt;](IProduct{T1,T2,T3}.md 'Emik.Unions.Tagged.IProduct<T1,T2,T3>') | Defines an interface for union of size 3. |

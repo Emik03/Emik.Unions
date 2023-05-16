@@ -1,0 +1,59 @@
+﻿// SPDX-License-Identifier: MPL-2.0
+<#@ include file="../Include.ttinclude" #>
+// ReSharper disable once EmptyNamespace
+namespace Emik.Unions.Tagged;
+#if NET7_0_OR_GREATER
+#pragma warning disable RCS1036, SA1508
+<#
+    for (var i = AndMin; i <= AndMax; i++)
+    {
+#>
+/// <summary>Defines an interface for a factory method with argument length <#= i #>.</summary>
+<#
+        for (var j = 1; j <= i; j++)
+        {
+#>
+/// <typeparam name="T<#= j #>">The <#= Word(j) #> argument for the factory.</typeparam>
+<#
+        }
+#>
+/// <typeparam name="TType">The resulting type from the factory.</typeparam>
+public interface IFactory<<#= GenericVariant(i) #>, out TType>
+{
+    /// <summary>Creates the new instance of <typeparamref name="TType"/> with the given arguments.</summary>
+<#
+        for (var j = 1; j <= i; j++)
+        {
+#>
+    /// <param name="<#= WordCamel(j) #>">The <#= WordCamel(j) #> argument of the factory.</param>
+<#
+        }
+#>
+    /// <returns>The new <typeparamref name="TType"/> instance with the values of the arguments.</returns>
+#pragma warning disable CA1000, CA1716, SA1114
+    [Pure]
+    static abstract TType New(
+<#
+        for (var j = 1; j <= i; j++)
+        {
+#>
+        T<#= j #> <#= WordCamel(j) #><#
+            if (j != i)
+            {
+#>,
+<#
+            }
+            else
+            {
+#>);
+<#
+            }
+#><#
+        }
+#>
+#pragma warning restore CA1000, CA1716, SA1114
+}
+
+<#
+    }
+#>#endif

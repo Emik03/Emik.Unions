@@ -6,7 +6,12 @@ namespace Emik.Unions.Tagged;
 /// <summary>Defines an inheritable record that automates logic for a union.</summary>
 /// <typeparam name="T1">The first type of the union.</typeparam>
 /// <typeparam name="TType">The type of the inheriting record.</typeparam>
-public abstract record Product<T1, TType> : IProduct<T1>
+public abstract record Product<T1, TType> :
+#if NET7_0_OR_GREATER
+    IEqualityOperators<Product<T1, TType>, Product<T1, TType>, bool>,
+    IFactory<T1, Result<TType, Fault<TType>>>,
+#endif
+    IProduct<T1>
     where TType : Product<T1, TType>
 {
     static readonly PropertyInfo[] s_properties = typeof(TType)
@@ -156,7 +161,12 @@ public abstract record Product<T1, TType> : IProduct<T1>
 /// <typeparam name="T1">The first type of the union.</typeparam>
 /// <typeparam name="T2">The second type of the union.</typeparam>
 /// <typeparam name="TType">The type of the inheriting record.</typeparam>
-public abstract record Product<T1, T2, TType> : IProduct<T1, T2>
+public abstract record Product<T1, T2, TType> :
+#if NET7_0_OR_GREATER
+    IEqualityOperators<Product<T1, T2, TType>, Product<T1, T2, TType>, bool>,
+    IFactory<T1, T2, Result<TType, Fault<TType>>>,
+#endif
+    IProduct<T1, T2>
     where TType : Product<T1, T2, TType>
 {
     static readonly PropertyInfo[] s_properties = typeof(TType)
@@ -321,7 +331,12 @@ public abstract record Product<T1, T2, TType> : IProduct<T1, T2>
 /// <typeparam name="T2">The second type of the union.</typeparam>
 /// <typeparam name="T3">The third type of the union.</typeparam>
 /// <typeparam name="TType">The type of the inheriting record.</typeparam>
-public abstract record Product<T1, T2, T3, TType> : IProduct<T1, T2, T3>
+public abstract record Product<T1, T2, T3, TType> :
+#if NET7_0_OR_GREATER
+    IEqualityOperators<Product<T1, T2, T3, TType>, Product<T1, T2, T3, TType>, bool>,
+    IFactory<T1, T2, T3, Result<TType, Fault<TType>>>,
+#endif
+    IProduct<T1, T2, T3>
     where TType : Product<T1, T2, T3, TType>
 {
     static readonly PropertyInfo[] s_properties = typeof(TType)
@@ -501,7 +516,12 @@ public abstract record Product<T1, T2, T3, TType> : IProduct<T1, T2, T3>
 /// <typeparam name="T3">The third type of the union.</typeparam>
 /// <typeparam name="T4">The fourth type of the union.</typeparam>
 /// <typeparam name="TType">The type of the inheriting record.</typeparam>
-public abstract record Product<T1, T2, T3, T4, TType> : IProduct<T1, T2, T3, T4>
+public abstract record Product<T1, T2, T3, T4, TType> :
+#if NET7_0_OR_GREATER
+    IEqualityOperators<Product<T1, T2, T3, T4, TType>, Product<T1, T2, T3, T4, TType>, bool>,
+    IFactory<T1, T2, T3, T4, Result<TType, Fault<TType>>>,
+#endif
+    IProduct<T1, T2, T3, T4>
     where TType : Product<T1, T2, T3, T4, TType>
 {
     static readonly PropertyInfo[] s_properties = typeof(TType)

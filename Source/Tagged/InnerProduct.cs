@@ -8,7 +8,11 @@ namespace Emik.Unions.Tagged;
 /// Instances of this type are exposed to the consumer as an interface.
 /// </summary>
 /// <typeparam name="T1">The first type of the disjoint union.</typeparam>
-sealed record InnerProduct<T1> : IProduct<T1>
+sealed record InnerProduct<T1> :
+#if NET7_0_OR_GREATER
+    IEqualityOperators<InnerProduct<T1>, InnerProduct<T1>, bool>,
+#endif
+    IProduct<T1>
 {
     static readonly PropertyInfo[] s_properties = typeof(InnerProduct<T1>)
        .GetProperties(BindingFlags.Instance | BindingFlags.Public);
@@ -71,7 +75,11 @@ sealed record InnerProduct<T1> : IProduct<T1>
 /// </summary>
 /// <typeparam name="T1">The first type of the disjoint union.</typeparam>
 /// <typeparam name="T2">The second type of the disjoint union.</typeparam>
-sealed record InnerProduct<T1, T2> : IProduct<T1, T2>
+sealed record InnerProduct<T1, T2> :
+#if NET7_0_OR_GREATER
+    IEqualityOperators<InnerProduct<T1, T2>, InnerProduct<T1, T2>, bool>,
+#endif
+    IProduct<T1, T2>
 {
     static readonly PropertyInfo[] s_properties = typeof(InnerProduct<T1, T2>)
        .GetProperties(BindingFlags.Instance | BindingFlags.Public);
@@ -143,7 +151,11 @@ sealed record InnerProduct<T1, T2> : IProduct<T1, T2>
 /// <typeparam name="T1">The first type of the disjoint union.</typeparam>
 /// <typeparam name="T2">The second type of the disjoint union.</typeparam>
 /// <typeparam name="T3">The third type of the disjoint union.</typeparam>
-sealed record InnerProduct<T1, T2, T3> : IProduct<T1, T2, T3>
+sealed record InnerProduct<T1, T2, T3> :
+#if NET7_0_OR_GREATER
+    IEqualityOperators<InnerProduct<T1, T2, T3>, InnerProduct<T1, T2, T3>, bool>,
+#endif
+    IProduct<T1, T2, T3>
 {
     static readonly PropertyInfo[] s_properties = typeof(InnerProduct<T1, T2, T3>)
        .GetProperties(BindingFlags.Instance | BindingFlags.Public);
@@ -224,7 +236,11 @@ sealed record InnerProduct<T1, T2, T3> : IProduct<T1, T2, T3>
 /// <typeparam name="T2">The second type of the disjoint union.</typeparam>
 /// <typeparam name="T3">The third type of the disjoint union.</typeparam>
 /// <typeparam name="T4">The fourth type of the disjoint union.</typeparam>
-sealed record InnerProduct<T1, T2, T3, T4> : IProduct<T1, T2, T3, T4>
+sealed record InnerProduct<T1, T2, T3, T4> :
+#if NET7_0_OR_GREATER
+    IEqualityOperators<InnerProduct<T1, T2, T3, T4>, InnerProduct<T1, T2, T3, T4>, bool>,
+#endif
+    IProduct<T1, T2, T3, T4>
 {
     static readonly PropertyInfo[] s_properties = typeof(InnerProduct<T1, T2, T3, T4>)
        .GetProperties(BindingFlags.Instance | BindingFlags.Public);

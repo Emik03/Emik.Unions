@@ -24,7 +24,12 @@ namespace Emik.Unions.Tagged;
         }
 #>
 /// <typeparam name="TType">The type of the inheriting record.</typeparam>
-public abstract record Product<<#= Generic(i) #>, TType> : IProduct<<#= Generic(i) #>>
+public abstract record Product<<#= Generic(i) #>, TType> :
+#if NET7_0_OR_GREATER
+    IEqualityOperators<Product<<#= Generic(i) #>, TType>, Product<<#= Generic(i) #>, TType>, bool>,
+    IFactory<<#= Generic(i) #>, Result<TType, Fault<TType>>>,
+#endif
+    IProduct<<#= Generic(i) #>>
     where TType : Product<<#= Generic(i) #>, TType>
 {
     static readonly PropertyInfo[] s_properties = typeof(TType)

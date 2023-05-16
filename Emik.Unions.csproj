@@ -1,12 +1,12 @@
 <!-- SPDX-License-Identifier: MPL-2.0 -->
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <FileVersion>1.1.4</FileVersion>
-        <RepositoryType>GitHub</RepositoryType>
+        <FileVersion>2.0.1</FileVersion>
+        <RepositoryType>git</RepositoryType>
         <NoWarn>$(NoWarn);SA1518;SA1633</NoWarn>
         <RepositoryUrl>https://github.com/Emik03/Emik.Unions</RepositoryUrl>
         <PackageProjectUrl>https://github.com/Emik03/Emik.Unions</PackageProjectUrl>
-        <TargetFrameworks>net5.0;netcoreapp3.0;netstandard2.0;net45;net35</TargetFrameworks>
+        <TargetFrameworks>net7.0;net5.0;netcoreapp3.0;netstandard2.0;net45;net35</TargetFrameworks>
         <Description>Contains the functional programming paradigm; unions in both disjointed- and tagged flavors.</Description>
         <PackageTags>Chain Disjoint Either Extension Factory Functional Fluent Functor Generic Inference Inheritance Interface Monad Monadic Monoid Overload Product Record Reflection Tagged Type Validation</PackageTags>
     </PropertyGroup>
@@ -63,6 +63,10 @@
             <Generator>TextTemplatingFileGenerator</Generator>
             <LastGenOutput>Overload.cs</LastGenOutput>
         </None>
+        <None Update="Source/Disjoints/Ordered.tt">
+            <Generator>TextTemplatingFileGenerator</Generator>
+            <LastGenOutput>Ordered.cs</LastGenOutput>
+        </None>
         <Compile Update="Source/Factories.cs" Design="true" AutoGen="true">
             <DependentUpon>Factories.tt</DependentUpon>
         </Compile>
@@ -78,30 +82,68 @@
         <Compile Update="Source/Disjoints/IEither.cs" Design="true" AutoGen="true">
             <DependentUpon>IEither.tt</DependentUpon>
         </Compile>
-        <Compile Update="Source/Tagged/InnerProduct.cs" Design="true" AutoGen="true">
-            <DependentUpon>InnerProduct.tt</DependentUpon>
-        </Compile>
-        <Compile Update="Source/Disjoints/InnerEither.cs" Design="true" AutoGen="true">
-            <DependentUpon>InnerEither.tt</DependentUpon>
-        </Compile>
-        <Compile Update="Source/Tagged/Product.Overloads.cs" Design="true" AutoGen="true">
-            <DependentUpon>Product.Overloads.tt</DependentUpon>
-        </Compile>
         <Compile Update="Source/Tagged/ProductExtensions.cs" Design="true" AutoGen="true">
             <DependentUpon>ProductExtensions.tt</DependentUpon>
-        </Compile>
-        <Compile Update="Source/Disjoints/Either.Overloads.cs" Design="true" AutoGen="true">
-            <DependentUpon>Either.Overloads.tt</DependentUpon>
         </Compile>
         <Compile Update="Source/Disjoints/EitherExtensions.cs" Design="true" AutoGen="true">
             <DependentUpon>EitherExtensions.tt</DependentUpon>
         </Compile>
-        <Compile Update="Source/Disjoints/Overload.cs" Design="true" AutoGen="true">
-            <DependentUpon>Overload.tt</DependentUpon>
-        </Compile>
         <Compile Update="Source/Include.cs" Design="true" AutoGen="true">
             <DependentUpon>Include.ttinclude</DependentUpon>
         </Compile>
-        <PackageReference Include="Emik.Results" Version="1.2" PrivateAssets="all"/>
+        <PackageReference Include="Emik.Results" Version="2.0.1" PrivateAssets="all" Private="false"/>
+        <Compile Update="Source\Disjoints\Overload.cs">
+            <AutoGen>True</AutoGen>
+            <DesignTime>True</DesignTime>
+            <DependentUpon>Overload.tt</DependentUpon>
+        </Compile>
+        <Compile Update="Source\Disjoints\InnerEither.cs">
+            <AutoGen>True</AutoGen>
+            <DesignTime>True</DesignTime>
+            <DependentUpon>InnerEither.tt</DependentUpon>
+        </Compile>
+        <Compile Update="Source\Tagged\InnerProduct.cs">
+            <AutoGen>True</AutoGen>
+            <DesignTime>True</DesignTime>
+            <DependentUpon>InnerProduct.tt</DependentUpon>
+        </Compile>
+        <Compile Update="Source\IProduct.cs">
+            <Design>true</Design>
+            <AutoGen>true</AutoGen>
+            <DependentUpon>IProduct.tt</DependentUpon>
+        </Compile>
+        <Compile Update="Source\Tagged\Product.Overloads.cs">
+            <AutoGen>True</AutoGen>
+            <DesignTime>True</DesignTime>
+            <DependentUpon>Product.Overloads.tt</DependentUpon>
+        </Compile>
+        <Compile Update="Source\Disjoints\Either.Overloads.cs">
+            <AutoGen>True</AutoGen>
+            <DesignTime>True</DesignTime>
+            <DependentUpon>Either.Overloads.tt</DependentUpon>
+        </Compile>
+        <None Update="Source\Tagged\IFactory.tt">
+            <Generator>TextTemplatingFileGenerator</Generator>
+            <LastGenOutput>IFactory.cs</LastGenOutput>
+        </None>
+        <None Update="Source\Disjoints\IFactories.tt">
+            <Generator>TextTemplatingFileGenerator</Generator>
+            <LastGenOutput>IFactories.cs</LastGenOutput>
+        </None>
+        <Compile Update="Source\Tagged\IFactory.cs">
+            <AutoGen>True</AutoGen>
+            <DesignTime>True</DesignTime>
+            <DependentUpon>IFactory.tt</DependentUpon>
+        </Compile>
+        <Compile Update="Source\Disjoints\IFactories.cs">
+            <AutoGen>True</AutoGen>
+            <DesignTime>True</DesignTime>
+            <DependentUpon>IFactories.tt</DependentUpon>
+        </Compile>
+        <Compile Update="Source\Disjoints\Ordered.cs">
+            <AutoGen>True</AutoGen>
+            <DesignTime>True</DesignTime>
+            <DependentUpon>Ordered.tt</DependentUpon>
+        </Compile>
     </ItemGroup>
 </Project>

@@ -8,6 +8,9 @@ namespace Emik.Unions.Tagged;
 /// <param name="Uninit">The object that failed to initialize. Be wary that this object is in an invalid state.</param>
 /// <typeparam name="T">The type that created this instance.</typeparam>
 public readonly record struct Fault<T>(string Fact, T Uninit)
+#if NET7_0_OR_GREATER
+    : IEqualityOperators<Fault<T>, Fault<T>, bool>
+#endif
 {
     /// <summary>
     /// Converts this instance into an <see cref="FaultException"/>, then downcasting as <see cref="Exception"/>.

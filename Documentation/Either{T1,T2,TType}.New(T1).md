@@ -17,6 +17,8 @@ public static TType New(T1 first);
 
 The value of the disjoint union.
 
+Implements [New(T1)](IFactories{T1,T2,TType}.New(T1).md 'Emik.Unions.Disjoints.IFactories<T1,T2,TType>.New(T1)')
+
 #### Returns
 [TType](Either{T1,T2,TType}.md#Emik.Unions.Disjoints.Either_T1,T2,TType_.TType 'Emik.Unions.Disjoints.Either<T1,T2,TType>.TType')  
 A new instance of [TType](Either{T1,T2,TType}.md#Emik.Unions.Disjoints.Either_T1,T2,TType_.TType 'Emik.Unions.Disjoints.Either<T1,T2,TType>.TType') which contains [first](Either{T1,T2,TType}.New(T1).md#Emik.Unions.Disjoints.Either_T1,T2,TType_.New(T1).first 'Emik.Unions.Disjoints.Either<T1,T2,TType>.New(T1).first').

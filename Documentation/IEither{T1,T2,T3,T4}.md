@@ -37,7 +37,8 @@ The third type of the disjoint union.
 The fourth type of the disjoint union.
 
 Derived  
-&#8627; [Either&lt;T1,T2,T3,T4,TType&gt;](Either{T1,T2,T3,T4,TType}.md 'Emik.Unions.Disjoints.Either<T1,T2,T3,T4,TType>')
+&#8627; [Either&lt;T1,T2,T3,T4,TType&gt;](Either{T1,T2,T3,T4,TType}.md 'Emik.Unions.Disjoints.Either<T1,T2,T3,T4,TType>')  
+&#8627; [Ordered&lt;T1,T2,T3,T4,TType&gt;](Ordered{T1,T2,T3,T4,TType}.md 'Emik.Unions.Disjoints.Ordered<T1,T2,T3,T4,TType>')
 
 Implements [IEither](IEither.md 'Emik.Unions.Disjoints.IEither'), [IProperties](IProperties.md 'Emik.Unions.IProperties')
 

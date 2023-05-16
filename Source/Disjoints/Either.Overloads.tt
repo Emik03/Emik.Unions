@@ -1,6 +1,5 @@
 ﻿// SPDX-License-Identifier: MPL-2.0
-<#@ include file="../Include.ttinclude" #>
-#pragma warning disable CA1000, CA1033, RCS1036
+<#@ include file="../Include.ttinclude" #>#pragma warning disable CA1000, CA1033, RCS1036
 namespace Emik.Unions.Disjoints;
 
 <#
@@ -25,7 +24,13 @@ namespace Emik.Unions.Disjoints;
         }
 #>
 /// <typeparam name="TType">The type of the inheriting record.</typeparam>
-public abstract record Either<<#= Generic(i) #>, TType> : IEither<<#= Generic(i) #>>
+[DoNotVirtualize]
+public abstract record Either<<#= Generic(i) #>, TType> :
+#if NET7_0_OR_GREATER
+    IEqualityOperators<Either<<#= Generic(i) #>, TType>, Either<<#= Generic(i) #>, TType>, bool>,
+    IFactories<<#= Generic(i) #>, TType>,
+#endif
+    IEither<<#= Generic(i) #>>
 <#
         for (var j = 1; j <= i; j++)
         {

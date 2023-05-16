@@ -25,7 +25,8 @@ The first type of the disjoint union.
 The second type of the disjoint union.
 
 Derived  
-&#8627; [Either&lt;T1,T2,TType&gt;](Either{T1,T2,TType}.md 'Emik.Unions.Disjoints.Either<T1,T2,TType>')
+&#8627; [Either&lt;T1,T2,TType&gt;](Either{T1,T2,TType}.md 'Emik.Unions.Disjoints.Either<T1,T2,TType>')  
+&#8627; [Ordered&lt;T1,T2,TType&gt;](Ordered{T1,T2,TType}.md 'Emik.Unions.Disjoints.Ordered<T1,T2,TType>')
 
 Implements [IEither](IEither.md 'Emik.Unions.Disjoints.IEither'), [IProperties](IProperties.md 'Emik.Unions.IProperties')
 

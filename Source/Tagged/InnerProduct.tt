@@ -26,7 +26,11 @@ namespace Emik.Unions.Tagged;
 <#
         }
 #>
-sealed record InnerProduct<<#= Generic(i) #>> : IProduct<<#= Generic(i) #>>
+sealed record InnerProduct<<#= Generic(i) #>> :
+#if NET7_0_OR_GREATER
+    IEqualityOperators<InnerProduct<<#= Generic(i) #>>, InnerProduct<<#= Generic(i) #>>, bool>,
+#endif
+    IProduct<<#= Generic(i) #>>
 {
     static readonly PropertyInfo[] s_properties = typeof(InnerProduct<<#= Generic(i) #>>)
        .GetProperties(BindingFlags.Instance | BindingFlags.Public);

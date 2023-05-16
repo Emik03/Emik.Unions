@@ -1,6 +1,5 @@
 ﻿// SPDX-License-Identifier: MPL-2.0
 // ReSharper disable ArrangeConstructorOrDestructorBody BadParensLineBreaks BadPreprocessorIndent IncorrectBlankLinesNearBraces MissingIndent NotAccessedPositionalProperty.Global RedundantCast RedundantLinebreak UnusedMemberInSuper.Global
-
 #pragma warning disable CA1000, CA1033, RCS1036
 namespace Emik.Unions.Disjoints;
 
@@ -8,7 +7,13 @@ namespace Emik.Unions.Disjoints;
 /// <typeparam name="T1">The first type of the disjoint union.</typeparam>
 /// <typeparam name="T2">The second type of the disjoint union.</typeparam>
 /// <typeparam name="TType">The type of the inheriting record.</typeparam>
-public abstract record Either<T1, T2, TType> : IEither<T1, T2>
+[DoNotVirtualize]
+public abstract record Either<T1, T2, TType> :
+#if NET7_0_OR_GREATER
+    IEqualityOperators<Either<T1, T2, TType>, Either<T1, T2, TType>, bool>,
+    IFactories<T1, T2, TType>,
+#endif
+    IEither<T1, T2>
     where T1 : notnull
     where T2 : notnull
     where TType : Either<T1, T2, TType>
@@ -125,7 +130,13 @@ public abstract record Either<T1, T2, TType> : IEither<T1, T2>
 /// <typeparam name="T2">The second type of the disjoint union.</typeparam>
 /// <typeparam name="T3">The third type of the disjoint union.</typeparam>
 /// <typeparam name="TType">The type of the inheriting record.</typeparam>
-public abstract record Either<T1, T2, T3, TType> : IEither<T1, T2, T3>
+[DoNotVirtualize]
+public abstract record Either<T1, T2, T3, TType> :
+#if NET7_0_OR_GREATER
+    IEqualityOperators<Either<T1, T2, T3, TType>, Either<T1, T2, T3, TType>, bool>,
+    IFactories<T1, T2, T3, TType>,
+#endif
+    IEither<T1, T2, T3>
     where T1 : notnull
     where T2 : notnull
     where T3 : notnull
@@ -279,7 +290,13 @@ public abstract record Either<T1, T2, T3, TType> : IEither<T1, T2, T3>
 /// <typeparam name="T3">The third type of the disjoint union.</typeparam>
 /// <typeparam name="T4">The fourth type of the disjoint union.</typeparam>
 /// <typeparam name="TType">The type of the inheriting record.</typeparam>
-public abstract record Either<T1, T2, T3, T4, TType> : IEither<T1, T2, T3, T4>
+[DoNotVirtualize]
+public abstract record Either<T1, T2, T3, T4, TType> :
+#if NET7_0_OR_GREATER
+    IEqualityOperators<Either<T1, T2, T3, T4, TType>, Either<T1, T2, T3, T4, TType>, bool>,
+    IFactories<T1, T2, T3, T4, TType>,
+#endif
+    IEither<T1, T2, T3, T4>
     where T1 : notnull
     where T2 : notnull
     where T3 : notnull
@@ -473,7 +490,13 @@ public abstract record Either<T1, T2, T3, T4, TType> : IEither<T1, T2, T3, T4>
 /// <typeparam name="T4">The fourth type of the disjoint union.</typeparam>
 /// <typeparam name="T5">The fifth type of the disjoint union.</typeparam>
 /// <typeparam name="TType">The type of the inheriting record.</typeparam>
-public abstract record Either<T1, T2, T3, T4, T5, TType> : IEither<T1, T2, T3, T4, T5>
+[DoNotVirtualize]
+public abstract record Either<T1, T2, T3, T4, T5, TType> :
+#if NET7_0_OR_GREATER
+    IEqualityOperators<Either<T1, T2, T3, T4, T5, TType>, Either<T1, T2, T3, T4, T5, TType>, bool>,
+    IFactories<T1, T2, T3, T4, T5, TType>,
+#endif
+    IEither<T1, T2, T3, T4, T5>
     where T1 : notnull
     where T2 : notnull
     where T3 : notnull

@@ -7,12 +7,13 @@ namespace Emik.Unions.Mappings;
 /// </summary>
 /// <typeparam name="T">The input type.</typeparam>
 /// <typeparam name="TType">The type of the implementor.</typeparam>
+// ReSharper disable BadPreprocessorIndent
 public interface IFunctor<
-#if !NET35
+#if !NETFRAMEWORK || NET45_OR_GREATER // This check exists from Converter<T, Type>'s generic signatures cross-framework.
     in
 #endif
     T,
-#if !NET35
+#if !NETFRAMEWORK || NET45_OR_GREATER
     out
 #endif
     TType>

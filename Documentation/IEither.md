@@ -18,7 +18,11 @@ Derived
 &#8627; [IEither&lt;T1,T2,T3,T4,T5&gt;](IEither{T1,T2,T3,T4,T5}.md 'Emik.Unions.Disjoints.IEither<T1,T2,T3,T4,T5>')  
 &#8627; [IEither&lt;T1,T2,T3,T4&gt;](IEither{T1,T2,T3,T4}.md 'Emik.Unions.Disjoints.IEither<T1,T2,T3,T4>')  
 &#8627; [IEither&lt;T1,T2,T3&gt;](IEither{T1,T2,T3}.md 'Emik.Unions.Disjoints.IEither<T1,T2,T3>')  
-&#8627; [IEither&lt;T1,T2&gt;](IEither{T1,T2}.md 'Emik.Unions.Disjoints.IEither<T1,T2>')
+&#8627; [IEither&lt;T1,T2&gt;](IEither{T1,T2}.md 'Emik.Unions.Disjoints.IEither<T1,T2>')  
+&#8627; [Ordered&lt;T1,T2,T3,T4,T5,TType&gt;](Ordered{T1,T2,T3,T4,T5,TType}.md 'Emik.Unions.Disjoints.Ordered<T1,T2,T3,T4,T5,TType>')  
+&#8627; [Ordered&lt;T1,T2,T3,T4,TType&gt;](Ordered{T1,T2,T3,T4,TType}.md 'Emik.Unions.Disjoints.Ordered<T1,T2,T3,T4,TType>')  
+&#8627; [Ordered&lt;T1,T2,T3,TType&gt;](Ordered{T1,T2,T3,TType}.md 'Emik.Unions.Disjoints.Ordered<T1,T2,T3,TType>')  
+&#8627; [Ordered&lt;T1,T2,TType&gt;](Ordered{T1,T2,TType}.md 'Emik.Unions.Disjoints.Ordered<T1,T2,TType>')
 
 Implements [IProperties](IProperties.md 'Emik.Unions.IProperties')
 

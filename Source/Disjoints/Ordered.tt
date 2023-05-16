@@ -1,0 +1,122 @@
+﻿// SPDX-License-Identifier: MPL-2.0
+<#@ include file="../Include.ttinclude" #>
+#pragma warning disable CA1000, CA1033, RCS1036
+namespace Emik.Unions.Disjoints;
+
+<#
+    for (var i = OrMin; i <= OrMax; i++)
+    {
+#>
+<#
+        if (i > Net35Limit)
+        {
+#>
+#if !NETFRAMEWORK || NET40_OR_GREATER
+<#
+        }
+#>
+/// <summary>Defines an inheritable record that automates logic for a disjoint union.</summary>
+<#
+        for (var j = 1; j <= i; j++)
+        {
+#>
+/// <typeparam name="T<#= j #>">The <#= Word(j) #> type of the disjoint union.</typeparam>
+<#
+        }
+#>
+/// <typeparam name="TType">The type of the inheriting record.</typeparam>
+[DoNotVirtualize]
+public abstract record Ordered<<#= Generic(i) #>, TType> :
+#if NET7_0_OR_GREATER
+    IEqualityOperators<Ordered<<#= Generic(i) #>, TType>, Ordered<<#= Generic(i) #>, TType>, bool>,
+    IFactories<<#= Generic(i) #>, TType>,
+#endif
+    IEither<<#= Generic(i) #>>
+<#
+        for (var j = 1; j <= i; j++)
+        {
+#>
+    where T<#= j #> : notnull
+<#
+        }
+#>
+    where TType : Ordered<<#= Generic(i) #>, TType>, new()
+{
+    static readonly PropertyInfo[] s_properties = typeof(Ordered<<#= Generic(i) #>, TType>)
+       .GetProperties(BindingFlags.Instance | BindingFlags.Public)
+       .Where(x => x.Name is not nameof(Index) && x.GetGetMethod() is not null && x.GetSetMethod(true) is not null)
+       .ToArray();
+<#
+        for (var j = 1; j <= i; j++)
+        {
+#>
+
+    /// <inheritdoc/>
+    [Pure]
+    public T<#= j #>? <#= WordPascal(j) #> { get; protected init; }
+
+    /// <summary>
+    /// Creates a new instance of <typeparamref name="TType"/> with
+    /// the <typeparamref name="T<#= i #>"/> value being set.
+    /// </summary>
+    /// <param name="<#= WordCamel(j) #>">The value of the disjoint union.</param>
+    /// <returns>
+    /// A new instance of <typeparamref name="TType"/> which contains <paramref name="<#= WordCamel(j) #>"/>.
+    /// </returns>
+    [Pure]
+#pragma warning disable MA0018 // Normally a code smell, though this class is abstract and meant to be inherited anyway.
+    public static TType New(T<#= j #> <#= WordCamel(j) #>) =>
+#pragma warning restore MA0018
+        new()
+        {
+            <#= WordPascal(j) #> = <#= WordCamel(j) #>,
+            Index = <#= j - 1 #>,
+        };
+<#
+        }
+#>
+
+    /// <inheritdoc/>
+    [Pure]
+    public KeyValuePair<PropertyInfo, object?> this[[ValueRange(0, <#= i - 1 #>)] int index] => this.Index(index);
+
+    /// <inheritdoc/>
+    [Pure, ValueRange(-1, <#= i - 1 #>)]
+    public int Index { get; protected init; } = -1;
+
+    /// <inheritdoc/>
+    [Pure]
+    public object? Value => this[Index].Value;
+
+    /// <inheritdoc/>
+    [Pure]
+#if NETFRAMEWORK && !NET45_OR_GREATER
+    IList
+#else
+    IReadOnlyList
+#endif
+        <PropertyInfo> IProperties.Properties =>
+        s_properties
+#if NETFRAMEWORK && !NET45_OR_GREATER
+           .ToList();
+#else
+           .ToReadOnly();
+#endif
+
+    /// <inheritdoc/>
+    [Pure]
+    public sealed override string ToString() =>
+        $"{typeof(TType).UnfoldedName()}[{Index}] {{ {this[Index].Value} }}";
+}
+
+<#
+        if (i > Net35Limit)
+        {
+#>
+#endif
+<#
+        }
+#>
+<#
+    }
+#>

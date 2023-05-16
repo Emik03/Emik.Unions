@@ -6,6 +6,9 @@ using static BindingFlags;
 /// <summary>Defines a functor of unspecified types.</summary>
 /// <typeparam name="TType">The type of the inheriting record.</typeparam>
 public abstract record Functor<TType>
+#if NET7_0_OR_GREATER
+    : IEqualityOperators<Functor<TType>, Functor<TType>, bool>
+#endif
     where TType : Functor<TType>
 {
     const BindingFlags Bindings = DeclaredOnly | Static | Public | NonPublic;
@@ -57,6 +60,9 @@ public abstract record Functor<TType>
 /// <typeparam name="TType">The type of the implementor.</typeparam>
 /// <param name="Converter">The converting function that creates this instance, much like <c>From</c> in Rust.</param>
 public abstract record Functor<T, TResult, TType>(Converter<T, TResult> Converter) : Functor<TType>,
+#if NET7_0_OR_GREATER
+    IEqualityOperators<Functor<T, TResult, TType>, Functor<T, TResult, TType>, bool>,
+#endif
     IFunctor<T, TType>,
     IProduct<TResult, Converter<T, TResult>>
     where TType : Functor<T, TResult, TType>
@@ -163,15 +169,16 @@ public abstract record Functor<T, TResult, TType>(Converter<T, TResult> Converte
     static IEnumerable<object?> Methods() =>
         typeof(TResult)
            .GetMethods()
-           .Where(x => x.IsStatic && x.ReturnType == typeof(TResult) && !x.GetParameters().Any())
+           .Where(x => x.IsStatic && x.ReturnType == typeof(TResult) && x.GetParameters() is [])
            .Select(x => x.Invoke(null, null))
            .ItemCanBeNull();
 
     [MustUseReturnValue]
     static TResult? Default() =>
-        (TResult?)Please
-           .Try(Activator.CreateInstance, typeof(TResult), true)
-           .MapErr(_ => Fields().Concat(Methods()).Filter().FirstOrDefault())
-           .Value ??
-        default;
+        Please
+           .Try(() => Activator.CreateInstance(typeof(TResult), true) ?? Result.None)
+           .MapErr(_ => Fields().Concat(Methods()).Filter().FirstOr(Result.None))
+           .Value is TResult t
+            ? t
+            : default;
 }

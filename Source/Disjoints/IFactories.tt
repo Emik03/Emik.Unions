@@ -1,0 +1,40 @@
+﻿// SPDX-License-Identifier: MPL-2.0
+<#@ include file="../Include.ttinclude" #>
+// ReSharper disable once EmptyNamespace
+namespace Emik.Unions.Disjoints;
+#if NET7_0_OR_GREATER
+#pragma warning disable CA1000, CA1716, RCS1036, SA1114, SA1508
+<#
+    for (var i = OrMin; i <= OrMax; i++)
+    {
+#>
+/// <summary>Defines an interface for <#= i #> factory methods for each respective type.</summary>
+<#
+        for (var j = 1; j <= i; j++)
+        {
+#>
+/// <typeparam name="T<#= j #>">The <#= Word(j) #> argument for the factory.</typeparam>
+<#
+        }
+#>
+/// <typeparam name="TType">The resulting type from the factory.</typeparam>
+public interface IFactories<<#= GenericVariant(i) #>, out TType>
+{
+<#
+        for (var j = 1; j <= i; j++)
+        {
+#>
+    /// <summary>Creates the new instance of <typeparamref name="TType"/> from <typeparamref name="T<#= j #>"/>.</summary>
+    /// <param name="<#= WordCamel(j) #>">The argument of the <#= WordCamel(j) #> factory.</param>
+    /// <returns>The new <typeparamref name="TType"/> instance from <typeparamref name="T<#= j #>"/>.</returns>
+    static abstract TType New(T<#= j #> <#= WordCamel(j) #>);
+
+<#
+        }
+#>
+}
+
+<#
+    }
+#>
+#endif

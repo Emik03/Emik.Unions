@@ -1,7 +1,8 @@
 ﻿// SPDX-License-Identifier: MPL-2.0
+// ReSharper disable WrongIndentSize
 <#@ include file="../Include.ttinclude" #>
 namespace Emik.Unions.Disjoints;
-#pragma warning disable CA1000, CA1033, RCS1036, SA1508
+#pragma warning disable CA1000, CA1033, RCS1036, SA1001, SA1508
 <#
     for (var i = OrMin; i <= OrMax; i++)
     {
@@ -43,6 +44,10 @@ public sealed record Overload<<#= Generic(i) #>>(<#
         }
 #>)
     : Either<<#= Generic(i) #>, Overload<<#= Generic(i) #>>>
+#if NET7_0_OR_GREATER
+,
+        IEqualityOperators<Overload<<#= Generic(i) #>>, Overload<<#= Generic(i) #>>, bool>
+#endif
 <#
         for (var j = 1; j <= i; j++)
         {

@@ -17,6 +17,8 @@ public static TType New(T4 fourth);
 
 The value of the disjoint union.
 
+Implements [New(T4)](IFactories{T1,T2,T3,T4,T5,TType}.New(T4).md 'Emik.Unions.Disjoints.IFactories<T1,T2,T3,T4,T5,TType>.New(T4)')
+
 #### Returns
 [TType](Either{T1,T2,T3,T4,T5,TType}.md#Emik.Unions.Disjoints.Either_T1,T2,T3,T4,T5,TType_.TType 'Emik.Unions.Disjoints.Either<T1,T2,T3,T4,T5,TType>.TType')  
 A new instance of [TType](Either{T1,T2,T3,T4,T5,TType}.md#Emik.Unions.Disjoints.Either_T1,T2,T3,T4,T5,TType_.TType 'Emik.Unions.Disjoints.Either<T1,T2,T3,T4,T5,TType>.TType') which contains [fourth](Either{T1,T2,T3,T4,T5,TType}.New(T4).md#Emik.Unions.Disjoints.Either_T1,T2,T3,T4,T5,TType_.New(T4).fourth 'Emik.Unions.Disjoints.Either<T1,T2,T3,T4,T5,TType>.New(T4).fourth').
