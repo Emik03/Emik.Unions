@@ -169,15 +169,16 @@ public abstract record Functor<T, TResult, TType>(Converter<T, TResult> Converte
     static IEnumerable<object?> Methods() =>
         typeof(TResult)
            .GetMethods()
-           .Where(x => x.IsStatic && x.ReturnType == typeof(TResult) && !x.GetParameters().Any())
+           .Where(x => x.IsStatic && x.ReturnType == typeof(TResult) && x.GetParameters() is [])
            .Select(x => x.Invoke(null, null))
            .ItemCanBeNull();
 
     [MustUseReturnValue]
     static TResult? Default() =>
-        (TResult?)Please
-           .Try(Activator.CreateInstance, typeof(TResult), true)
-           .MapErr(_ => Fields().Concat(Methods()).Filter().FirstOrDefault())
-           .Value ??
-        default;
+        Please
+           .Try(() => Activator.CreateInstance(typeof(TResult), true) ?? Result.None)
+           .MapErr(_ => Fields().Concat(Methods()).Filter().FirstOr(Result.None))
+           .Value is TResult t
+            ? t
+            : default;
 }
