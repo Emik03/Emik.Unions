@@ -21,6 +21,8 @@ public static class Either
     /// <returns><see cref="IEither{T1, T2}"/> with <paramref name="first"/>.</returns>
     [Pure]
     public static IEither<T1, T2> New<T1, T2>(T1 first)
+        where T1 : notnull
+        where T2 : notnull
         =>
             new InnerEither<T1, T2>(first);
 
@@ -39,6 +41,8 @@ public static class Either
     /// <returns><see cref="IEither{T1, T2}"/> with <paramref name="second"/>.</returns>
     [Pure]
     public static IEither<T1, T2> New<T1, T2>(T2 second)
+        where T1 : notnull
+        where T2 : notnull
         =>
             new InnerEither<T1, T2>(second);
 
@@ -60,6 +64,9 @@ public static class Either
     /// <returns><see cref="IEither{T1, T2, T3}"/> with <paramref name="first"/>.</returns>
     [Pure]
     public static IEither<T1, T2, T3> New<T1, T2, T3>(T1 first)
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
         =>
             new InnerEither<T1, T2, T3>(first);
 
@@ -81,6 +88,9 @@ public static class Either
     /// <returns><see cref="IEither{T1, T2, T3}"/> with <paramref name="second"/>.</returns>
     [Pure]
     public static IEither<T1, T2, T3> New<T1, T2, T3>(T2 second)
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
         =>
             new InnerEither<T1, T2, T3>(second);
 
@@ -102,6 +112,9 @@ public static class Either
     /// <returns><see cref="IEither{T1, T2, T3}"/> with <paramref name="third"/>.</returns>
     [Pure]
     public static IEither<T1, T2, T3> New<T1, T2, T3>(T3 third)
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
         =>
             new InnerEither<T1, T2, T3>(third);
 
@@ -126,6 +139,10 @@ public static class Either
     /// <returns><see cref="IEither{T1, T2, T3, T4}"/> with <paramref name="first"/>.</returns>
     [Pure]
     public static IEither<T1, T2, T3, T4> New<T1, T2, T3, T4>(T1 first)
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
         =>
             new InnerEither<T1, T2, T3, T4>(first);
 
@@ -150,6 +167,10 @@ public static class Either
     /// <returns><see cref="IEither{T1, T2, T3, T4}"/> with <paramref name="second"/>.</returns>
     [Pure]
     public static IEither<T1, T2, T3, T4> New<T1, T2, T3, T4>(T2 second)
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
         =>
             new InnerEither<T1, T2, T3, T4>(second);
 
@@ -174,6 +195,10 @@ public static class Either
     /// <returns><see cref="IEither{T1, T2, T3, T4}"/> with <paramref name="third"/>.</returns>
     [Pure]
     public static IEither<T1, T2, T3, T4> New<T1, T2, T3, T4>(T3 third)
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
         =>
             new InnerEither<T1, T2, T3, T4>(third);
 
@@ -198,6 +223,10 @@ public static class Either
     /// <returns><see cref="IEither{T1, T2, T3, T4}"/> with <paramref name="fourth"/>.</returns>
     [Pure]
     public static IEither<T1, T2, T3, T4> New<T1, T2, T3, T4>(T4 fourth)
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
         =>
             new InnerEither<T1, T2, T3, T4>(fourth);
 
@@ -226,6 +255,11 @@ public static class Either
     /// <returns><see cref="IEither{T1, T2, T3, T4, T5}"/> with <paramref name="first"/>.</returns>
     [Pure]
     public static IEither<T1, T2, T3, T4, T5> New<T1, T2, T3, T4, T5>(T1 first)
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
         =>
             new InnerEither<T1, T2, T3, T4, T5>(first);
 
@@ -253,6 +287,11 @@ public static class Either
     /// <returns><see cref="IEither{T1, T2, T3, T4, T5}"/> with <paramref name="second"/>.</returns>
     [Pure]
     public static IEither<T1, T2, T3, T4, T5> New<T1, T2, T3, T4, T5>(T2 second)
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
         =>
             new InnerEither<T1, T2, T3, T4, T5>(second);
 
@@ -280,6 +319,11 @@ public static class Either
     /// <returns><see cref="IEither{T1, T2, T3, T4, T5}"/> with <paramref name="third"/>.</returns>
     [Pure]
     public static IEither<T1, T2, T3, T4, T5> New<T1, T2, T3, T4, T5>(T3 third)
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
         =>
             new InnerEither<T1, T2, T3, T4, T5>(third);
 
@@ -307,6 +351,11 @@ public static class Either
     /// <returns><see cref="IEither{T1, T2, T3, T4, T5}"/> with <paramref name="fourth"/>.</returns>
     [Pure]
     public static IEither<T1, T2, T3, T4, T5> New<T1, T2, T3, T4, T5>(T4 fourth)
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
         =>
             new InnerEither<T1, T2, T3, T4, T5>(fourth);
 
@@ -334,6 +383,11 @@ public static class Either
     /// <returns><see cref="IEither{T1, T2, T3, T4, T5}"/> with <paramref name="fifth"/>.</returns>
     [Pure]
     public static IEither<T1, T2, T3, T4, T5> New<T1, T2, T3, T4, T5>(T5 fifth)
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
         =>
             new InnerEither<T1, T2, T3, T4, T5>(fifth);
 

@@ -30,7 +30,14 @@ sealed record InnerEither<<#= Generic(i) #>> :
 #if NET7_0_OR_GREATER
     IEqualityOperators<InnerEither<<#= Generic(i) #>>, InnerEither<<#= Generic(i) #>>, bool>,
 #endif
-    IEither<<#= Generic(i) #>>
+    IEither<<#= Generic(i) #>><#
+        for (var j = 1; j <= i; j++)
+        {
+#>
+        where T<#= j #> : notnull
+<#
+        }
+#>
 {
     static readonly PropertyInfo[] s_properties =
         typeof(InnerEither<<#= Generic(i) #>>)
