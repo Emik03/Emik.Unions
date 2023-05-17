@@ -6,7 +6,9 @@
 Performs an index operation on the disjoint union.
 
 ```csharp
-public static System.Collections.Generic.KeyValuePair<System.Reflection.PropertyInfo,object?> Index<T1,T2>(this Emik.Unions.Disjoints.IEither<T1,T2> that, int index);
+public static System.Collections.Generic.KeyValuePair<System.Reflection.PropertyInfo,object?> Index<T1,T2>(this Emik.Unions.Disjoints.IEither<T1,T2> that, int index)
+    where T1 : notnull
+    where T2 : notnull;
 ```
 #### Type parameters
 

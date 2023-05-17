@@ -33,6 +33,8 @@ Implements [System.Numerics.IEqualityOperators&lt;](https://docs.microsoft.com/e
 | Constructors | |
 | :--- | :--- |
 | [Overload(T1, T2)](Overload{T1,T2}..ctor(T1,T2).md 'Emik.Unions.Disjoints.Overload<T1,T2>.Overload(T1, T2)') | Defines a disjoint union with implicit conversions, for parameter signatures. |
+| [Overload(T1)](Overload{T1,T2}..ctor(T1).md 'Emik.Unions.Disjoints.Overload<T1,T2>.Overload(T1)') | Creates a new instance of TType with<br/>the [T2](Overload{T1,T2}.md#Emik.Unions.Disjoints.Overload_T1,T2_.T2 'Emik.Unions.Disjoints.Overload<T1,T2>.T2') value being set. |
+| [Overload(T2)](Overload{T1,T2}..ctor(T2).md 'Emik.Unions.Disjoints.Overload<T1,T2>.Overload(T2)') | Creates a new instance of TType with<br/>the [T2](Overload{T1,T2}.md#Emik.Unions.Disjoints.Overload_T1,T2_.T2 'Emik.Unions.Disjoints.Overload<T1,T2>.T2') value being set. |
 
 | Properties | |
 | :--- | :--- |

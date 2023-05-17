@@ -6,7 +6,9 @@
 Determines whether the disjoint union is the type provided.
 
 ```csharp
-public static bool Is<T1,T2>(this Emik.Unions.Disjoints.IEither<T1,T2> that, out T1? n1);
+public static bool Is<T1,T2>(this Emik.Unions.Disjoints.IEither<T1,T2> that, out T1? n1)
+    where T1 : notnull
+    where T2 : notnull;
 ```
 #### Type parameters
 

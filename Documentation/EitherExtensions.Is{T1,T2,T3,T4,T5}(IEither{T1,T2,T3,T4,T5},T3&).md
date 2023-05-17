@@ -6,7 +6,12 @@
 Determines whether the disjoint union is the type provided.
 
 ```csharp
-public static bool Is<T1,T2,T3,T4,T5>(this Emik.Unions.Disjoints.IEither<T1,T2,T3,T4,T5> that, out T3? n3);
+public static bool Is<T1,T2,T3,T4,T5>(this Emik.Unions.Disjoints.IEither<T1,T2,T3,T4,T5> that, out T3? n3)
+    where T1 : notnull
+    where T2 : notnull
+    where T3 : notnull
+    where T4 : notnull
+    where T5 : notnull;
 ```
 #### Type parameters
 

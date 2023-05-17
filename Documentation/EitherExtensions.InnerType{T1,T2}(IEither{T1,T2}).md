@@ -6,7 +6,9 @@
 Gets the [System.Type](https://docs.microsoft.com/en-us/dotnet/api/System.Type 'System.Type') of [Value](IEither.Value.md 'Emik.Unions.Disjoints.IEither.Value').
 
 ```csharp
-public static System.Type InnerType<T1,T2>(this Emik.Unions.Disjoints.IEither<T1,T2> that);
+public static System.Type InnerType<T1,T2>(this Emik.Unions.Disjoints.IEither<T1,T2> that)
+    where T1 : notnull
+    where T2 : notnull;
 ```
 #### Type parameters
 

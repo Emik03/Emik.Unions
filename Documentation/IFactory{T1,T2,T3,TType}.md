@@ -35,6 +35,7 @@ The third argument for the factory.
 The resulting type from the factory.
 
 Derived  
+&#8627; [FaultException](FaultException.md 'Emik.Unions.Tagged.FaultException')  
 &#8627; [Product&lt;T1,T2,T3,TType&gt;](Product{T1,T2,T3,TType}.md 'Emik.Unions.Tagged.Product<T1,T2,T3,TType>')
 
 | Methods | |
