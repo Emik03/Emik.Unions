@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: MPL-2.0 -->
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <FileVersion>2.0.1</FileVersion>
+        <FileVersion>2.1</FileVersion>
         <RepositoryType>git</RepositoryType>
         <NoWarn>$(NoWarn);SA1518;SA1633</NoWarn>
         <RepositoryUrl>https://github.com/Emik03/Emik.Unions</RepositoryUrl>
@@ -15,7 +15,7 @@
             <Generator>TextTemplatingFileGenerator</Generator>
             <LastGenOutput>Factories.cs</LastGenOutput>
         </None>
-        <None Update="Source\Include.ttinclude">
+        <None Update="Source/Include.ttinclude">
             <Generator>TextTemplatingFileGenerator</Generator>
             <LastGenOutput>Include.cs</LastGenOutput>
         </None>
@@ -92,58 +92,58 @@
             <DependentUpon>Include.ttinclude</DependentUpon>
         </Compile>
         <PackageReference Include="Emik.Results" Version="2.0.1" PrivateAssets="all" Private="false"/>
-        <Compile Update="Source\Disjoints\Overload.cs">
-            <AutoGen>True</AutoGen>
-            <DesignTime>True</DesignTime>
-            <DependentUpon>Overload.tt</DependentUpon>
-        </Compile>
-        <Compile Update="Source\Disjoints\InnerEither.cs">
+        <Compile Update="Source/Disjoints/InnerEither.cs">
             <AutoGen>True</AutoGen>
             <DesignTime>True</DesignTime>
             <DependentUpon>InnerEither.tt</DependentUpon>
         </Compile>
-        <Compile Update="Source\Tagged\InnerProduct.cs">
+        <Compile Update="Source/Tagged/InnerProduct.cs">
             <AutoGen>True</AutoGen>
             <DesignTime>True</DesignTime>
             <DependentUpon>InnerProduct.tt</DependentUpon>
         </Compile>
-        <Compile Update="Source\IProduct.cs">
+        <Compile Update="Source/IProduct.cs">
             <Design>true</Design>
             <AutoGen>true</AutoGen>
             <DependentUpon>IProduct.tt</DependentUpon>
         </Compile>
-        <Compile Update="Source\Tagged\Product.Overloads.cs">
+        <Compile Update="Source/Tagged/Product.Overloads.cs">
             <AutoGen>True</AutoGen>
             <DesignTime>True</DesignTime>
             <DependentUpon>Product.Overloads.tt</DependentUpon>
         </Compile>
-        <Compile Update="Source\Disjoints\Either.Overloads.cs">
+        <Compile Update="Source/Disjoints/Either.Overloads.cs">
             <AutoGen>True</AutoGen>
             <DesignTime>True</DesignTime>
             <DependentUpon>Either.Overloads.tt</DependentUpon>
         </Compile>
-        <None Update="Source\Tagged\IFactory.tt">
+        <None Update="Source/Tagged/IFactory.tt">
             <Generator>TextTemplatingFileGenerator</Generator>
             <LastGenOutput>IFactory.cs</LastGenOutput>
         </None>
-        <None Update="Source\Disjoints\IFactories.tt">
+        <None Update="Source/Disjoints/IFactories.tt">
             <Generator>TextTemplatingFileGenerator</Generator>
             <LastGenOutput>IFactories.cs</LastGenOutput>
         </None>
-        <Compile Update="Source\Tagged\IFactory.cs">
+        <Compile Update="Source/Tagged/IFactory.cs">
             <AutoGen>True</AutoGen>
             <DesignTime>True</DesignTime>
             <DependentUpon>IFactory.tt</DependentUpon>
         </Compile>
-        <Compile Update="Source\Disjoints\IFactories.cs">
+        <Compile Update="Source/Disjoints/IFactories.cs">
             <AutoGen>True</AutoGen>
             <DesignTime>True</DesignTime>
             <DependentUpon>IFactories.tt</DependentUpon>
         </Compile>
-        <Compile Update="Source\Disjoints\Ordered.cs">
+        <Compile Update="Source/Disjoints/Ordered.cs">
             <AutoGen>True</AutoGen>
             <DesignTime>True</DesignTime>
             <DependentUpon>Ordered.tt</DependentUpon>
+        </Compile>
+        <Compile Update="Source/Disjoints/Overload.cs">
+            <AutoGen>True</AutoGen>
+            <DesignTime>True</DesignTime>
+            <DependentUpon>Overload.tt</DependentUpon>
         </Compile>
     </ItemGroup>
 </Project>
