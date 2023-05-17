@@ -11,7 +11,7 @@ public interface IEither : IProperties
 
     /// <summary>Gets the value.</summary>
     [Pure]
-    object? Value { get; }
+    object Value { get; }
 }
 
 <#
@@ -36,6 +36,14 @@ public interface IEither : IProperties
         }
 #>
 public interface IEither<<#= GenericCovariant(i) #>> : IEither
+<#
+        for (var j = 1; j <= i; j++)
+        {
+#>
+        where T<#= j #> : notnull
+<#
+        }
+#>
 {
 <#
         for (var j = 1; j <= i; j++)

@@ -19,6 +19,8 @@ public interface IEither : IProperties
 /// <typeparam name="T1">The first type of the disjoint union.</typeparam>
 /// <typeparam name="T2">The second type of the disjoint union.</typeparam>
 public interface IEither<out T1, out T2> : IEither
+    where T1 : notnull
+    where T2 : notnull
 {
     /// <summary>Gets the <typeparamref name="T1"/> first value of the disjoint union.</summary>
     [Pure]
@@ -35,6 +37,9 @@ public interface IEither<out T1, out T2> : IEither
 /// <typeparam name="T2">The second type of the disjoint union.</typeparam>
 /// <typeparam name="T3">The third type of the disjoint union.</typeparam>
 public interface IEither<out T1, out T2, out T3> : IEither
+    where T1 : notnull
+    where T2 : notnull
+    where T3 : notnull
 {
     /// <summary>Gets the <typeparamref name="T1"/> first value of the disjoint union.</summary>
     [Pure]
@@ -56,6 +61,10 @@ public interface IEither<out T1, out T2, out T3> : IEither
 /// <typeparam name="T3">The third type of the disjoint union.</typeparam>
 /// <typeparam name="T4">The fourth type of the disjoint union.</typeparam>
 public interface IEither<out T1, out T2, out T3, out T4> : IEither
+    where T1 : notnull
+    where T2 : notnull
+    where T3 : notnull
+    where T4 : notnull
 {
     /// <summary>Gets the <typeparamref name="T1"/> first value of the disjoint union.</summary>
     [Pure]
@@ -83,6 +92,11 @@ public interface IEither<out T1, out T2, out T3, out T4> : IEither
 /// <typeparam name="T4">The fourth type of the disjoint union.</typeparam>
 /// <typeparam name="T5">The fifth type of the disjoint union.</typeparam>
 public interface IEither<out T1, out T2, out T3, out T4, out T5> : IEither
+    where T1 : notnull
+    where T2 : notnull
+    where T3 : notnull
+    where T4 : notnull
+    where T5 : notnull
 {
     /// <summary>Gets the <typeparamref name="T1"/> first value of the disjoint union.</summary>
     [Pure]
