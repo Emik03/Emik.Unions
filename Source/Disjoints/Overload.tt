@@ -62,6 +62,11 @@ public sealed record Overload<<#= Generic(i) #>>(<#
         {
 #>
     /// <inheritdoc cref="Either{<#= Generic(i) #>, TType}.New(T<#= j #>)" />
+    public Overload(T<#= j #> <#= WordCamel(j) #>)
+        : this(<#=
+                    string.Join(", ", Enumerable.Range(1, i).Select(x => x == j ? WordCamel(j) : "default")) #>) { }
+
+    /// <inheritdoc cref="Either{<#= Generic(i) #>, TType}.New(T<#= j #>)" />
     public static implicit operator Overload<<#= Generic(i) #>>(T<#= j #> <#= WordCamel(j) #>) => New(<#= WordCamel(j) #>);
 
     /// <inheritdoc cref="IEither{<#= Generic(i) #>}.<#= WordPascal(j) #>" />
