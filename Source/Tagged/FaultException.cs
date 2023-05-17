@@ -3,7 +3,11 @@ namespace Emik.Unions.Tagged;
 
 /// <summary>The exception type that is raised by <see cref="Fault{T}"/>.</summary>
 [Serializable]
-public sealed class FaultException : ArgumentException, IFatal
+public sealed class FaultException : ArgumentException,
+#if NET7_0_OR_GREATER
+    IFactory<string, string, object?, FaultException>,
+#endif
+    IFatal
 {
     /// <summary>Initializes a new instance of the <see cref="FaultException"/> class.</summary>
     /// <param name="message">The assertion message.</param>
@@ -34,6 +38,9 @@ public sealed class FaultException : ArgumentException, IFatal
     /// <summary>Gets the object that is in an invalid state.</summary>
     [Pure]
     public object? Uninit { get; }
+
+    /// <inheritdoc />
+    public static FaultException New(string first, string second, object? third) => new(first, second, third);
 
     /// <inheritdoc />
     [Pure]
