@@ -70,7 +70,7 @@ Implements [System.Numerics.IEqualityOperators&lt;](https://docs.microsoft.com/e
 | [Index](Ordered{T1,T2,T3,T4,T5,TType}.Index.md 'Emik.Unions.Disjoints.Ordered<T1,T2,T3,T4,T5,TType>.Index') | Gets the index where the value is contained. |
 | [Second](Ordered{T1,T2,T3,T4,T5,TType}.Second.md 'Emik.Unions.Disjoints.Ordered<T1,T2,T3,T4,T5,TType>.Second') | Gets the [T2](Ordered{T1,T2,T3,T4,T5,TType}.md#Emik.Unions.Disjoints.Ordered_T1,T2,T3,T4,T5,TType_.T2 'Emik.Unions.Disjoints.Ordered<T1,T2,T3,T4,T5,TType>.T2') second value of the disjoint union. |
 | [Third](Ordered{T1,T2,T3,T4,T5,TType}.Third.md 'Emik.Unions.Disjoints.Ordered<T1,T2,T3,T4,T5,TType>.Third') | Gets the [T3](Ordered{T1,T2,T3,T4,T5,TType}.md#Emik.Unions.Disjoints.Ordered_T1,T2,T3,T4,T5,TType_.T3 'Emik.Unions.Disjoints.Ordered<T1,T2,T3,T4,T5,TType>.T3') third value of the disjoint union. |
-| [this[int]](Ordered{T1,T2,T3,T4,T5,TType}.Item(Int32).md 'Emik.Unions.Disjoints.Ordered<T1,T2,T3,T4,T5,TType>.this[int]') | Gets an [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') corresponding to the property of the type based on the index passed in. |
+| [this[int]](Ordered{T1,T2,T3,T4,T5,TType}.Item(int).md 'Emik.Unions.Disjoints.Ordered<T1,T2,T3,T4,T5,TType>.this[int]') | Gets an [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') corresponding to the property of the type based on the index passed in. |
 | [Value](Ordered{T1,T2,T3,T4,T5,TType}.Value.md 'Emik.Unions.Disjoints.Ordered<T1,T2,T3,T4,T5,TType>.Value') | Gets the value. |
 
 | Methods | |

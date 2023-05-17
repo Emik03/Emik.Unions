@@ -23,7 +23,7 @@ Implements [System.Numerics.IEqualityOperators&lt;](https://docs.microsoft.com/e
 
 | Constructors | |
 | :--- | :--- |
-| [Fault(string, T)](Fault{T}..ctor(String,T).md 'Emik.Unions.Tagged.Fault<T>.Fault(string, T)') | A pseudo-exception-like type tossed by some other type, typically as an [Emik.Results.Result&lt;&gt;.Err](https://docs.microsoft.com/en-us/dotnet/api/Emik.Results.Result-2.Err 'Emik.Results.Result`2.Err') value. |
+| [Fault(string, T)](Fault{T}..ctor(string,T).md 'Emik.Unions.Tagged.Fault<T>.Fault(string, T)') | A pseudo-exception-like type tossed by some other type, typically as an [Emik.Results.Result&lt;&gt;.Err](https://docs.microsoft.com/en-us/dotnet/api/Emik.Results.Result-2.Err 'Emik.Results.Result`2.Err') value. |
 
 | Properties | |
 | :--- | :--- |

@@ -26,5 +26,5 @@ Implements [IPropertyEnumerable](IPropertyEnumerable.md 'Emik.Unions.IPropertyEn
 
 | Properties | |
 | :--- | :--- |
-| [this[string]](IProduct.Item(String).md 'Emik.Unions.Tagged.IProduct.this[string]') | Gets an [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') corresponding to the name. |
+| [this[string]](IProduct.Item(string).md 'Emik.Unions.Tagged.IProduct.this[string]') | Gets an [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') corresponding to the name. |
 | [this[PropertyInfo]](IProduct.Item(PropertyInfo).md 'Emik.Unions.Tagged.IProduct.this[System.Reflection.PropertyInfo]') | Gets an [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') corresponding to the property. |
