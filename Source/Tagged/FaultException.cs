@@ -37,7 +37,7 @@ public sealed class FaultException : ArgumentException,
 
     /// <summary>Gets the object that is in an invalid state.</summary>
     [Pure]
-    public object? Uninit { get; }
+    public object? Uninit { get; } // ReSharper disable once InheritdocInvalidUsage
 
     /// <inheritdoc />
     public static FaultException New(string first, string second, object? third) => new(first, second, third);
