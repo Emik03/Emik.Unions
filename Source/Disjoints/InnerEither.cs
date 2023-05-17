@@ -14,6 +14,8 @@ sealed record InnerEither<T1, T2> :
     IEqualityOperators<InnerEither<T1, T2>, InnerEither<T1, T2>, bool>,
 #endif
     IEither<T1, T2>
+        where T1 : notnull
+        where T2 : notnull
 {
     static readonly PropertyInfo[] s_properties =
         typeof(InnerEither<T1, T2>)
@@ -92,6 +94,9 @@ sealed record InnerEither<T1, T2, T3> :
     IEqualityOperators<InnerEither<T1, T2, T3>, InnerEither<T1, T2, T3>, bool>,
 #endif
     IEither<T1, T2, T3>
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
 {
     static readonly PropertyInfo[] s_properties =
         typeof(InnerEither<T1, T2, T3>)
@@ -185,6 +190,10 @@ sealed record InnerEither<T1, T2, T3, T4> :
     IEqualityOperators<InnerEither<T1, T2, T3, T4>, InnerEither<T1, T2, T3, T4>, bool>,
 #endif
     IEither<T1, T2, T3, T4>
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
 {
     static readonly PropertyInfo[] s_properties =
         typeof(InnerEither<T1, T2, T3, T4>)
@@ -294,6 +303,11 @@ sealed record InnerEither<T1, T2, T3, T4, T5> :
     IEqualityOperators<InnerEither<T1, T2, T3, T4, T5>, InnerEither<T1, T2, T3, T4, T5>, bool>,
 #endif
     IEither<T1, T2, T3, T4, T5>
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
 {
     static readonly PropertyInfo[] s_properties =
         typeof(InnerEither<T1, T2, T3, T4, T5>)

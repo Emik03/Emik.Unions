@@ -30,7 +30,8 @@ sealed record InnerEither<<#= Generic(i) #>> :
 #if NET7_0_OR_GREATER
     IEqualityOperators<InnerEither<<#= Generic(i) #>>, InnerEither<<#= Generic(i) #>>, bool>,
 #endif
-    IEither<<#= Generic(i) #>><#
+    IEither<<#= Generic(i) #>>
+<#
         for (var j = 1; j <= i; j++)
         {
 #>
