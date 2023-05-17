@@ -29,6 +29,8 @@ public static class EitherExtensions
         [NotNullWhen(true)] out T1? n1,
         [NotNullWhen(false)] out T2? n2
     )
+        where T1 : notnull
+        where T2 : notnull
     {
         if (that.Index is < 0 or > 1)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-2.");
@@ -72,6 +74,8 @@ public static class EitherExtensions
         [NotNullWhen(true)] out T2? n2,
         [NotNullWhen(false)] out T1? n1
     )
+        where T1 : notnull
+        where T2 : notnull
     {
         if (that.Index is < 0 or > 1)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-2.");
@@ -113,6 +117,8 @@ public static class EitherExtensions
         this IEither<T1, T2> that,
         [NotNullWhen(true)] out T1? n1
     )
+        where T1 : notnull
+        where T2 : notnull
     {
         if (that.Index is < 0 or > 1)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-2.");
@@ -150,6 +156,8 @@ public static class EitherExtensions
         this IEither<T1, T2> that,
         [NotNullWhen(true)] out T2? n2
     )
+        where T1 : notnull
+        where T2 : notnull
     {
         if (that.Index is < 0 or > 1)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-2.");
@@ -188,6 +196,8 @@ public static class EitherExtensions
         this IEither<T1, T2> that,
         [InstantHandle] Action<T1>? on1 = null,
         [InstantHandle] Action<T2>? on2 = null)
+        where T1 : notnull
+        where T2 : notnull
     {
         switch (that.Index)
         {
@@ -228,13 +238,16 @@ public static class EitherExtensions
     public static TResult Is<T1, T2, TResult>(
         this IEither<T1, T2> that,
         [InstantHandle] Converter<T1, TResult> on1,
-        [InstantHandle] Converter<T2, TResult> on2) =>
-       that.Index switch
-       {
-           0 => on1(that.First ?? throw Unreachable),
-           1 => on2(that.Second ?? throw Unreachable),
-           _ => throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-2."),
-       };
+        [InstantHandle] Converter<T2, TResult> on2)
+        where T1 : notnull
+        where T2 : notnull
+        =>
+            that.Index switch
+            {
+                0 => on1(that.First ?? throw Unreachable),
+                1 => on2(that.Second ?? throw Unreachable),
+                _ => throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-2."),
+            };
 
     /// <summary>Performs an index operation on the disjoint union.</summary>
     /// <typeparam name="T1">The first generic parameter of <see cref="IEither{T1, T2}"/>.</typeparam>
@@ -247,7 +260,9 @@ public static class EitherExtensions
     public static KeyValuePair<PropertyInfo, object?> Index<T1, T2>(
         this IEither<T1, T2> that,
         [ValueRange(0, 1)] int index)
-        =>
+        where T1 : notnull
+        where T2 : notnull
+=>
             index switch
             {
                 0 => new(that.Properties[0], that.First),
@@ -268,13 +283,16 @@ public static class EitherExtensions
     /// The value <paramref name="that"/> has an invalid <see cref="IEither.Index"/>.
     /// </exception>
     [Pure]
-    public static Type InnerType<T1, T2>(this IEither<T1, T2> that) =>
-        that.Index switch
-        {
-            0 => (Type)typeof(T1),
-            1 => (Type)typeof(T2),
-            _ => throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-2."),
-        };
+    public static Type InnerType<T1, T2>(this IEither<T1, T2> that)
+        where T1 : notnull
+        where T2 : notnull
+        =>
+            that.Index switch
+            {
+                0 => (Type)typeof(T1),
+                1 => (Type)typeof(T2),
+                _ => throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-2."),
+            };
 
     /// <summary>Determines whether the disjoint union is the type provided.</summary>
     /// <typeparam name="T1">
@@ -302,6 +320,9 @@ public static class EitherExtensions
         [NotNullWhen(true)] out T1? n1,
         [NotNullWhen(false)] out IEither<T2, T3>? n2n3
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
     {
         if (that.Index is < 0 or > 2)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-3.");
@@ -350,6 +371,9 @@ public static class EitherExtensions
         [NotNullWhen(true)] out T2? n2,
         [NotNullWhen(false)] out IEither<T1, T3>? n1n3
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
     {
         if (that.Index is < 0 or > 2)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-3.");
@@ -398,6 +422,9 @@ public static class EitherExtensions
         [NotNullWhen(true)] out IEither<T1, T2>? n1n2,
         [NotNullWhen(false)] out T3? n3
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
     {
         if (that.Index is < 0 or > 2)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-3.");
@@ -446,6 +473,9 @@ public static class EitherExtensions
         [NotNullWhen(true)] out T3? n3,
         [NotNullWhen(false)] out IEither<T1, T2>? n1n2
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
     {
         if (that.Index is < 0 or > 2)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-3.");
@@ -494,6 +524,9 @@ public static class EitherExtensions
         [NotNullWhen(true)] out IEither<T1, T3>? n1n3,
         [NotNullWhen(false)] out T2? n2
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
     {
         if (that.Index is < 0 or > 2)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-3.");
@@ -542,6 +575,9 @@ public static class EitherExtensions
         [NotNullWhen(true)] out IEither<T2, T3>? n2n3,
         [NotNullWhen(false)] out T1? n1
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
     {
         if (that.Index is < 0 or > 2)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-3.");
@@ -588,6 +624,9 @@ public static class EitherExtensions
         this IEither<T1, T2, T3> that,
         [NotNullWhen(true)] out T1? n1
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
     {
         if (that.Index is < 0 or > 2)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-3.");
@@ -628,6 +667,9 @@ public static class EitherExtensions
         this IEither<T1, T2, T3> that,
         [NotNullWhen(true)] out T2? n2
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
     {
         if (that.Index is < 0 or > 2)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-3.");
@@ -668,6 +710,9 @@ public static class EitherExtensions
         this IEither<T1, T2, T3> that,
         [NotNullWhen(true)] out IEither<T1, T2>? n1n2
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
     {
         if (that.Index is < 0 or > 2)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-3.");
@@ -710,6 +755,9 @@ public static class EitherExtensions
         this IEither<T1, T2, T3> that,
         [NotNullWhen(true)] out T3? n3
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
     {
         if (that.Index is < 0 or > 2)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-3.");
@@ -750,6 +798,9 @@ public static class EitherExtensions
         this IEither<T1, T2, T3> that,
         [NotNullWhen(true)] out IEither<T1, T3>? n1n3
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
     {
         if (that.Index is < 0 or > 2)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-3.");
@@ -792,6 +843,9 @@ public static class EitherExtensions
         this IEither<T1, T2, T3> that,
         [NotNullWhen(true)] out IEither<T2, T3>? n2n3
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
     {
         if (that.Index is < 0 or > 2)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-3.");
@@ -839,6 +893,9 @@ public static class EitherExtensions
         [InstantHandle] Action<T1>? on1 = null,
         [InstantHandle] Action<T2>? on2 = null,
         [InstantHandle] Action<T3>? on3 = null)
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
     {
         switch (that.Index)
         {
@@ -889,14 +946,18 @@ public static class EitherExtensions
         this IEither<T1, T2, T3> that,
         [InstantHandle] Converter<T1, TResult> on1,
         [InstantHandle] Converter<T2, TResult> on2,
-        [InstantHandle] Converter<T3, TResult> on3) =>
-       that.Index switch
-       {
-           0 => on1(that.First ?? throw Unreachable),
-           1 => on2(that.Second ?? throw Unreachable),
-           2 => on3(that.Third ?? throw Unreachable),
-           _ => throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-3."),
-       };
+        [InstantHandle] Converter<T3, TResult> on3)
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        =>
+            that.Index switch
+            {
+                0 => on1(that.First ?? throw Unreachable),
+                1 => on2(that.Second ?? throw Unreachable),
+                2 => on3(that.Third ?? throw Unreachable),
+                _ => throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-3."),
+            };
 
     /// <summary>Performs an index operation on the disjoint union.</summary>
     /// <typeparam name="T1">The first generic parameter of <see cref="IEither{T1, T2, T3}"/>.</typeparam>
@@ -910,7 +971,10 @@ public static class EitherExtensions
     public static KeyValuePair<PropertyInfo, object?> Index<T1, T2, T3>(
         this IEither<T1, T2, T3> that,
         [ValueRange(0, 2)] int index)
-        =>
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+=>
             index switch
             {
                 0 => new(that.Properties[0], that.First),
@@ -935,14 +999,18 @@ public static class EitherExtensions
     /// The value <paramref name="that"/> has an invalid <see cref="IEither.Index"/>.
     /// </exception>
     [Pure]
-    public static Type InnerType<T1, T2, T3>(this IEither<T1, T2, T3> that) =>
-        that.Index switch
-        {
-            0 => (Type)typeof(T1),
-            1 => (Type)typeof(T2),
-            2 => (Type)typeof(T3),
-            _ => throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-3."),
-        };
+    public static Type InnerType<T1, T2, T3>(this IEither<T1, T2, T3> that)
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        =>
+            that.Index switch
+            {
+                0 => (Type)typeof(T1),
+                1 => (Type)typeof(T2),
+                2 => (Type)typeof(T3),
+                _ => throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-3."),
+            };
 
     /// <summary>Determines whether the disjoint union is the type provided.</summary>
     /// <typeparam name="T1">
@@ -973,6 +1041,10 @@ public static class EitherExtensions
         [NotNullWhen(true)] out T1? n1,
         [NotNullWhen(false)] out IEither<T2, T3, T4>? n2n3n4
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
     {
         if (that.Index is < 0 or > 3)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-4.");
@@ -1025,6 +1097,10 @@ public static class EitherExtensions
         [NotNullWhen(true)] out T2? n2,
         [NotNullWhen(false)] out IEither<T1, T3, T4>? n1n3n4
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
     {
         if (that.Index is < 0 or > 3)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-4.");
@@ -1077,6 +1153,10 @@ public static class EitherExtensions
         [NotNullWhen(true)] out IEither<T1, T2>? n1n2,
         [NotNullWhen(false)] out IEither<T3, T4>? n3n4
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
     {
         if (that.Index is < 0 or > 3)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-4.");
@@ -1130,6 +1210,10 @@ public static class EitherExtensions
         [NotNullWhen(true)] out T3? n3,
         [NotNullWhen(false)] out IEither<T1, T2, T4>? n1n2n4
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
     {
         if (that.Index is < 0 or > 3)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-4.");
@@ -1182,6 +1266,10 @@ public static class EitherExtensions
         [NotNullWhen(true)] out IEither<T1, T3>? n1n3,
         [NotNullWhen(false)] out IEither<T2, T4>? n2n4
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
     {
         if (that.Index is < 0 or > 3)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-4.");
@@ -1235,6 +1323,10 @@ public static class EitherExtensions
         [NotNullWhen(true)] out IEither<T2, T3>? n2n3,
         [NotNullWhen(false)] out IEither<T1, T4>? n1n4
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
     {
         if (that.Index is < 0 or > 3)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-4.");
@@ -1288,6 +1380,10 @@ public static class EitherExtensions
         [NotNullWhen(true)] out IEither<T1, T2, T3>? n1n2n3,
         [NotNullWhen(false)] out T4? n4
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
     {
         if (that.Index is < 0 or > 3)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-4.");
@@ -1340,6 +1436,10 @@ public static class EitherExtensions
         [NotNullWhen(true)] out T4? n4,
         [NotNullWhen(false)] out IEither<T1, T2, T3>? n1n2n3
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
     {
         if (that.Index is < 0 or > 3)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-4.");
@@ -1392,6 +1492,10 @@ public static class EitherExtensions
         [NotNullWhen(true)] out IEither<T1, T4>? n1n4,
         [NotNullWhen(false)] out IEither<T2, T3>? n2n3
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
     {
         if (that.Index is < 0 or > 3)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-4.");
@@ -1445,6 +1549,10 @@ public static class EitherExtensions
         [NotNullWhen(true)] out IEither<T2, T4>? n2n4,
         [NotNullWhen(false)] out IEither<T1, T3>? n1n3
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
     {
         if (that.Index is < 0 or > 3)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-4.");
@@ -1498,6 +1606,10 @@ public static class EitherExtensions
         [NotNullWhen(true)] out IEither<T1, T2, T4>? n1n2n4,
         [NotNullWhen(false)] out T3? n3
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
     {
         if (that.Index is < 0 or > 3)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-4.");
@@ -1550,6 +1662,10 @@ public static class EitherExtensions
         [NotNullWhen(true)] out IEither<T3, T4>? n3n4,
         [NotNullWhen(false)] out IEither<T1, T2>? n1n2
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
     {
         if (that.Index is < 0 or > 3)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-4.");
@@ -1603,6 +1719,10 @@ public static class EitherExtensions
         [NotNullWhen(true)] out IEither<T1, T3, T4>? n1n3n4,
         [NotNullWhen(false)] out T2? n2
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
     {
         if (that.Index is < 0 or > 3)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-4.");
@@ -1655,6 +1775,10 @@ public static class EitherExtensions
         [NotNullWhen(true)] out IEither<T2, T3, T4>? n2n3n4,
         [NotNullWhen(false)] out T1? n1
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
     {
         if (that.Index is < 0 or > 3)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-4.");
@@ -1705,6 +1829,10 @@ public static class EitherExtensions
         this IEither<T1, T2, T3, T4> that,
         [NotNullWhen(true)] out T1? n1
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
     {
         if (that.Index is < 0 or > 3)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-4.");
@@ -1748,6 +1876,10 @@ public static class EitherExtensions
         this IEither<T1, T2, T3, T4> that,
         [NotNullWhen(true)] out T2? n2
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
     {
         if (that.Index is < 0 or > 3)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-4.");
@@ -1791,6 +1923,10 @@ public static class EitherExtensions
         this IEither<T1, T2, T3, T4> that,
         [NotNullWhen(true)] out IEither<T1, T2>? n1n2
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
     {
         if (that.Index is < 0 or > 3)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-4.");
@@ -1836,6 +1972,10 @@ public static class EitherExtensions
         this IEither<T1, T2, T3, T4> that,
         [NotNullWhen(true)] out T3? n3
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
     {
         if (that.Index is < 0 or > 3)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-4.");
@@ -1879,6 +2019,10 @@ public static class EitherExtensions
         this IEither<T1, T2, T3, T4> that,
         [NotNullWhen(true)] out IEither<T1, T3>? n1n3
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
     {
         if (that.Index is < 0 or > 3)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-4.");
@@ -1924,6 +2068,10 @@ public static class EitherExtensions
         this IEither<T1, T2, T3, T4> that,
         [NotNullWhen(true)] out IEither<T2, T3>? n2n3
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
     {
         if (that.Index is < 0 or > 3)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-4.");
@@ -1969,6 +2117,10 @@ public static class EitherExtensions
         this IEither<T1, T2, T3, T4> that,
         [NotNullWhen(true)] out IEither<T1, T2, T3>? n1n2n3
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
     {
         if (that.Index is < 0 or > 3)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-4.");
@@ -2015,6 +2167,10 @@ public static class EitherExtensions
         this IEither<T1, T2, T3, T4> that,
         [NotNullWhen(true)] out T4? n4
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
     {
         if (that.Index is < 0 or > 3)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-4.");
@@ -2058,6 +2214,10 @@ public static class EitherExtensions
         this IEither<T1, T2, T3, T4> that,
         [NotNullWhen(true)] out IEither<T1, T4>? n1n4
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
     {
         if (that.Index is < 0 or > 3)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-4.");
@@ -2103,6 +2263,10 @@ public static class EitherExtensions
         this IEither<T1, T2, T3, T4> that,
         [NotNullWhen(true)] out IEither<T2, T4>? n2n4
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
     {
         if (that.Index is < 0 or > 3)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-4.");
@@ -2148,6 +2312,10 @@ public static class EitherExtensions
         this IEither<T1, T2, T3, T4> that,
         [NotNullWhen(true)] out IEither<T1, T2, T4>? n1n2n4
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
     {
         if (that.Index is < 0 or > 3)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-4.");
@@ -2194,6 +2362,10 @@ public static class EitherExtensions
         this IEither<T1, T2, T3, T4> that,
         [NotNullWhen(true)] out IEither<T3, T4>? n3n4
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
     {
         if (that.Index is < 0 or > 3)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-4.");
@@ -2239,6 +2411,10 @@ public static class EitherExtensions
         this IEither<T1, T2, T3, T4> that,
         [NotNullWhen(true)] out IEither<T1, T3, T4>? n1n3n4
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
     {
         if (that.Index is < 0 or > 3)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-4.");
@@ -2285,6 +2461,10 @@ public static class EitherExtensions
         this IEither<T1, T2, T3, T4> that,
         [NotNullWhen(true)] out IEither<T2, T3, T4>? n2n3n4
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
     {
         if (that.Index is < 0 or > 3)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-4.");
@@ -2340,6 +2520,10 @@ public static class EitherExtensions
         [InstantHandle] Action<T2>? on2 = null,
         [InstantHandle] Action<T3>? on3 = null,
         [InstantHandle] Action<T4>? on4 = null)
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
     {
         switch (that.Index)
         {
@@ -2400,15 +2584,20 @@ public static class EitherExtensions
         [InstantHandle] Converter<T1, TResult> on1,
         [InstantHandle] Converter<T2, TResult> on2,
         [InstantHandle] Converter<T3, TResult> on3,
-        [InstantHandle] Converter<T4, TResult> on4) =>
-       that.Index switch
-       {
-           0 => on1(that.First ?? throw Unreachable),
-           1 => on2(that.Second ?? throw Unreachable),
-           2 => on3(that.Third ?? throw Unreachable),
-           3 => on4(that.Fourth ?? throw Unreachable),
-           _ => throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-4."),
-       };
+        [InstantHandle] Converter<T4, TResult> on4)
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        =>
+            that.Index switch
+            {
+                0 => on1(that.First ?? throw Unreachable),
+                1 => on2(that.Second ?? throw Unreachable),
+                2 => on3(that.Third ?? throw Unreachable),
+                3 => on4(that.Fourth ?? throw Unreachable),
+                _ => throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-4."),
+            };
 
     /// <summary>Performs an index operation on the disjoint union.</summary>
     /// <typeparam name="T1">The first generic parameter of <see cref="IEither{T1, T2, T3, T4}"/>.</typeparam>
@@ -2423,7 +2612,11 @@ public static class EitherExtensions
     public static KeyValuePair<PropertyInfo, object?> Index<T1, T2, T3, T4>(
         this IEither<T1, T2, T3, T4> that,
         [ValueRange(0, 3)] int index)
-        =>
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+=>
             index switch
             {
                 0 => new(that.Properties[0], that.First),
@@ -2452,15 +2645,20 @@ public static class EitherExtensions
     /// The value <paramref name="that"/> has an invalid <see cref="IEither.Index"/>.
     /// </exception>
     [Pure]
-    public static Type InnerType<T1, T2, T3, T4>(this IEither<T1, T2, T3, T4> that) =>
-        that.Index switch
-        {
-            0 => (Type)typeof(T1),
-            1 => (Type)typeof(T2),
-            2 => (Type)typeof(T3),
-            3 => (Type)typeof(T4),
-            _ => throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-4."),
-        };
+    public static Type InnerType<T1, T2, T3, T4>(this IEither<T1, T2, T3, T4> that)
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        =>
+            that.Index switch
+            {
+                0 => (Type)typeof(T1),
+                1 => (Type)typeof(T2),
+                2 => (Type)typeof(T3),
+                3 => (Type)typeof(T4),
+                _ => throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-4."),
+            };
 
 #if !NETFRAMEWORK || NET40_OR_GREATER
     /// <summary>Determines whether the disjoint union is the type provided.</summary>
@@ -2495,6 +2693,11 @@ public static class EitherExtensions
         [NotNullWhen(true)] out T1? n1,
         [NotNullWhen(false)] out IEither<T2, T3, T4, T5>? n2n3n4n5
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -2551,6 +2754,11 @@ public static class EitherExtensions
         [NotNullWhen(true)] out T2? n2,
         [NotNullWhen(false)] out IEither<T1, T3, T4, T5>? n1n3n4n5
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -2607,6 +2815,11 @@ public static class EitherExtensions
         [NotNullWhen(true)] out IEither<T1, T2>? n1n2,
         [NotNullWhen(false)] out IEither<T3, T4, T5>? n3n4n5
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -2664,6 +2877,11 @@ public static class EitherExtensions
         [NotNullWhen(true)] out T3? n3,
         [NotNullWhen(false)] out IEither<T1, T2, T4, T5>? n1n2n4n5
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -2720,6 +2938,11 @@ public static class EitherExtensions
         [NotNullWhen(true)] out IEither<T1, T3>? n1n3,
         [NotNullWhen(false)] out IEither<T2, T4, T5>? n2n4n5
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -2777,6 +3000,11 @@ public static class EitherExtensions
         [NotNullWhen(true)] out IEither<T2, T3>? n2n3,
         [NotNullWhen(false)] out IEither<T1, T4, T5>? n1n4n5
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -2834,6 +3062,11 @@ public static class EitherExtensions
         [NotNullWhen(true)] out IEither<T1, T2, T3>? n1n2n3,
         [NotNullWhen(false)] out IEither<T4, T5>? n4n5
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -2891,6 +3124,11 @@ public static class EitherExtensions
         [NotNullWhen(true)] out T4? n4,
         [NotNullWhen(false)] out IEither<T1, T2, T3, T5>? n1n2n3n5
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -2947,6 +3185,11 @@ public static class EitherExtensions
         [NotNullWhen(true)] out IEither<T1, T4>? n1n4,
         [NotNullWhen(false)] out IEither<T2, T3, T5>? n2n3n5
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -3004,6 +3247,11 @@ public static class EitherExtensions
         [NotNullWhen(true)] out IEither<T2, T4>? n2n4,
         [NotNullWhen(false)] out IEither<T1, T3, T5>? n1n3n5
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -3061,6 +3309,11 @@ public static class EitherExtensions
         [NotNullWhen(true)] out IEither<T1, T2, T4>? n1n2n4,
         [NotNullWhen(false)] out IEither<T3, T5>? n3n5
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -3118,6 +3371,11 @@ public static class EitherExtensions
         [NotNullWhen(true)] out IEither<T3, T4>? n3n4,
         [NotNullWhen(false)] out IEither<T1, T2, T5>? n1n2n5
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -3175,6 +3433,11 @@ public static class EitherExtensions
         [NotNullWhen(true)] out IEither<T1, T3, T4>? n1n3n4,
         [NotNullWhen(false)] out IEither<T2, T5>? n2n5
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -3232,6 +3495,11 @@ public static class EitherExtensions
         [NotNullWhen(true)] out IEither<T2, T3, T4>? n2n3n4,
         [NotNullWhen(false)] out IEither<T1, T5>? n1n5
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -3289,6 +3557,11 @@ public static class EitherExtensions
         [NotNullWhen(true)] out IEither<T1, T2, T3, T4>? n1n2n3n4,
         [NotNullWhen(false)] out T5? n5
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -3345,6 +3618,11 @@ public static class EitherExtensions
         [NotNullWhen(true)] out T5? n5,
         [NotNullWhen(false)] out IEither<T1, T2, T3, T4>? n1n2n3n4
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -3401,6 +3679,11 @@ public static class EitherExtensions
         [NotNullWhen(true)] out IEither<T1, T5>? n1n5,
         [NotNullWhen(false)] out IEither<T2, T3, T4>? n2n3n4
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -3458,6 +3741,11 @@ public static class EitherExtensions
         [NotNullWhen(true)] out IEither<T2, T5>? n2n5,
         [NotNullWhen(false)] out IEither<T1, T3, T4>? n1n3n4
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -3515,6 +3803,11 @@ public static class EitherExtensions
         [NotNullWhen(true)] out IEither<T1, T2, T5>? n1n2n5,
         [NotNullWhen(false)] out IEither<T3, T4>? n3n4
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -3572,6 +3865,11 @@ public static class EitherExtensions
         [NotNullWhen(true)] out IEither<T3, T5>? n3n5,
         [NotNullWhen(false)] out IEither<T1, T2, T4>? n1n2n4
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -3629,6 +3927,11 @@ public static class EitherExtensions
         [NotNullWhen(true)] out IEither<T1, T3, T5>? n1n3n5,
         [NotNullWhen(false)] out IEither<T2, T4>? n2n4
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -3686,6 +3989,11 @@ public static class EitherExtensions
         [NotNullWhen(true)] out IEither<T2, T3, T5>? n2n3n5,
         [NotNullWhen(false)] out IEither<T1, T4>? n1n4
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -3743,6 +4051,11 @@ public static class EitherExtensions
         [NotNullWhen(true)] out IEither<T1, T2, T3, T5>? n1n2n3n5,
         [NotNullWhen(false)] out T4? n4
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -3799,6 +4112,11 @@ public static class EitherExtensions
         [NotNullWhen(true)] out IEither<T4, T5>? n4n5,
         [NotNullWhen(false)] out IEither<T1, T2, T3>? n1n2n3
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -3856,6 +4174,11 @@ public static class EitherExtensions
         [NotNullWhen(true)] out IEither<T1, T4, T5>? n1n4n5,
         [NotNullWhen(false)] out IEither<T2, T3>? n2n3
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -3913,6 +4236,11 @@ public static class EitherExtensions
         [NotNullWhen(true)] out IEither<T2, T4, T5>? n2n4n5,
         [NotNullWhen(false)] out IEither<T1, T3>? n1n3
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -3970,6 +4298,11 @@ public static class EitherExtensions
         [NotNullWhen(true)] out IEither<T1, T2, T4, T5>? n1n2n4n5,
         [NotNullWhen(false)] out T3? n3
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -4026,6 +4359,11 @@ public static class EitherExtensions
         [NotNullWhen(true)] out IEither<T3, T4, T5>? n3n4n5,
         [NotNullWhen(false)] out IEither<T1, T2>? n1n2
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -4083,6 +4421,11 @@ public static class EitherExtensions
         [NotNullWhen(true)] out IEither<T1, T3, T4, T5>? n1n3n4n5,
         [NotNullWhen(false)] out T2? n2
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -4139,6 +4482,11 @@ public static class EitherExtensions
         [NotNullWhen(true)] out IEither<T2, T3, T4, T5>? n2n3n4n5,
         [NotNullWhen(false)] out T1? n1
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -4193,6 +4541,11 @@ public static class EitherExtensions
         this IEither<T1, T2, T3, T4, T5> that,
         [NotNullWhen(true)] out T1? n1
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -4239,6 +4592,11 @@ public static class EitherExtensions
         this IEither<T1, T2, T3, T4, T5> that,
         [NotNullWhen(true)] out T2? n2
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -4285,6 +4643,11 @@ public static class EitherExtensions
         this IEither<T1, T2, T3, T4, T5> that,
         [NotNullWhen(true)] out IEither<T1, T2>? n1n2
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -4333,6 +4696,11 @@ public static class EitherExtensions
         this IEither<T1, T2, T3, T4, T5> that,
         [NotNullWhen(true)] out T3? n3
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -4379,6 +4747,11 @@ public static class EitherExtensions
         this IEither<T1, T2, T3, T4, T5> that,
         [NotNullWhen(true)] out IEither<T1, T3>? n1n3
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -4427,6 +4800,11 @@ public static class EitherExtensions
         this IEither<T1, T2, T3, T4, T5> that,
         [NotNullWhen(true)] out IEither<T2, T3>? n2n3
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -4475,6 +4853,11 @@ public static class EitherExtensions
         this IEither<T1, T2, T3, T4, T5> that,
         [NotNullWhen(true)] out IEither<T1, T2, T3>? n1n2n3
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -4524,6 +4907,11 @@ public static class EitherExtensions
         this IEither<T1, T2, T3, T4, T5> that,
         [NotNullWhen(true)] out T4? n4
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -4570,6 +4958,11 @@ public static class EitherExtensions
         this IEither<T1, T2, T3, T4, T5> that,
         [NotNullWhen(true)] out IEither<T1, T4>? n1n4
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -4618,6 +5011,11 @@ public static class EitherExtensions
         this IEither<T1, T2, T3, T4, T5> that,
         [NotNullWhen(true)] out IEither<T2, T4>? n2n4
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -4666,6 +5064,11 @@ public static class EitherExtensions
         this IEither<T1, T2, T3, T4, T5> that,
         [NotNullWhen(true)] out IEither<T1, T2, T4>? n1n2n4
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -4715,6 +5118,11 @@ public static class EitherExtensions
         this IEither<T1, T2, T3, T4, T5> that,
         [NotNullWhen(true)] out IEither<T3, T4>? n3n4
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -4763,6 +5171,11 @@ public static class EitherExtensions
         this IEither<T1, T2, T3, T4, T5> that,
         [NotNullWhen(true)] out IEither<T1, T3, T4>? n1n3n4
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -4812,6 +5225,11 @@ public static class EitherExtensions
         this IEither<T1, T2, T3, T4, T5> that,
         [NotNullWhen(true)] out IEither<T2, T3, T4>? n2n3n4
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -4861,6 +5279,11 @@ public static class EitherExtensions
         this IEither<T1, T2, T3, T4, T5> that,
         [NotNullWhen(true)] out IEither<T1, T2, T3, T4>? n1n2n3n4
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -4911,6 +5334,11 @@ public static class EitherExtensions
         this IEither<T1, T2, T3, T4, T5> that,
         [NotNullWhen(true)] out T5? n5
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -4957,6 +5385,11 @@ public static class EitherExtensions
         this IEither<T1, T2, T3, T4, T5> that,
         [NotNullWhen(true)] out IEither<T1, T5>? n1n5
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -5005,6 +5438,11 @@ public static class EitherExtensions
         this IEither<T1, T2, T3, T4, T5> that,
         [NotNullWhen(true)] out IEither<T2, T5>? n2n5
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -5053,6 +5491,11 @@ public static class EitherExtensions
         this IEither<T1, T2, T3, T4, T5> that,
         [NotNullWhen(true)] out IEither<T1, T2, T5>? n1n2n5
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -5102,6 +5545,11 @@ public static class EitherExtensions
         this IEither<T1, T2, T3, T4, T5> that,
         [NotNullWhen(true)] out IEither<T3, T5>? n3n5
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -5150,6 +5598,11 @@ public static class EitherExtensions
         this IEither<T1, T2, T3, T4, T5> that,
         [NotNullWhen(true)] out IEither<T1, T3, T5>? n1n3n5
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -5199,6 +5652,11 @@ public static class EitherExtensions
         this IEither<T1, T2, T3, T4, T5> that,
         [NotNullWhen(true)] out IEither<T2, T3, T5>? n2n3n5
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -5248,6 +5706,11 @@ public static class EitherExtensions
         this IEither<T1, T2, T3, T4, T5> that,
         [NotNullWhen(true)] out IEither<T1, T2, T3, T5>? n1n2n3n5
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -5298,6 +5761,11 @@ public static class EitherExtensions
         this IEither<T1, T2, T3, T4, T5> that,
         [NotNullWhen(true)] out IEither<T4, T5>? n4n5
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -5346,6 +5814,11 @@ public static class EitherExtensions
         this IEither<T1, T2, T3, T4, T5> that,
         [NotNullWhen(true)] out IEither<T1, T4, T5>? n1n4n5
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -5395,6 +5868,11 @@ public static class EitherExtensions
         this IEither<T1, T2, T3, T4, T5> that,
         [NotNullWhen(true)] out IEither<T2, T4, T5>? n2n4n5
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -5444,6 +5922,11 @@ public static class EitherExtensions
         this IEither<T1, T2, T3, T4, T5> that,
         [NotNullWhen(true)] out IEither<T1, T2, T4, T5>? n1n2n4n5
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -5494,6 +5977,11 @@ public static class EitherExtensions
         this IEither<T1, T2, T3, T4, T5> that,
         [NotNullWhen(true)] out IEither<T3, T4, T5>? n3n4n5
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -5543,6 +6031,11 @@ public static class EitherExtensions
         this IEither<T1, T2, T3, T4, T5> that,
         [NotNullWhen(true)] out IEither<T1, T3, T4, T5>? n1n3n4n5
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -5593,6 +6086,11 @@ public static class EitherExtensions
         this IEither<T1, T2, T3, T4, T5> that,
         [NotNullWhen(true)] out IEither<T2, T3, T4, T5>? n2n3n4n5
     )
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         if (that.Index is < 0 or > 4)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5.");
@@ -5656,6 +6154,11 @@ public static class EitherExtensions
         [InstantHandle] Action<T3>? on3 = null,
         [InstantHandle] Action<T4>? on4 = null,
         [InstantHandle] Action<T5>? on5 = null)
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
     {
         switch (that.Index)
         {
@@ -5726,16 +6229,22 @@ public static class EitherExtensions
         [InstantHandle] Converter<T2, TResult> on2,
         [InstantHandle] Converter<T3, TResult> on3,
         [InstantHandle] Converter<T4, TResult> on4,
-        [InstantHandle] Converter<T5, TResult> on5) =>
-       that.Index switch
-       {
-           0 => on1(that.First ?? throw Unreachable),
-           1 => on2(that.Second ?? throw Unreachable),
-           2 => on3(that.Third ?? throw Unreachable),
-           3 => on4(that.Fourth ?? throw Unreachable),
-           4 => on5(that.Fifth ?? throw Unreachable),
-           _ => throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5."),
-       };
+        [InstantHandle] Converter<T5, TResult> on5)
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
+        =>
+            that.Index switch
+            {
+                0 => on1(that.First ?? throw Unreachable),
+                1 => on2(that.Second ?? throw Unreachable),
+                2 => on3(that.Third ?? throw Unreachable),
+                3 => on4(that.Fourth ?? throw Unreachable),
+                4 => on5(that.Fifth ?? throw Unreachable),
+                _ => throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5."),
+            };
 
     /// <summary>Performs an index operation on the disjoint union.</summary>
     /// <typeparam name="T1">The first generic parameter of <see cref="IEither{T1, T2, T3, T4, T5}"/>.</typeparam>
@@ -5751,7 +6260,12 @@ public static class EitherExtensions
     public static KeyValuePair<PropertyInfo, object?> Index<T1, T2, T3, T4, T5>(
         this IEither<T1, T2, T3, T4, T5> that,
         [ValueRange(0, 4)] int index)
-        =>
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
+=>
             index switch
             {
                 0 => new(that.Properties[0], that.First),
@@ -5784,16 +6298,22 @@ public static class EitherExtensions
     /// The value <paramref name="that"/> has an invalid <see cref="IEither.Index"/>.
     /// </exception>
     [Pure]
-    public static Type InnerType<T1, T2, T3, T4, T5>(this IEither<T1, T2, T3, T4, T5> that) =>
-        that.Index switch
-        {
-            0 => (Type)typeof(T1),
-            1 => (Type)typeof(T2),
-            2 => (Type)typeof(T3),
-            3 => (Type)typeof(T4),
-            4 => (Type)typeof(T5),
-            _ => throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5."),
-        };
+    public static Type InnerType<T1, T2, T3, T4, T5>(this IEither<T1, T2, T3, T4, T5> that)
+        where T1 : notnull
+        where T2 : notnull
+        where T3 : notnull
+        where T4 : notnull
+        where T5 : notnull
+        =>
+            that.Index switch
+            {
+                0 => (Type)typeof(T1),
+                1 => (Type)typeof(T2),
+                2 => (Type)typeof(T3),
+                3 => (Type)typeof(T4),
+                4 => (Type)typeof(T5),
+                _ => throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5."),
+            };
 
 #endif
 }

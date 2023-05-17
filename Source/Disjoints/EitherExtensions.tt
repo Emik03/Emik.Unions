@@ -68,6 +68,14 @@ public static class EitherExtensions
 <#
                 }
 #>    )
+<#
+        for (var l = 1; l <= i; l++)
+        {
+#>
+        where T<#= l #> : notnull
+<#
+        }
+#>
     {
         if (that.Index is < 0 or > <#= i - 1 #>)
             throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-<#= i #>.");
@@ -148,6 +156,14 @@ public static class EitherExtensions
 <#
         }
 #>)
+<#
+        for (var l = 1; l <= i; l++)
+        {
+#>
+        where T<#= l #> : notnull
+<#
+        }
+#>
     {
         switch (that.Index)
         {
@@ -215,19 +231,28 @@ public static class EitherExtensions
 #>
 <#
         }
-#> =>
-       that.Index switch
-       {
+#>
+
+<#
+        for (var l = 1; l <= i; l++)
+        {
+#>
+        where T<#= l #> : notnull
+<#
+        }
+#>        =>
+            that.Index switch
+            {
     <#
         for (var k = 1; k <= i; k++)
         {
 #>
-       <#= k - 1 #> => on<#= k #>(that.<#= WordPascal(k) #> ?? throw Unreachable),
+            <#= k - 1 #> => on<#= k #>(that.<#= WordPascal(k) #> ?? throw Unreachable),
     <#
         }
 #>
-       _ => throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-<#= i #>."),
-       };
+            _ => throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-<#= i #>."),
+            };
 
     /// <summary>Performs an index operation on the disjoint union.</summary>
 <#
@@ -246,7 +271,14 @@ public static class EitherExtensions
     public static KeyValuePair<PropertyInfo, object?> Index<<#= Generic(i) #>>(
         this IEither<<#= Generic(i) #>> that,
         [ValueRange(0, <#= i - 1 #>)] int index)
-        =>
+<#
+        for (var l = 1; l <= i; l++)
+        {
+#>
+        where T<#= l #> : notnull
+<#
+        }
+#>=>
             index switch
             {
     <#
@@ -275,19 +307,28 @@ public static class EitherExtensions
     /// The value <paramref name="that"/> has an invalid <see cref="IEither.Index"/>.
     /// </exception>
     [Pure]
-    public static Type InnerType<<#= Generic(i) #>>(this IEither<<#= Generic(i) #>> that) =>
-        that.Index switch
+    public static Type InnerType<<#= Generic(i) #>>(this IEither<<#= Generic(i) #>> that)
+<#
+        for (var l = 1; l <= i; l++)
         {
+#>
+        where T<#= l #> : notnull
+<#
+        }
+#>
+        =>
+            that.Index switch
+            {
     <#
         for (var k = 1; k <= i; k++)
         {
 #>
-        <#= k - 1 #> => (Type)typeof(T<#= k #>),
+            <#= k - 1 #> => (Type)typeof(T<#= k #>),
     <#
         }
 #>
-        _ => throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-<#= i #>."),
-        };
+            _ => throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-<#= i #>."),
+            };
 
 <#
         if (i > Net35Limit)
