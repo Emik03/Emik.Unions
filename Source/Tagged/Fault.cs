@@ -9,9 +9,14 @@ namespace Emik.Unions.Tagged;
 /// <typeparam name="T">The type that created this instance.</typeparam>
 public readonly record struct Fault<T>(string Fact, T Uninit)
 #if NET7_0_OR_GREATER
-    : IEqualityOperators<Fault<T>, Fault<T>, bool>
+    : IEqualityOperators<Fault<T>, Fault<T>, bool>, IFactory<Fault<T>, FaultException>
 #endif
 {
+#if NET7_0_OR_GREATER
+    /// <inheritdoc />
+    static FaultException IFactory<Fault<T>, FaultException>.New(Fault<T> first) => first;
+#endif
+
     /// <summary>
     /// Converts this instance into an <see cref="FaultException"/>, then downcasting as <see cref="Exception"/>.
     /// This allows an <see cref="Fault{T}"/> to be thrown just like an <see cref="Exception"/>,

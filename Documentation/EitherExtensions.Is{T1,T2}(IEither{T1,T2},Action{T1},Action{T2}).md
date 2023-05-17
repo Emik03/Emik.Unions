@@ -6,7 +6,9 @@
 Runs the callback based on the value of the disjoint union.
 
 ```csharp
-public static Emik.Unions.Disjoints.IEither<T1,T2> Is<T1,T2>(this Emik.Unions.Disjoints.IEither<T1,T2> that, System.Action<T1>? on1=null, System.Action<T2>? on2=null);
+public static Emik.Unions.Disjoints.IEither<T1,T2> Is<T1,T2>(this Emik.Unions.Disjoints.IEither<T1,T2> that, System.Action<T1>? on1=null, System.Action<T2>? on2=null)
+    where T1 : notnull
+    where T2 : notnull;
 ```
 #### Type parameters
 

@@ -6,7 +6,10 @@
 Runs the callback based on the value of the disjoint union.
 
 ```csharp
-public static TResult Is<T1,T2,T3,TResult>(this Emik.Unions.Disjoints.IEither<T1,T2,T3> that, System.Converter<T1,TResult> on1, System.Converter<T2,TResult> on2, System.Converter<T3,TResult> on3);
+public static TResult Is<T1,T2,T3,TResult>(this Emik.Unions.Disjoints.IEither<T1,T2,T3> that, System.Converter<T1,TResult> on1, System.Converter<T2,TResult> on2, System.Converter<T3,TResult> on3)
+    where T1 : notnull
+    where T2 : notnull
+    where T3 : notnull;
 ```
 #### Type parameters
 

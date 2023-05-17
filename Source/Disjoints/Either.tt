@@ -40,6 +40,14 @@ public static class Either
     /// <returns><see cref="IEither{<#= Generic(i) #>}"/> with <paramref name="<#= WordCamel(j) #>"/>.</returns>
     [Pure]
     public static IEither<<#= Generic(i) #>> New<<#= Generic(i) #>>(T<#= j #> <#= WordCamel(j) #>)
+<#
+        for (var k = 1; k <= i; k++)
+        {
+#>
+        where T<#= k #> : notnull
+<#
+        }
+#>
         =>
             new InnerEither<<#= Generic(i) #>>(<#= WordCamel(j) #>);
 

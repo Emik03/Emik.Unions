@@ -47,6 +47,10 @@ Implements [System.Numerics.IEqualityOperators&lt;](https://docs.microsoft.com/e
 | Constructors | |
 | :--- | :--- |
 | [Overload(T1, T2, T3, T4)](Overload{T1,T2,T3,T4}..ctor(T1,T2,T3,T4).md 'Emik.Unions.Disjoints.Overload<T1,T2,T3,T4>.Overload(T1, T2, T3, T4)') | Defines a disjoint union with implicit conversions, for parameter signatures. |
+| [Overload(T1)](Overload{T1,T2,T3,T4}..ctor(T1).md 'Emik.Unions.Disjoints.Overload<T1,T2,T3,T4>.Overload(T1)') | Creates a new instance of TType with<br/>the [T4](Overload{T1,T2,T3,T4}.md#Emik.Unions.Disjoints.Overload_T1,T2,T3,T4_.T4 'Emik.Unions.Disjoints.Overload<T1,T2,T3,T4>.T4') value being set. |
+| [Overload(T2)](Overload{T1,T2,T3,T4}..ctor(T2).md 'Emik.Unions.Disjoints.Overload<T1,T2,T3,T4>.Overload(T2)') | Creates a new instance of TType with<br/>the [T4](Overload{T1,T2,T3,T4}.md#Emik.Unions.Disjoints.Overload_T1,T2,T3,T4_.T4 'Emik.Unions.Disjoints.Overload<T1,T2,T3,T4>.T4') value being set. |
+| [Overload(T3)](Overload{T1,T2,T3,T4}..ctor(T3).md 'Emik.Unions.Disjoints.Overload<T1,T2,T3,T4>.Overload(T3)') | Creates a new instance of TType with<br/>the [T4](Overload{T1,T2,T3,T4}.md#Emik.Unions.Disjoints.Overload_T1,T2,T3,T4_.T4 'Emik.Unions.Disjoints.Overload<T1,T2,T3,T4>.T4') value being set. |
+| [Overload(T4)](Overload{T1,T2,T3,T4}..ctor(T4).md 'Emik.Unions.Disjoints.Overload<T1,T2,T3,T4>.Overload(T4)') | Creates a new instance of TType with<br/>the [T4](Overload{T1,T2,T3,T4}.md#Emik.Unions.Disjoints.Overload_T1,T2,T3,T4_.T4 'Emik.Unions.Disjoints.Overload<T1,T2,T3,T4>.T4') value being set. |
 
 | Properties | |
 | :--- | :--- |

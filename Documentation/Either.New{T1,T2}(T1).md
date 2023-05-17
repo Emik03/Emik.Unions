@@ -6,7 +6,9 @@
 Creates a [IEither&lt;T1,T2&gt;](IEither{T1,T2}.md 'Emik.Unions.Disjoints.IEither<T1,T2>') with the inner value [T1](Either.New{T1,T2}(T1).md#Emik.Unions.Disjoints.Either.New_T1,T2_(T1).T1 'Emik.Unions.Disjoints.Either.New<T1,T2>(T1).T1').
 
 ```csharp
-public static Emik.Unions.Disjoints.IEither<T1,T2> New<T1,T2>(T1 first);
+public static Emik.Unions.Disjoints.IEither<T1,T2> New<T1,T2>(T1 first)
+    where T1 : notnull
+    where T2 : notnull;
 ```
 #### Type parameters
 

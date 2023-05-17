@@ -23,6 +23,7 @@ The first argument for the factory.
 The resulting type from the factory.
 
 Derived  
+&#8627; [Fault&lt;T&gt;](Fault{T}.md 'Emik.Unions.Tagged.Fault<T>')  
 &#8627; [Product&lt;T1,TType&gt;](Product{T1,TType}.md 'Emik.Unions.Tagged.Product<T1,TType>')
 
 | Methods | |

@@ -9,6 +9,8 @@ Defines an interface for disjoint union of size 2.
 public interface IEither<out T1,out T2> :
 Emik.Unions.Disjoints.IEither,
 Emik.Unions.IProperties
+    where T1 : notnull
+    where T2 : notnull
 ```
 #### Type parameters
 
