@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MPL-2.0
 namespace Emik.Unions.Mappings;
-
+#pragma warning disable 168, 169, 414, 8907 // ReSharper disable RedundantUsingDirective UnusedMember.Local UnusedParameter.Local UnusedTypeParameter
 using static BindingFlags;
 
 /// <summary>Defines a functor of unspecified types.</summary>
