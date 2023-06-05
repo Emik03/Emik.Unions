@@ -17,7 +17,7 @@ Implements [Emik.Unions.Tagged.IFactory&lt;](IFactory{T1,T2,T3,TType}.md 'Emik.U
 
 | Constructors | |
 | :--- | :--- |
-| [FaultException(string, string, object)](FaultException..ctor(String,String,Object).md 'Emik.Unions.Tagged.FaultException.FaultException(string, string, object)') | Initializes a new instance of the [FaultException](FaultException.md 'Emik.Unions.Tagged.FaultException') class. |
+| [FaultException(string, string, object)](FaultException..ctor(string,string,object).md 'Emik.Unions.Tagged.FaultException.FaultException(string, string, object)') | Initializes a new instance of the [FaultException](FaultException.md 'Emik.Unions.Tagged.FaultException') class. |
 
 | Properties | |
 | :--- | :--- |

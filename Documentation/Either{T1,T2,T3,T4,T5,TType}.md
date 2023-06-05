@@ -67,7 +67,7 @@ Implements [System.Numerics.IEqualityOperators&lt;](https://docs.microsoft.com/e
 
 | Properties | |
 | :--- | :--- |
-| [this[int]](Either{T1,T2,T3,T4,T5,TType}.Item(Int32).md 'Emik.Unions.Disjoints.Either<T1,T2,T3,T4,T5,TType>.this[int]') | Gets an [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') corresponding to the property of the type based on the index passed in. |
+| [this[int]](Either{T1,T2,T3,T4,T5,TType}.Item(int).md 'Emik.Unions.Disjoints.Either<T1,T2,T3,T4,T5,TType>.this[int]') | Gets an [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') corresponding to the property of the type based on the index passed in. |
 
 | Methods | |
 | :--- | :--- |

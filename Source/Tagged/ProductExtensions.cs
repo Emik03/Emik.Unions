@@ -38,7 +38,7 @@ public static class ProductExtensions
         [Localizable(false), LocalizationRequired(false)] string name) =>
         name switch
         {
-            { } when name.Equals(that.Properties[0].Name, StringComparison.Ordinal)
+            not null when name.Equals(that.Properties[0].Name, StringComparison.Ordinal)
                 => new(that.Properties[0], that.First),
             _ => throw new KeyNotFoundException($"The key {name} is not a valid member."),
         };
@@ -96,9 +96,9 @@ public static class ProductExtensions
         [Localizable(false), LocalizationRequired(false)] string name) =>
         name switch
         {
-            { } when name.Equals(that.Properties[0].Name, StringComparison.Ordinal)
+            not null when name.Equals(that.Properties[0].Name, StringComparison.Ordinal)
                 => new(that.Properties[0], that.First),
-            { } when name.Equals(that.Properties[1].Name, StringComparison.Ordinal)
+            not null when name.Equals(that.Properties[1].Name, StringComparison.Ordinal)
                 => new(that.Properties[1], that.Second),
             _ => throw new KeyNotFoundException($"The key {name} is not a valid member."),
         };
@@ -168,11 +168,11 @@ public static class ProductExtensions
         [Localizable(false), LocalizationRequired(false)] string name) =>
         name switch
         {
-            { } when name.Equals(that.Properties[0].Name, StringComparison.Ordinal)
+            not null when name.Equals(that.Properties[0].Name, StringComparison.Ordinal)
                 => new(that.Properties[0], that.First),
-            { } when name.Equals(that.Properties[1].Name, StringComparison.Ordinal)
+            not null when name.Equals(that.Properties[1].Name, StringComparison.Ordinal)
                 => new(that.Properties[1], that.Second),
-            { } when name.Equals(that.Properties[2].Name, StringComparison.Ordinal)
+            not null when name.Equals(that.Properties[2].Name, StringComparison.Ordinal)
                 => new(that.Properties[2], that.Third),
             _ => throw new KeyNotFoundException($"The key {name} is not a valid member."),
         };
@@ -254,13 +254,13 @@ public static class ProductExtensions
         [Localizable(false), LocalizationRequired(false)] string name) =>
         name switch
         {
-            { } when name.Equals(that.Properties[0].Name, StringComparison.Ordinal)
+            not null when name.Equals(that.Properties[0].Name, StringComparison.Ordinal)
                 => new(that.Properties[0], that.First),
-            { } when name.Equals(that.Properties[1].Name, StringComparison.Ordinal)
+            not null when name.Equals(that.Properties[1].Name, StringComparison.Ordinal)
                 => new(that.Properties[1], that.Second),
-            { } when name.Equals(that.Properties[2].Name, StringComparison.Ordinal)
+            not null when name.Equals(that.Properties[2].Name, StringComparison.Ordinal)
                 => new(that.Properties[2], that.Third),
-            { } when name.Equals(that.Properties[3].Name, StringComparison.Ordinal)
+            not null when name.Equals(that.Properties[3].Name, StringComparison.Ordinal)
                 => new(that.Properties[3], that.Fourth),
             _ => throw new KeyNotFoundException($"The key {name} is not a valid member."),
         };

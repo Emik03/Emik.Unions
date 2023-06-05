@@ -37,4 +37,4 @@ Derived
 | Properties | |
 | :--- | :--- |
 | [Properties](IProperties.Properties.md 'Emik.Unions.IProperties.Properties') | Gets all properties of this type. |
-| [this[int]](IProperties.Item(Int32).md 'Emik.Unions.IProperties.this[int]') | Gets an [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') corresponding to the property of the type based on the index passed in. |
+| [this[int]](IProperties.Item(int).md 'Emik.Unions.IProperties.this[int]') | Gets an [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') corresponding to the property of the type based on the index passed in. |
