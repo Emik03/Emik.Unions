@@ -74,7 +74,7 @@ public static class ProductExtensions
         for (var k = 1; k <= i; k++)
         {
 #>
-            { } when name.Equals(that.Properties[<#= k - 1 #>].Name, StringComparison.Ordinal)
+            not null when name.Equals(that.Properties[<#= k - 1 #>].Name, StringComparison.Ordinal)
                 => new(that.Properties[<#= k - 1 #>], that.<#= WordPascal(k) #>),
 <#
         }
