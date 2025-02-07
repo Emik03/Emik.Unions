@@ -25,7 +25,6 @@ namespace Emik.Unions.Disjoints;
         }
 #>
 /// <typeparam name="TType">The type of the inheriting record.</typeparam>
-[DoNotVirtualize]
 public abstract record Ordered<<#= Generic(i) #>, TType> :
 #if NET7_0_OR_GREATER
     IEqualityOperators<Ordered<<#= Generic(i) #>, TType>, Ordered<<#= Generic(i) #>, TType>, bool>,
@@ -100,13 +99,13 @@ public abstract record Ordered<<#= Generic(i) #>, TType> :
 #if NETFRAMEWORK && !NET45_OR_GREATER
            .ToList();
 #else
-           .ToReadOnly();
+           .ReadOnly();
 #endif
 
     /// <inheritdoc/>
     [Pure]
     public sealed override string ToString() =>
-        $"{typeof(TType).UnfoldedName()}[{Index}] {{ {this[Index].Value} }}";
+        $"{typeof(TType).Name}[{Index}] {{ {this[Index].Value} }}";
 }
 
 <#

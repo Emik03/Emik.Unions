@@ -26,7 +26,7 @@ public sealed record Overload<T1, T2>(T1? First, T2? Second)
     public static implicit operator Overload<T1, T2>(T1 first) => New(first);
 
     /// <inheritdoc cref="IEither{T1, T2}.First" />
-    public static explicit operator T1?(Overload<T1, T2> first) => ((IEither<T1, T2>)first).First;
+    public static explicit operator T1?(Overload<T1, T2> first) => first.First;
 
     /// <inheritdoc cref="Either{T1, T2, TType}.New(T2)" />
     public Overload(T2 second)
@@ -36,7 +36,7 @@ public sealed record Overload<T1, T2>(T1? First, T2? Second)
     public static implicit operator Overload<T1, T2>(T2 second) => New(second);
 
     /// <inheritdoc cref="IEither{T1, T2}.Second" />
-    public static explicit operator T2?(Overload<T1, T2> second) => ((IEither<T1, T2>)second).Second;
+    public static explicit operator T2?(Overload<T1, T2> second) => second.Second;
 
 }
 
@@ -65,7 +65,7 @@ public sealed record Overload<T1, T2, T3>(T1? First, T2? Second, T3? Third)
     public static implicit operator Overload<T1, T2, T3>(T1 first) => New(first);
 
     /// <inheritdoc cref="IEither{T1, T2, T3}.First" />
-    public static explicit operator T1?(Overload<T1, T2, T3> first) => ((IEither<T1, T2, T3>)first).First;
+    public static explicit operator T1?(Overload<T1, T2, T3> first) => first.First;
 
     /// <inheritdoc cref="Either{T1, T2, T3, TType}.New(T2)" />
     public Overload(T2 second)
@@ -75,7 +75,7 @@ public sealed record Overload<T1, T2, T3>(T1? First, T2? Second, T3? Third)
     public static implicit operator Overload<T1, T2, T3>(T2 second) => New(second);
 
     /// <inheritdoc cref="IEither{T1, T2, T3}.Second" />
-    public static explicit operator T2?(Overload<T1, T2, T3> second) => ((IEither<T1, T2, T3>)second).Second;
+    public static explicit operator T2?(Overload<T1, T2, T3> second) => second.Second;
 
     /// <inheritdoc cref="Either{T1, T2, T3, TType}.New(T3)" />
     public Overload(T3 third)
@@ -85,7 +85,7 @@ public sealed record Overload<T1, T2, T3>(T1? First, T2? Second, T3? Third)
     public static implicit operator Overload<T1, T2, T3>(T3 third) => New(third);
 
     /// <inheritdoc cref="IEither{T1, T2, T3}.Third" />
-    public static explicit operator T3?(Overload<T1, T2, T3> third) => ((IEither<T1, T2, T3>)third).Third;
+    public static explicit operator T3?(Overload<T1, T2, T3> third) => third.Third;
 
 }
 
@@ -117,7 +117,7 @@ public sealed record Overload<T1, T2, T3, T4>(T1? First, T2? Second, T3? Third, 
     public static implicit operator Overload<T1, T2, T3, T4>(T1 first) => New(first);
 
     /// <inheritdoc cref="IEither{T1, T2, T3, T4}.First" />
-    public static explicit operator T1?(Overload<T1, T2, T3, T4> first) => ((IEither<T1, T2, T3, T4>)first).First;
+    public static explicit operator T1?(Overload<T1, T2, T3, T4> first) => first.First;
 
     /// <inheritdoc cref="Either{T1, T2, T3, T4, TType}.New(T2)" />
     public Overload(T2 second)
@@ -127,7 +127,7 @@ public sealed record Overload<T1, T2, T3, T4>(T1? First, T2? Second, T3? Third, 
     public static implicit operator Overload<T1, T2, T3, T4>(T2 second) => New(second);
 
     /// <inheritdoc cref="IEither{T1, T2, T3, T4}.Second" />
-    public static explicit operator T2?(Overload<T1, T2, T3, T4> second) => ((IEither<T1, T2, T3, T4>)second).Second;
+    public static explicit operator T2?(Overload<T1, T2, T3, T4> second) => second.Second;
 
     /// <inheritdoc cref="Either{T1, T2, T3, T4, TType}.New(T3)" />
     public Overload(T3 third)
@@ -137,7 +137,7 @@ public sealed record Overload<T1, T2, T3, T4>(T1? First, T2? Second, T3? Third, 
     public static implicit operator Overload<T1, T2, T3, T4>(T3 third) => New(third);
 
     /// <inheritdoc cref="IEither{T1, T2, T3, T4}.Third" />
-    public static explicit operator T3?(Overload<T1, T2, T3, T4> third) => ((IEither<T1, T2, T3, T4>)third).Third;
+    public static explicit operator T3?(Overload<T1, T2, T3, T4> third) => third.Third;
 
     /// <inheritdoc cref="Either{T1, T2, T3, T4, TType}.New(T4)" />
     public Overload(T4 fourth)
@@ -147,7 +147,7 @@ public sealed record Overload<T1, T2, T3, T4>(T1? First, T2? Second, T3? Third, 
     public static implicit operator Overload<T1, T2, T3, T4>(T4 fourth) => New(fourth);
 
     /// <inheritdoc cref="IEither{T1, T2, T3, T4}.Fourth" />
-    public static explicit operator T4?(Overload<T1, T2, T3, T4> fourth) => ((IEither<T1, T2, T3, T4>)fourth).Fourth;
+    public static explicit operator T4?(Overload<T1, T2, T3, T4> fourth) => fourth.Fourth;
 
 }
 
@@ -183,7 +183,7 @@ public sealed record Overload<T1, T2, T3, T4, T5>(T1? First, T2? Second, T3? Thi
     public static implicit operator Overload<T1, T2, T3, T4, T5>(T1 first) => New(first);
 
     /// <inheritdoc cref="IEither{T1, T2, T3, T4, T5}.First" />
-    public static explicit operator T1?(Overload<T1, T2, T3, T4, T5> first) => ((IEither<T1, T2, T3, T4, T5>)first).First;
+    public static explicit operator T1?(Overload<T1, T2, T3, T4, T5> first) => first.First;
 
     /// <inheritdoc cref="Either{T1, T2, T3, T4, T5, TType}.New(T2)" />
     public Overload(T2 second)
@@ -193,7 +193,7 @@ public sealed record Overload<T1, T2, T3, T4, T5>(T1? First, T2? Second, T3? Thi
     public static implicit operator Overload<T1, T2, T3, T4, T5>(T2 second) => New(second);
 
     /// <inheritdoc cref="IEither{T1, T2, T3, T4, T5}.Second" />
-    public static explicit operator T2?(Overload<T1, T2, T3, T4, T5> second) => ((IEither<T1, T2, T3, T4, T5>)second).Second;
+    public static explicit operator T2?(Overload<T1, T2, T3, T4, T5> second) => second.Second;
 
     /// <inheritdoc cref="Either{T1, T2, T3, T4, T5, TType}.New(T3)" />
     public Overload(T3 third)
@@ -203,7 +203,7 @@ public sealed record Overload<T1, T2, T3, T4, T5>(T1? First, T2? Second, T3? Thi
     public static implicit operator Overload<T1, T2, T3, T4, T5>(T3 third) => New(third);
 
     /// <inheritdoc cref="IEither{T1, T2, T3, T4, T5}.Third" />
-    public static explicit operator T3?(Overload<T1, T2, T3, T4, T5> third) => ((IEither<T1, T2, T3, T4, T5>)third).Third;
+    public static explicit operator T3?(Overload<T1, T2, T3, T4, T5> third) => third.Third;
 
     /// <inheritdoc cref="Either{T1, T2, T3, T4, T5, TType}.New(T4)" />
     public Overload(T4 fourth)
@@ -213,7 +213,7 @@ public sealed record Overload<T1, T2, T3, T4, T5>(T1? First, T2? Second, T3? Thi
     public static implicit operator Overload<T1, T2, T3, T4, T5>(T4 fourth) => New(fourth);
 
     /// <inheritdoc cref="IEither{T1, T2, T3, T4, T5}.Fourth" />
-    public static explicit operator T4?(Overload<T1, T2, T3, T4, T5> fourth) => ((IEither<T1, T2, T3, T4, T5>)fourth).Fourth;
+    public static explicit operator T4?(Overload<T1, T2, T3, T4, T5> fourth) => fourth.Fourth;
 
     /// <inheritdoc cref="Either{T1, T2, T3, T4, T5, TType}.New(T5)" />
     public Overload(T5 fifth)
@@ -223,7 +223,7 @@ public sealed record Overload<T1, T2, T3, T4, T5>(T1? First, T2? Second, T3? Thi
     public static implicit operator Overload<T1, T2, T3, T4, T5>(T5 fifth) => New(fifth);
 
     /// <inheritdoc cref="IEither{T1, T2, T3, T4, T5}.Fifth" />
-    public static explicit operator T5?(Overload<T1, T2, T3, T4, T5> fifth) => ((IEither<T1, T2, T3, T4, T5>)fifth).Fifth;
+    public static explicit operator T5?(Overload<T1, T2, T3, T4, T5> fifth) => fifth.Fifth;
 
 }
 

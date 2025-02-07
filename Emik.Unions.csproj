@@ -1,13 +1,12 @@
 <!-- SPDX-License-Identifier: MPL-2.0 -->
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <FileVersion>2.1.1</FileVersion>
-        <RepositoryType>git</RepositoryType>
+        <FileVersion>3.0</FileVersion>
         <CopyrightSince>2022</CopyrightSince>
-        <NoWarn>$(NoWarn);SA1518;SA1633</NoWarn>
+        <NoWarn>$(NoWarn);IDE0305;SA1518;SA1633</NoWarn>
         <RepositoryUrl>https://github.com/Emik03/Emik.Unions</RepositoryUrl>
         <PackageProjectUrl>https://github.com/Emik03/Emik.Unions</PackageProjectUrl>
-        <TargetFrameworks>net7.0;net5.0;netcoreapp3.0;netstandard2.0;net45;net35</TargetFrameworks>
+        <TargetFrameworks>net7.0;net5.0;netcoreapp3.0;netstandard2.0;net35</TargetFrameworks>
         <Description>Contains the functional programming paradigm; unions in both disjointed- and tagged flavors.</Description>
         <PackageTags>Chain Disjoint Either Extension Factory Functional Fluent Functor Generic Inference Inheritance Interface Monad Monadic Monoid Overload Product Record Reflection Tagged Type Validation</PackageTags>
     </PropertyGroup>
@@ -92,7 +91,7 @@
         <Compile Update="Source/Include.cs" Design="true" AutoGen="true">
             <DependentUpon>Include.ttinclude</DependentUpon>
         </Compile>
-        <PackageReference Include="Emik.Results" Version="2.1.1" PrivateAssets="all" Private="false"/>
+        <PackageReference Include="Emik.Results" Version="4.0" PrivateAssets="all" Private="false"/>
         <Compile Update="Source/Disjoints/InnerEither.cs">
             <AutoGen>True</AutoGen>
             <DesignTime>True</DesignTime>

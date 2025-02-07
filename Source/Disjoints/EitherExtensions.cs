@@ -1,6 +1,6 @@
 ﻿// SPDX-License-Identifier: MPL-2.0
 // ReSharper disable ArrangeConstructorOrDestructorBody BadParensLineBreaks BadPreprocessorIndent IncorrectBlankLinesNearBraces MissingIndent NotAccessedPositionalProperty.Global RedundantCast RedundantLinebreak UnusedMemberInSuper.Global
-// ReSharper disable InconsistentNaming
+// ReSharper disable InconsistentNaming PreferConcreteValueOverDefault
 namespace Emik.Unions.Disjoints;
 #pragma warning disable SA1001, SA1508
 /// <summary>A static class that provides functionality for disjoint union types.</summary>
@@ -289,8 +289,8 @@ public static class EitherExtensions
         =>
             that.Index switch
             {
-                0 => (Type)typeof(T1),
-                1 => (Type)typeof(T2),
+                0 => typeof(T1),
+                1 => typeof(T2),
                 _ => throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-2."),
             };
 
@@ -1006,9 +1006,9 @@ public static class EitherExtensions
         =>
             that.Index switch
             {
-                0 => (Type)typeof(T1),
-                1 => (Type)typeof(T2),
-                2 => (Type)typeof(T3),
+                0 => typeof(T1),
+                1 => typeof(T2),
+                2 => typeof(T3),
                 _ => throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-3."),
             };
 
@@ -2653,10 +2653,10 @@ public static class EitherExtensions
         =>
             that.Index switch
             {
-                0 => (Type)typeof(T1),
-                1 => (Type)typeof(T2),
-                2 => (Type)typeof(T3),
-                3 => (Type)typeof(T4),
+                0 => typeof(T1),
+                1 => typeof(T2),
+                2 => typeof(T3),
+                3 => typeof(T4),
                 _ => throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-4."),
             };
 
@@ -6307,11 +6307,11 @@ public static class EitherExtensions
         =>
             that.Index switch
             {
-                0 => (Type)typeof(T1),
-                1 => (Type)typeof(T2),
-                2 => (Type)typeof(T3),
-                3 => (Type)typeof(T4),
-                4 => (Type)typeof(T5),
+                0 => typeof(T1),
+                1 => typeof(T2),
+                2 => typeof(T3),
+                3 => typeof(T4),
+                4 => typeof(T5),
                 _ => throw new ArgumentOutOfRangeException(nameof(that), $"The index {that.Index} was attempted to be accessed when the expected range is (inclusive min, exclusive max) 0-5."),
             };
 

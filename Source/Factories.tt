@@ -35,11 +35,11 @@ public static class Factories
     public static Result<Func<<#= Generic(i) #>, TType>, MissingMethodException> From<<#= Generic(i) #>, TType>()
         where TType : notnull
     {
-        var info = typeof(TType).GetConstructor(new[] { <#= TypeOf(i) #> });
+        var info = typeof(TType).GetConstructor([<#= TypeOf(i) #>]);
 
         if (info is null)
             return new MissingMethodException(
-                typeof(TType).UnfoldedName(),
+                typeof(TType).Name,
                 ".ctor(<#= Generic(i) #>)"
             );
 

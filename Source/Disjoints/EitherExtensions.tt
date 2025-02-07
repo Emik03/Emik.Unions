@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MPL-2.0
-<#@ include file="../Include.ttinclude" #>// ReSharper disable InconsistentNaming
+<#@ include file="../Include.ttinclude" #>// ReSharper disable InconsistentNaming PreferConcreteValueOverDefault
 namespace Emik.Unions.Disjoints;
 #pragma warning disable SA1001, SA1508
 /// <summary>A static class that provides functionality for disjoint union types.</summary>
@@ -323,7 +323,7 @@ public static class EitherExtensions
         for (var k = 1; k <= i; k++)
         {
 #>
-            <#= k - 1 #> => (Type)typeof(T<#= k #>),
+            <#= k - 1 #> => typeof(T<#= k #>),
     <#
         }
 #>

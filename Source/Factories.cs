@@ -17,11 +17,11 @@ public static class Factories
     public static Result<Func<T1, TType>, MissingMethodException> From<T1, TType>()
         where TType : notnull
     {
-        var info = typeof(TType).GetConstructor(new[] { typeof(T1) });
+        var info = typeof(TType).GetConstructor([typeof(T1)]);
 
         if (info is null)
             return new MissingMethodException(
-                typeof(TType).UnfoldedName(),
+                typeof(TType).Name,
                 ".ctor(T1)"
             );
 
@@ -52,11 +52,11 @@ public static class Factories
     public static Result<Func<T1, T2, TType>, MissingMethodException> From<T1, T2, TType>()
         where TType : notnull
     {
-        var info = typeof(TType).GetConstructor(new[] { typeof(T1), typeof(T2) });
+        var info = typeof(TType).GetConstructor([typeof(T1), typeof(T2)]);
 
         if (info is null)
             return new MissingMethodException(
-                typeof(TType).UnfoldedName(),
+                typeof(TType).Name,
                 ".ctor(T1, T2)"
             );
 
@@ -91,11 +91,11 @@ public static class Factories
     public static Result<Func<T1, T2, T3, TType>, MissingMethodException> From<T1, T2, T3, TType>()
         where TType : notnull
     {
-        var info = typeof(TType).GetConstructor(new[] { typeof(T1), typeof(T2), typeof(T3) });
+        var info = typeof(TType).GetConstructor([typeof(T1), typeof(T2), typeof(T3)]);
 
         if (info is null)
             return new MissingMethodException(
-                typeof(TType).UnfoldedName(),
+                typeof(TType).Name,
                 ".ctor(T1, T2, T3)"
             );
 
@@ -134,11 +134,11 @@ public static class Factories
     public static Result<Func<T1, T2, T3, T4, TType>, MissingMethodException> From<T1, T2, T3, T4, TType>()
         where TType : notnull
     {
-        var info = typeof(TType).GetConstructor(new[] { typeof(T1), typeof(T2), typeof(T3), typeof(T4) });
+        var info = typeof(TType).GetConstructor([typeof(T1), typeof(T2), typeof(T3), typeof(T4)]);
 
         if (info is null)
             return new MissingMethodException(
-                typeof(TType).UnfoldedName(),
+                typeof(TType).Name,
                 ".ctor(T1, T2, T3, T4)"
             );
 
@@ -182,11 +182,11 @@ public static class Factories
     public static Result<Func<T1, T2, T3, T4, T5, TType>, MissingMethodException> From<T1, T2, T3, T4, T5, TType>()
         where TType : notnull
     {
-        var info = typeof(TType).GetConstructor(new[] { typeof(T1), typeof(T2), typeof(T3), typeof(T4), typeof(T5) });
+        var info = typeof(TType).GetConstructor([typeof(T1), typeof(T2), typeof(T3), typeof(T4), typeof(T5)]);
 
         if (info is null)
             return new MissingMethodException(
-                typeof(TType).UnfoldedName(),
+                typeof(TType).Name,
                 ".ctor(T1, T2, T3, T4, T5)"
             );
 

@@ -74,7 +74,7 @@ sealed record InnerEither<T1, T2> :
 #if NETFRAMEWORK && !NET45_OR_GREATER
            .ToList();
 #else
-           .ToReadOnly();
+           .ReadOnly();
 #endif
 
     /// <inheritdoc/>
@@ -169,7 +169,7 @@ sealed record InnerEither<T1, T2, T3> :
 #if NETFRAMEWORK && !NET45_OR_GREATER
            .ToList();
 #else
-           .ToReadOnly();
+           .ReadOnly();
 #endif
 
     /// <inheritdoc/>
@@ -280,7 +280,7 @@ sealed record InnerEither<T1, T2, T3, T4> :
 #if NETFRAMEWORK && !NET45_OR_GREATER
            .ToList();
 #else
-           .ToReadOnly();
+           .ReadOnly();
 #endif
 
     /// <inheritdoc/>
@@ -408,7 +408,7 @@ sealed record InnerEither<T1, T2, T3, T4, T5> :
 #if NETFRAMEWORK && !NET45_OR_GREATER
            .ToList();
 #else
-           .ToReadOnly();
+           .ReadOnly();
 #endif
 
     /// <inheritdoc/>

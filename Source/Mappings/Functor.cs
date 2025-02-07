@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MPL-2.0
 namespace Emik.Unions.Mappings;
-#pragma warning disable 168, 169, 414, 8907 // ReSharper disable RedundantUsingDirective UnusedMember.Local UnusedParameter.Local UnusedTypeParameter
+#pragma warning disable 168, 169, 414, 8907, IDE0032 // ReSharper disable RedundantUsingDirective UnusedMember.Local UnusedParameter.Local UnusedTypeParameter
 using static BindingFlags;
 
 /// <summary>Defines a functor of unspecified types.</summary>
@@ -120,7 +120,7 @@ public abstract record Functor<T, TResult, TType>(Converter<T, TResult> Converte
 #if NETFRAMEWORK && !NET45_OR_GREATER
            .ToList();
 #else
-           .ToReadOnly();
+           .ReadOnly();
 #endif
 
     /// <inheritdoc />
@@ -176,8 +176,8 @@ public abstract record Functor<T, TResult, TType>(Converter<T, TResult> Converte
     [MustUseReturnValue]
     static TResult? Default() =>
         Please
-           .Try(() => Activator.CreateInstance(typeof(TResult), true) ?? Result.None)
-           .MapErr(_ => Fields().Concat(Methods()).Filter().FirstOr(Result.None))
+           .Try(() => Activator.CreateInstance(typeof(TResult), true) ?? new())
+           .MapErr(_ => Fields().Concat(Methods()).Filter())
            .Value is TResult t
             ? t
             : default;

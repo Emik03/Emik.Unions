@@ -8,7 +8,6 @@ namespace Emik.Unions.Disjoints;
 /// <typeparam name="T1">The first type of the disjoint union.</typeparam>
 /// <typeparam name="T2">The second type of the disjoint union.</typeparam>
 /// <typeparam name="TType">The type of the inheriting record.</typeparam>
-[DoNotVirtualize]
 public abstract record Ordered<T1, T2, TType> :
 #if NET7_0_OR_GREATER
     IEqualityOperators<Ordered<T1, T2, TType>, Ordered<T1, T2, TType>, bool>,
@@ -92,13 +91,13 @@ public abstract record Ordered<T1, T2, TType> :
 #if NETFRAMEWORK && !NET45_OR_GREATER
            .ToList();
 #else
-           .ToReadOnly();
+           .ReadOnly();
 #endif
 
     /// <inheritdoc/>
     [Pure]
     public sealed override string ToString() =>
-        $"{typeof(TType).UnfoldedName()}[{Index}] {{ {this[Index].Value} }}";
+        $"{typeof(TType).Name}[{Index}] {{ {this[Index].Value} }}";
 }
 
 /// <summary>Defines an inheritable record that automates logic for a disjoint union.</summary>
@@ -106,7 +105,6 @@ public abstract record Ordered<T1, T2, TType> :
 /// <typeparam name="T2">The second type of the disjoint union.</typeparam>
 /// <typeparam name="T3">The third type of the disjoint union.</typeparam>
 /// <typeparam name="TType">The type of the inheriting record.</typeparam>
-[DoNotVirtualize]
 public abstract record Ordered<T1, T2, T3, TType> :
 #if NET7_0_OR_GREATER
     IEqualityOperators<Ordered<T1, T2, T3, TType>, Ordered<T1, T2, T3, TType>, bool>,
@@ -213,13 +211,13 @@ public abstract record Ordered<T1, T2, T3, TType> :
 #if NETFRAMEWORK && !NET45_OR_GREATER
            .ToList();
 #else
-           .ToReadOnly();
+           .ReadOnly();
 #endif
 
     /// <inheritdoc/>
     [Pure]
     public sealed override string ToString() =>
-        $"{typeof(TType).UnfoldedName()}[{Index}] {{ {this[Index].Value} }}";
+        $"{typeof(TType).Name}[{Index}] {{ {this[Index].Value} }}";
 }
 
 /// <summary>Defines an inheritable record that automates logic for a disjoint union.</summary>
@@ -228,7 +226,6 @@ public abstract record Ordered<T1, T2, T3, TType> :
 /// <typeparam name="T3">The third type of the disjoint union.</typeparam>
 /// <typeparam name="T4">The fourth type of the disjoint union.</typeparam>
 /// <typeparam name="TType">The type of the inheriting record.</typeparam>
-[DoNotVirtualize]
 public abstract record Ordered<T1, T2, T3, T4, TType> :
 #if NET7_0_OR_GREATER
     IEqualityOperators<Ordered<T1, T2, T3, T4, TType>, Ordered<T1, T2, T3, T4, TType>, bool>,
@@ -358,13 +355,13 @@ public abstract record Ordered<T1, T2, T3, T4, TType> :
 #if NETFRAMEWORK && !NET45_OR_GREATER
            .ToList();
 #else
-           .ToReadOnly();
+           .ReadOnly();
 #endif
 
     /// <inheritdoc/>
     [Pure]
     public sealed override string ToString() =>
-        $"{typeof(TType).UnfoldedName()}[{Index}] {{ {this[Index].Value} }}";
+        $"{typeof(TType).Name}[{Index}] {{ {this[Index].Value} }}";
 }
 
 #if !NETFRAMEWORK || NET40_OR_GREATER
@@ -375,7 +372,6 @@ public abstract record Ordered<T1, T2, T3, T4, TType> :
 /// <typeparam name="T4">The fourth type of the disjoint union.</typeparam>
 /// <typeparam name="T5">The fifth type of the disjoint union.</typeparam>
 /// <typeparam name="TType">The type of the inheriting record.</typeparam>
-[DoNotVirtualize]
 public abstract record Ordered<T1, T2, T3, T4, T5, TType> :
 #if NET7_0_OR_GREATER
     IEqualityOperators<Ordered<T1, T2, T3, T4, T5, TType>, Ordered<T1, T2, T3, T4, T5, TType>, bool>,
@@ -528,13 +524,13 @@ public abstract record Ordered<T1, T2, T3, T4, T5, TType> :
 #if NETFRAMEWORK && !NET45_OR_GREATER
            .ToList();
 #else
-           .ToReadOnly();
+           .ReadOnly();
 #endif
 
     /// <inheritdoc/>
     [Pure]
     public sealed override string ToString() =>
-        $"{typeof(TType).UnfoldedName()}[{Index}] {{ {this[Index].Value} }}";
+        $"{typeof(TType).Name}[{Index}] {{ {this[Index].Value} }}";
 }
 
 #endif

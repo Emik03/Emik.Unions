@@ -7,7 +7,6 @@ namespace Emik.Unions.Disjoints;
 /// <typeparam name="T1">The first type of the disjoint union.</typeparam>
 /// <typeparam name="T2">The second type of the disjoint union.</typeparam>
 /// <typeparam name="TType">The type of the inheriting record.</typeparam>
-[DoNotVirtualize]
 public abstract record Either<T1, T2, TType> :
 #if NET7_0_OR_GREATER
     IEqualityOperators<Either<T1, T2, TType>, Either<T1, T2, TType>, bool>,
@@ -116,13 +115,13 @@ public abstract record Either<T1, T2, TType> :
 #if NETFRAMEWORK && !NET45_OR_GREATER
            .ToList();
 #else
-           .ToReadOnly();
+           .ReadOnly();
 #endif
 
     /// <inheritdoc/>
     [Pure]
     public sealed override string ToString() =>
-        $"{typeof(TType).UnfoldedName()}[{_index}] {{ {s_properties[_index].Name} = {this[_index].Value} }}";
+        $"{typeof(TType).Name}[{_index}] {{ {s_properties[_index].Name} = {this[_index].Value} }}";
 }
 
 /// <summary>Defines an inheritable record that automates logic for a disjoint union.</summary>
@@ -130,7 +129,6 @@ public abstract record Either<T1, T2, TType> :
 /// <typeparam name="T2">The second type of the disjoint union.</typeparam>
 /// <typeparam name="T3">The third type of the disjoint union.</typeparam>
 /// <typeparam name="TType">The type of the inheriting record.</typeparam>
-[DoNotVirtualize]
 public abstract record Either<T1, T2, T3, TType> :
 #if NET7_0_OR_GREATER
     IEqualityOperators<Either<T1, T2, T3, TType>, Either<T1, T2, T3, TType>, bool>,
@@ -275,13 +273,13 @@ public abstract record Either<T1, T2, T3, TType> :
 #if NETFRAMEWORK && !NET45_OR_GREATER
            .ToList();
 #else
-           .ToReadOnly();
+           .ReadOnly();
 #endif
 
     /// <inheritdoc/>
     [Pure]
     public sealed override string ToString() =>
-        $"{typeof(TType).UnfoldedName()}[{_index}] {{ {s_properties[_index].Name} = {this[_index].Value} }}";
+        $"{typeof(TType).Name}[{_index}] {{ {s_properties[_index].Name} = {this[_index].Value} }}";
 }
 
 /// <summary>Defines an inheritable record that automates logic for a disjoint union.</summary>
@@ -290,7 +288,6 @@ public abstract record Either<T1, T2, T3, TType> :
 /// <typeparam name="T3">The third type of the disjoint union.</typeparam>
 /// <typeparam name="T4">The fourth type of the disjoint union.</typeparam>
 /// <typeparam name="TType">The type of the inheriting record.</typeparam>
-[DoNotVirtualize]
 public abstract record Either<T1, T2, T3, T4, TType> :
 #if NET7_0_OR_GREATER
     IEqualityOperators<Either<T1, T2, T3, T4, TType>, Either<T1, T2, T3, T4, TType>, bool>,
@@ -473,13 +470,13 @@ public abstract record Either<T1, T2, T3, T4, TType> :
 #if NETFRAMEWORK && !NET45_OR_GREATER
            .ToList();
 #else
-           .ToReadOnly();
+           .ReadOnly();
 #endif
 
     /// <inheritdoc/>
     [Pure]
     public sealed override string ToString() =>
-        $"{typeof(TType).UnfoldedName()}[{_index}] {{ {s_properties[_index].Name} = {this[_index].Value} }}";
+        $"{typeof(TType).Name}[{_index}] {{ {s_properties[_index].Name} = {this[_index].Value} }}";
 }
 
 #if !NETFRAMEWORK || NET40_OR_GREATER
@@ -490,7 +487,6 @@ public abstract record Either<T1, T2, T3, T4, TType> :
 /// <typeparam name="T4">The fourth type of the disjoint union.</typeparam>
 /// <typeparam name="T5">The fifth type of the disjoint union.</typeparam>
 /// <typeparam name="TType">The type of the inheriting record.</typeparam>
-[DoNotVirtualize]
 public abstract record Either<T1, T2, T3, T4, T5, TType> :
 #if NET7_0_OR_GREATER
     IEqualityOperators<Either<T1, T2, T3, T4, T5, TType>, Either<T1, T2, T3, T4, T5, TType>, bool>,
@@ -713,13 +709,13 @@ public abstract record Either<T1, T2, T3, T4, T5, TType> :
 #if NETFRAMEWORK && !NET45_OR_GREATER
            .ToList();
 #else
-           .ToReadOnly();
+           .ReadOnly();
 #endif
 
     /// <inheritdoc/>
     [Pure]
     public sealed override string ToString() =>
-        $"{typeof(TType).UnfoldedName()}[{_index}] {{ {s_properties[_index].Name} = {this[_index].Value} }}";
+        $"{typeof(TType).Name}[{_index}] {{ {s_properties[_index].Name} = {this[_index].Value} }}";
 }
 
 #endif

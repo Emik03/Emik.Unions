@@ -70,7 +70,7 @@ public sealed record Overload<<#= Generic(i) #>>(<#
     public static implicit operator Overload<<#= Generic(i) #>>(T<#= j #> <#= WordCamel(j) #>) => New(<#= WordCamel(j) #>);
 
     /// <inheritdoc cref="IEither{<#= Generic(i) #>}.<#= WordPascal(j) #>" />
-    public static explicit operator T<#= j #>?(Overload<<#= Generic(i) #>> <#= WordCamel(j) #>) => ((IEither<<#= Generic(i) #>>)<#= WordCamel(j) #>).<#= WordPascal(j) #>;
+    public static explicit operator T<#= j #>?(Overload<<#= Generic(i) #>> <#= WordCamel(j) #>) => <#= WordCamel(j) #>.<#= WordPascal(j) #>;
 
 <#
         }
