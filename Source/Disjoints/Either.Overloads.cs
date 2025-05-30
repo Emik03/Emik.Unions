@@ -115,7 +115,7 @@ public abstract record Either<T1, T2, TType> :
 #if NETFRAMEWORK && !NET45_OR_GREATER
            .ToList();
 #else
-           .ReadOnly();
+           .AsReadOnly();
 #endif
 
     /// <inheritdoc/>
@@ -273,7 +273,7 @@ public abstract record Either<T1, T2, T3, TType> :
 #if NETFRAMEWORK && !NET45_OR_GREATER
            .ToList();
 #else
-           .ReadOnly();
+           .AsReadOnly();
 #endif
 
     /// <inheritdoc/>
@@ -470,7 +470,7 @@ public abstract record Either<T1, T2, T3, T4, TType> :
 #if NETFRAMEWORK && !NET45_OR_GREATER
            .ToList();
 #else
-           .ReadOnly();
+           .AsReadOnly();
 #endif
 
     /// <inheritdoc/>
@@ -709,7 +709,7 @@ public abstract record Either<T1, T2, T3, T4, T5, TType> :
 #if NETFRAMEWORK && !NET45_OR_GREATER
            .ToList();
 #else
-           .ReadOnly();
+           .AsReadOnly();
 #endif
 
     /// <inheritdoc/>

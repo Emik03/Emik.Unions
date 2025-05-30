@@ -90,7 +90,7 @@ sealed record InnerEither<<#= Generic(i) #>> :
 #if NETFRAMEWORK && !NET45_OR_GREATER
            .ToList();
 #else
-           .ReadOnly();
+           .AsReadOnly();
 #endif
 
     /// <inheritdoc/>
