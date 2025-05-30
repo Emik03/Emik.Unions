@@ -55,7 +55,7 @@ sealed record InnerProduct<T1> :
 #if NETFRAMEWORK && !NET45_OR_GREATER
            .ToList();
 #else
-           .ReadOnly();
+           .AsReadOnly();
 #endif
 
     /// <inheritdoc />
@@ -129,7 +129,7 @@ sealed record InnerProduct<T1, T2> :
 #if NETFRAMEWORK && !NET45_OR_GREATER
            .ToList();
 #else
-           .ReadOnly();
+           .AsReadOnly();
 #endif
 
     /// <inheritdoc />
@@ -212,7 +212,7 @@ sealed record InnerProduct<T1, T2, T3> :
 #if NETFRAMEWORK && !NET45_OR_GREATER
            .ToList();
 #else
-           .ReadOnly();
+           .AsReadOnly();
 #endif
 
     /// <inheritdoc />
@@ -304,7 +304,7 @@ sealed record InnerProduct<T1, T2, T3, T4> :
 #if NETFRAMEWORK && !NET45_OR_GREATER
            .ToList();
 #else
-           .ReadOnly();
+           .AsReadOnly();
 #endif
 
     /// <inheritdoc />

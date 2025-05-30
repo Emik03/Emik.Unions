@@ -120,7 +120,7 @@ public abstract record Functor<T, TResult, TType>(Converter<T, TResult> Converte
 #if NETFRAMEWORK && !NET45_OR_GREATER
            .ToList();
 #else
-           .ReadOnly();
+           .AsReadOnly();
 #endif
 
     /// <inheritdoc />
